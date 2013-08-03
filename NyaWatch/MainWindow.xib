@@ -784,6 +784,46 @@
 					</object>
 					<int key="connectionID">6</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">categoryPlanToWatchAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="993148789"/>
+					</object>
+					<int key="connectionID">43</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">categoryWatchingAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="155393397"/>
+					</object>
+					<int key="connectionID">44</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">categoryCompletedAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="216034454"/>
+					</object>
+					<int key="connectionID">45</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">categoryOnHoldAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="829869803"/>
+					</object>
+					<int key="connectionID">46</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">categoryDroppedAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="371518150"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -828,16 +868,16 @@
 						<reference key="object" ref="312036702"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="993148789"/>
 							<reference ref="155393397"/>
 							<reference ref="216034454"/>
 							<reference ref="829869803"/>
-							<reference ref="371518150"/>
 							<reference ref="941836820"/>
 							<reference ref="644871578"/>
 							<reference ref="684259467"/>
 							<reference ref="1024339400"/>
 							<reference ref="1009449040"/>
+							<reference ref="993148789"/>
+							<reference ref="371518150"/>
 						</object>
 						<reference key="parent" ref="748157544"/>
 					</object>
@@ -1188,7 +1228,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">42</int>
+			<int key="maxID">47</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1204,6 +1244,59 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MainWindowController</string>
 					<string key="superclassName">NSWindowController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>categoryCompletedAction:</string>
+							<string>categoryDroppedAction:</string>
+							<string>categoryOnHoldAction:</string>
+							<string>categoryPlanToWatchAction:</string>
+							<string>categoryWatchingAction:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>categoryCompletedAction:</string>
+							<string>categoryDroppedAction:</string>
+							<string>categoryOnHoldAction:</string>
+							<string>categoryPlanToWatchAction:</string>
+							<string>categoryWatchingAction:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">categoryCompletedAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">categoryDroppedAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">categoryOnHoldAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">categoryPlanToWatchAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">categoryWatchingAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MainWindowController.h</string>

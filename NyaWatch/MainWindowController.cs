@@ -36,6 +36,31 @@ namespace NyaWatch
 				return (MainWindow)base.Window;
 			}
 		}
+
+		partial void categoryPlanToWatchAction(NSObject sender)
+		{
+			Console.WriteLine("plan to watch category");
+		}
+
+		partial void categoryWatchingAction(NSObject sender)
+		{
+			Console.WriteLine("watching category");
+		}
+
+		partial void categoryCompletedAction(NSObject sender)
+		{
+			Console.WriteLine("completed category");
+		}
+
+		partial void categoryOnHoldAction(NSObject sender)
+		{
+			Console.WriteLine("on hold category");
+		}
+
+		partial void categoryDroppedAction(NSObject sender)
+		{
+			Console.WriteLine("dropped category");
+		}
 	}
 }
 
