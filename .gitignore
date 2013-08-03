@@ -16,7 +16,7 @@ test-results/
 TestResults
 
 #Compilation results
-bin
+*/bin
 obj
 Obj
 
