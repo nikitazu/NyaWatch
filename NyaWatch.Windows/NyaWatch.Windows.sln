@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyaWatch.Windows", "NyaWatc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyaWatch.Core", "..\NyaWatch.Core\NyaWatch.Core.csproj", "{2DD2F8F0-E65A-48B2-BBB0-CCFF60DB3761}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyaWatch.Core.Tests", "..\NyaWatch.Core.Tests\NyaWatch.Core.Tests.csproj", "{6026FC5A-60ED-436B-8539-718BFB9050A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{2DD2F8F0-E65A-48B2-BBB0-CCFF60DB3761}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2DD2F8F0-E65A-48B2-BBB0-CCFF60DB3761}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2DD2F8F0-E65A-48B2-BBB0-CCFF60DB3761}.Release|x86.ActiveCfg = Release|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6026FC5A-60ED-436B-8539-718BFB9050A6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
