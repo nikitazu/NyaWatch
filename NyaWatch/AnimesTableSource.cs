@@ -15,10 +15,10 @@ namespace NyaWatch
 		public AnimesTableSource ()
 		{
 			_items = new List<NSObject> ();
-			_items.Add (new Anime ("Slayers: Excellent", "OVA", "20", 0));
-			_items.Add (new Anime ("Asura", "Movie", "25", 1));
-			_items.Add (new Anime ("Slayers", "TV", "30", 4));
-			_items.Add (new Anime ("Neon Genesis Evangelion", "TV", "26", 0));
+			_items.Add (new Anime ("Slayers: Excellent", "OVA", 20, 0));
+			_items.Add (new Anime ("Asura", "Movie", 25, 1));
+			_items.Add (new Anime ("Slayers", "TV", 30, 4));
+			_items.Add (new Anime ("Neon Genesis Evangelion", "TV", 26, 0));
 		}
 
 		/// <summary>
@@ -55,7 +55,10 @@ namespace NyaWatch
 		public string Title { get; set; }
 
 		[Export("episodes")]
-		public string Episodes { get; set; }
+		public int Episodes { get; set; }
+
+		[Export("watched")]
+		public int Watched { get; set; }
 
 		[Export("type")]
 		public string Type { get; set; }
@@ -100,7 +103,7 @@ namespace NyaWatch
 			}
 		}
 
-		public Anime (string title, string type, string episodes, int torrents)
+		public Anime (string title, string type, int episodes, int torrents)
 		{
 			Title = title;
 			Type = type;
