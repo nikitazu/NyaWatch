@@ -43,6 +43,7 @@ namespace NyaWatch
 
 		public override void AwakeFromNib ()
 		{
+			base.AwakeFromNib ();
 			LoadAwesomeFont ();
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
 		}
