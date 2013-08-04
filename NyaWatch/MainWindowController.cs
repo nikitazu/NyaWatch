@@ -28,14 +28,50 @@ namespace NyaWatch
 		// Shared initialization code
 		void Initialize ()
 		{
+
 		}
 		#endregion
+
 		//strongly typed window accessor
 		public new MainWindow Window {
 			get {
 				return (MainWindow)base.Window;
 			}
 		}
+
+		#region Init
+
+		public override void AwakeFromNib ()
+		{
+			LoadAwesomeFont ();
+		}
+
+		void LoadAwesomeFont()
+		{
+			var awesomeFont = NSFont.FromFontName ("fontawesome", 14);
+
+			categoryPlanToWatchButton.Font = awesomeFont;
+			categoryWatchingButton.Font = awesomeFont;
+			categoryCompletedButton.Font = awesomeFont;
+			categoryOnHoldButton.Font = awesomeFont;
+			categoryDroppedButton.Font = awesomeFont;
+
+			const string fastForward = "\uf050";
+			const string play = "\uf04b";
+			const string stop = "\uf04d";
+			const string pause = "\uf04c";
+			const string eject = "\uf052";
+
+			categoryPlanToWatchButton.Title = fastForward;
+			categoryWatchingButton.Title = play;
+			categoryCompletedButton.Title = stop;
+			categoryOnHoldButton.Title = pause;
+			categoryDroppedButton.Title = eject;
+		}
+
+		#endregion
+
+		#region Category buttons click events
 
 		partial void categoryPlanToWatchAction(NSObject sender)
 		{
@@ -61,6 +97,8 @@ namespace NyaWatch
 		{
 			Console.WriteLine("dropped category");
 		}
+
+		#endregion
 	}
 }
 

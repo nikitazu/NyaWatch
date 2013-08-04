@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -101,5 +102,8 @@
       <Project>{2DD2F8F0-E65A-48B2-BBB0-CCFF60DB3761}</Project>
       <Name>NyaWatch.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Fonts\fontawesome-webfont.ttf" />
   </ItemGroup>
 </Project>

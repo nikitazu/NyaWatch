@@ -11,6 +11,21 @@ namespace NyaWatch
 	[Register ("MainWindowController")]
 	partial class MainWindowController
 	{
+		[Outlet]
+		MonoMac.AppKit.NSButton categoryCompletedButton { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSButton categoryDroppedButton { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSButton categoryOnHoldButton { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSButton categoryPlanToWatchButton { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSButton categoryWatchingButton { get; set; }
+
 		[Action ("categoryCompletedAction:")]
 		partial void categoryCompletedAction (MonoMac.Foundation.NSObject sender);
 
@@ -28,6 +43,30 @@ namespace NyaWatch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (categoryPlanToWatchButton != null) {
+				categoryPlanToWatchButton.Dispose ();
+				categoryPlanToWatchButton = null;
+			}
+
+			if (categoryWatchingButton != null) {
+				categoryWatchingButton.Dispose ();
+				categoryWatchingButton = null;
+			}
+
+			if (categoryCompletedButton != null) {
+				categoryCompletedButton.Dispose ();
+				categoryCompletedButton = null;
+			}
+
+			if (categoryOnHoldButton != null) {
+				categoryOnHoldButton.Dispose ();
+				categoryOnHoldButton = null;
+			}
+
+			if (categoryDroppedButton != null) {
+				categoryDroppedButton.Dispose ();
+				categoryDroppedButton = null;
+			}
 		}
 	}
 
