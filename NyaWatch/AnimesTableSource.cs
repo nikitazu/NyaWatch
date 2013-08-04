@@ -15,10 +15,10 @@ namespace NyaWatch
 		public AnimesTableSource ()
 		{
 			_items = new List<NSObject> ();
-			_items.Add (new Anime ("Slayers: Excellent", "OVA", 20, 0));
-			_items.Add (new Anime ("Asura", "Movie", 25, 1));
-			_items.Add (new Anime ("Slayers", "TV", 30, 4));
-			_items.Add (new Anime ("Neon Genesis Evangelion", "TV", 26, 0));
+			_items.Add (new Anime ("Slayers: Excellent", "OVA", 20, 0, "Aired"));
+			_items.Add (new Anime ("Asura", "Movie", 25, 1, "Not yet aired"));
+			_items.Add (new Anime ("Slayers", "TV", 30, 4, "Airing"));
+			_items.Add (new Anime ("Neon Genesis Evangelion", "TV", 26, 0, "Aired"));
 		}
 
 		/// <summary>
@@ -103,18 +103,29 @@ namespace NyaWatch
 			}
 		}
 
-		public Anime (string title, string type, int episodes, int torrents)
+		[Export("status")]
+		public string Status { get; set; }
+
+		[Export("statusColor")]
+		public NSColor StatusColor {
+			get {
+				return Status == "Airing" ? NSColor.Blue : NSColor.LightGray;
+			}
+		}
+
+		public Anime (string title, string type, int episodes, int torrents, string status)
 		{
 			Title = title;
 			Type = type;
 			Episodes = episodes;
 			TorrentsCount = torrents;
+			Status = status;
 		}
 
 		[Export("copyWithZone:")]
 		public virtual NSObject CopyWithZone(IntPtr zone)
 		{
-			return new Anime(Title, Type, Episodes, TorrentsCount);
+			return new Anime(Title, Type, Episodes, TorrentsCount, Status);
 		}
 
 		public override NSObject ValueForUndefinedKey (NSString key)
