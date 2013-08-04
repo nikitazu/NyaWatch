@@ -42,10 +42,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\IStorage.cs" />
     <Compile Include="Data\XmlStorage.cs" />
-    <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\CorruptStorageException.cs" />
     <Compile Include="Parsing\IParser.cs" />
     <Compile Include="Parsing\SimpleParser.cs" />
+    <Compile Include="Data\IToDictionary.cs" />
+    <Compile Include="Data\MemoryStorage.cs" />
+    <Compile Include="Data\CategoryNotFoundException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

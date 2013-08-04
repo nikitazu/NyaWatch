@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.IO;
+using Dic = System.Collections.Generic.IDictionary<string, string>;
 
 namespace NyaWatch.Core.Data
-{
-	public class XmlStorage<T> : IStorage<T> where T : IEntity
+{/*
+	public class XmlStorage
 	{
 		XmlSerializer _serializer;
 		string _pathToFolder;
@@ -152,6 +153,6 @@ namespace NyaWatch.Core.Data
 		}
 
 		#endregion
-	}
+	}*/
 }
 
