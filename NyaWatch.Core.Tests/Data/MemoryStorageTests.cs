@@ -102,17 +102,9 @@ namespace NyaWatch.Core.Data.Tests
 
 			Assert.AreNotEqual (id, Guid.Empty, "Item ID should be generated");
 
-			IEnumerable<KeyValuePair<Guid, Dic>> items = null;
-			Assert.DoesNotThrow(
-				() => items = _storage.SelectItems("foo"),
-				"Unable to select items");
-
-			Assert.NotNull (items, "Items not selected");
-			var founditem = items.FirstOrDefault();
-			Assert.NotNull(founditem, "Added item not found");
-
-			Assert.IsTrue (founditem.Value.ContainsKey("data"), "Initial data key should present");
-			Assert.AreEqual ("aaa", founditem.Value["data"], "data should be aaa");
+			var item = _storage.GetItem ("foo", id);
+			Assert.NotNull (item, "Item should be found");
+			Assert.AreEqual (_a, item, "Item should be A");
 		}
 
 		[Test]
@@ -193,9 +185,9 @@ namespace NyaWatch.Core.Data.Tests
 				() => _storage.UpdateItem ("foo", aid, newAValue),
 				"Item a should be updated");
 
-			var updatedA = _storage.SelectItems ("foo").First (kv => kv.Key == aid);
+			var updatedA = _storage.GetItem ("foo", aid);
 			Assert.AreEqual ("aax", 
-			                 updatedA.Value ["data"],
+			                 updatedA ["data"],
 			                "Item a data should be aax");
 		}
 
