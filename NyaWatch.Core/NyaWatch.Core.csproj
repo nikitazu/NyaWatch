@@ -48,6 +48,7 @@
     <Compile Include="Data\IToDictionary.cs" />
     <Compile Include="Data\MemoryStorage.cs" />
     <Compile Include="Data\CategoryNotFoundException.cs" />
+    <Compile Include="Data\IStorageOnDisk.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

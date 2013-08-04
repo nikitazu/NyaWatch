@@ -5,6 +5,9 @@ using Dic = System.Collections.Generic.IDictionary<string, string>;
 
 namespace NyaWatch.Core.Data
 {
+	/// <summary>
+	/// Interface for data storage.
+	/// </summary>
 	public interface IStorage
 	{
 		/// <summary>
