@@ -46,6 +46,14 @@ namespace NyaWatch
 			base.AwakeFromNib ();
 			LoadAwesomeFont ();
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
+
+			animesTable.DataSource = new AnimesTableSource ();
+
+			/*
+			var o1 = new Anime { Title = "Foo" };
+			var o2 = new Anime { Title = "Bar" };
+
+			animesArrayController.AddObjects(NSArray.FromObjects(o1, o2));*/
 		}
 
 		void LoadAwesomeFont()

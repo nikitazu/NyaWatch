@@ -12,6 +12,12 @@ namespace NyaWatch
 	partial class MainWindowController
 	{
 		[Outlet]
+		MonoMac.AppKit.NSArrayController animesArrayController { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSTableView animesTable { get; set; }
+
+		[Outlet]
 		MonoMac.AppKit.NSButton categoryCompletedButton { get; set; }
 
 		[Outlet]
@@ -43,6 +49,26 @@ namespace NyaWatch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (animesArrayController != null) {
+				animesArrayController.Dispose ();
+				animesArrayController = null;
+			}
+
+			if (categoryCompletedButton != null) {
+				categoryCompletedButton.Dispose ();
+				categoryCompletedButton = null;
+			}
+
+			if (categoryDroppedButton != null) {
+				categoryDroppedButton.Dispose ();
+				categoryDroppedButton = null;
+			}
+
+			if (categoryOnHoldButton != null) {
+				categoryOnHoldButton.Dispose ();
+				categoryOnHoldButton = null;
+			}
+
 			if (categoryPlanToWatchButton != null) {
 				categoryPlanToWatchButton.Dispose ();
 				categoryPlanToWatchButton = null;
@@ -53,19 +79,9 @@ namespace NyaWatch
 				categoryWatchingButton = null;
 			}
 
-			if (categoryCompletedButton != null) {
-				categoryCompletedButton.Dispose ();
-				categoryCompletedButton = null;
-			}
-
-			if (categoryOnHoldButton != null) {
-				categoryOnHoldButton.Dispose ();
-				categoryOnHoldButton = null;
-			}
-
-			if (categoryDroppedButton != null) {
-				categoryDroppedButton.Dispose ();
-				categoryDroppedButton = null;
+			if (animesTable != null) {
+				animesTable.Dispose ();
+				animesTable = null;
 			}
 		}
 	}
