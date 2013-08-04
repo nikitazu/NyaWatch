@@ -49,25 +49,17 @@ namespace NyaWatch
 
 		void LoadAwesomeFont()
 		{
-			var awesomeFont = NSFont.FromFontName ("fontawesome", 14);
+			categoryPlanToWatchButton.Font = FontAwesome.Font;
+			categoryWatchingButton.Font = FontAwesome.Font;
+			categoryCompletedButton.Font = FontAwesome.Font;
+			categoryOnHoldButton.Font = FontAwesome.Font;
+			categoryDroppedButton.Font = FontAwesome.Font;
 
-			categoryPlanToWatchButton.Font = awesomeFont;
-			categoryWatchingButton.Font = awesomeFont;
-			categoryCompletedButton.Font = awesomeFont;
-			categoryOnHoldButton.Font = awesomeFont;
-			categoryDroppedButton.Font = awesomeFont;
-
-			const string fastForward = "\uf050";
-			const string play = "\uf04b";
-			const string stop = "\uf04d";
-			const string pause = "\uf04c";
-			const string eject = "\uf052";
-
-			categoryPlanToWatchButton.Title = fastForward;
-			categoryWatchingButton.Title = play;
-			categoryCompletedButton.Title = stop;
-			categoryOnHoldButton.Title = pause;
-			categoryDroppedButton.Title = eject;
+			categoryPlanToWatchButton.Title = FontAwesome.FastForwardIcon;
+			categoryWatchingButton.Title = FontAwesome.PlayIcon;
+			categoryCompletedButton.Title = FontAwesome.StopIcon;
+			categoryOnHoldButton.Title = FontAwesome.PauseIcon;
+			categoryDroppedButton.Title = FontAwesome.EjectIcon;
 		}
 
 		#endregion
