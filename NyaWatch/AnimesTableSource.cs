@@ -60,6 +60,22 @@ namespace NyaWatch
 		[Export("type")]
 		public string Type { get; set; }
 
+		[Export("typeColor")]
+		public NSColor TypeColor {
+			get {
+				switch (Type) {
+				case "TV":
+					return NSColor.Blue;
+				case "OVA":
+					return NSColor.Orange;
+				case "Movie":
+					return NSColor.Red;
+				default:
+					return NSColor.Black;
+				}
+			}
+		}
+
 		public Anime (string title, string type, string episodes)
 		{
 			Title = title;
