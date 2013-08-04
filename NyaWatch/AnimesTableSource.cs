@@ -15,10 +15,10 @@ namespace NyaWatch
 		public AnimesTableSource ()
 		{
 			_items = new List<NSObject> ();
-			_items.Add (new Anime ("Foo", "OVA", "20"));
-			_items.Add (new Anime ("Bar", "Movie", "25"));
-			_items.Add (new Anime ("Buz", "TV", "30"));
-			_items.Add (new Anime ("Nge", "TV", "26"));
+			_items.Add (new Anime ("Slayers: Excellent", "OVA", "20"));
+			_items.Add (new Anime ("Asura", "Movie", "25"));
+			_items.Add (new Anime ("Slayers", "TV", "30"));
+			_items.Add (new Anime ("Neon Genesis Evangelion", "TV", "26"));
 		}
 
 		/// <summary>
