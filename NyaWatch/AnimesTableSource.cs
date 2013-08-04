@@ -15,10 +15,10 @@ namespace NyaWatch
 		public AnimesTableSource ()
 		{
 			_items = new List<NSObject> ();
-			_items.Add (new Anime ("Foo", "20"));
-			_items.Add (new Anime ("Bar", "25"));
-			_items.Add (new Anime ("Buz", "30"));
-			_items.Add (new Anime ("Nge", "26"));
+			_items.Add (new Anime ("Foo", "OVA", "20"));
+			_items.Add (new Anime ("Bar", "Movie", "25"));
+			_items.Add (new Anime ("Buz", "TV", "30"));
+			_items.Add (new Anime ("Nge", "TV", "26"));
 		}
 
 		/// <summary>
@@ -57,16 +57,26 @@ namespace NyaWatch
 		[Export("episodes")]
 		public string Episodes { get; set; }
 
-		public Anime (string title, string episodes)
+		[Export("type")]
+		public string Type { get; set; }
+
+		public Anime (string title, string type, string episodes)
 		{
 			Title = title;
+			Type = type;
 			Episodes = episodes;
 		}
 
 		[Export("copyWithZone:")]
 		public virtual NSObject CopyWithZone(IntPtr zone)
 		{
-			return new Anime(Title, Episodes);
+			return new Anime(Title, Type, Episodes);
+		}
+
+		public override NSObject ValueForUndefinedKey (NSString key)
+		{
+			Console.WriteLine ("Unknown key: {0}", key);
+			return null;
 		}
 	}
 }
