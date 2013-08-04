@@ -15,10 +15,10 @@ namespace NyaWatch
 		public AnimesTableSource ()
 		{
 			_items = new List<NSObject> ();
-			_items.Add (new Anime ("Slayers: Excellent", "OVA", "20"));
-			_items.Add (new Anime ("Asura", "Movie", "25"));
-			_items.Add (new Anime ("Slayers", "TV", "30"));
-			_items.Add (new Anime ("Neon Genesis Evangelion", "TV", "26"));
+			_items.Add (new Anime ("Slayers: Excellent", "OVA", "20", 0));
+			_items.Add (new Anime ("Asura", "Movie", "25", 1));
+			_items.Add (new Anime ("Slayers", "TV", "30", 4));
+			_items.Add (new Anime ("Neon Genesis Evangelion", "TV", "26", 0));
 		}
 
 		/// <summary>
@@ -65,28 +65,53 @@ namespace NyaWatch
 			get {
 				switch (Type) {
 				case "TV":
-					return NSColor.Blue;
+					return NSColor.Brown;
 				case "OVA":
 					return NSColor.Orange;
 				case "Movie":
-					return NSColor.Red;
+					return NSColor.Magenta;
 				default:
 					return NSColor.Black;
 				}
 			}
 		}
 
-		public Anime (string title, string type, string episodes)
+		[Export("torrentsCount")]
+		public int TorrentsCount { get; set; }
+
+		[Export("torrentsMessage")]
+		public string TorrentsMessage {
+			get {
+				switch (TorrentsCount) {
+				case 0:
+					return "No torrents found";
+				case 1:
+					return "One torrent found";
+				default:
+					return string.Format ("{0} torrents found", TorrentsCount);
+				}
+			}
+		}
+
+		[Export("torrentsColor")]
+		public NSColor TorrentsColor {
+			get {
+				return TorrentsCount > 0 ? NSColor.Blue : NSColor.LightGray;
+			}
+		}
+
+		public Anime (string title, string type, string episodes, int torrents)
 		{
 			Title = title;
 			Type = type;
 			Episodes = episodes;
+			TorrentsCount = torrents;
 		}
 
 		[Export("copyWithZone:")]
 		public virtual NSObject CopyWithZone(IntPtr zone)
 		{
-			return new Anime(Title, Type, Episodes);
+			return new Anime(Title, Type, Episodes, TorrentsCount);
 		}
 
 		public override NSObject ValueForUndefinedKey (NSString key)
