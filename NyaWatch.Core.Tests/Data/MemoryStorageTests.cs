@@ -30,17 +30,17 @@ namespace NyaWatch.Core.Data.Tests
 		public void TestAddCategory()
 		{
 			Assert.DoesNotThrow (
-				() => _storage.addCategory ("foo"), 
+				() => _storage.AddCategory ("foo"), 
 				"Unable to create a category");
 		}
 
 		[Test]
 		public void TestAddCategoryTwice()
 		{
-			_storage.addCategory ("foo");
+			_storage.AddCategory ("foo");
 
 			Assert.DoesNotThrow (
-				() => _storage.addCategory ("foo"), 
+				() => _storage.AddCategory ("foo"), 
 				"Unable to create a existing category, should do nothing but not fail");
 		}
 
@@ -50,15 +50,15 @@ namespace NyaWatch.Core.Data.Tests
 			bool result = false;
 
 			Assert.DoesNotThrow (
-				() => result = _storage.checkCategoryExistence ("foo"),
+				() => result = _storage.CheckCategoryExistence ("foo"),
 				"Unable to check not existing category existence");
 
 			Assert.IsFalse (result, "Category check should return false for not created category");
 
-			_storage.addCategory ("foo");
+			_storage.AddCategory ("foo");
 
 			Assert.DoesNotThrow (
-				() => result = _storage.checkCategoryExistence ("foo"),
+				() => result = _storage.CheckCategoryExistence ("foo"),
 				"Unable to check existing category existence");
 
 			Assert.IsTrue (result, "Category check should return true for created category");
@@ -67,14 +67,14 @@ namespace NyaWatch.Core.Data.Tests
 		[Test]
 		public void TestRemoveCategory()
 		{
-			_storage.addCategory ("foo");
+			_storage.AddCategory ("foo");
 
 			Assert.DoesNotThrow (
-				() => _storage.removeCategory ("foo"), 
+				() => _storage.RemoveCategory ("foo"), 
 				"Unable to remove a category");
 
 			Assert.IsFalse (
-				_storage.checkCategoryExistence ("foo"), 
+				_storage.CheckCategoryExistence ("foo"), 
 				"Category should not exist after removal");
 		}
 
@@ -82,7 +82,7 @@ namespace NyaWatch.Core.Data.Tests
 		public void TestRemoveNonExistantCategory()
 		{
 			Assert.DoesNotThrow (
-				() => _storage.removeCategory ("foo"),
+				() => _storage.RemoveCategory ("foo"),
 				"Unable to remove non existant category, should do nothing but not fail");
 		}
 
@@ -90,21 +90,21 @@ namespace NyaWatch.Core.Data.Tests
 		public void TestAddItem()
 		{
 			Assert.Throws<CategoryNotFoundException> (
-				() => _storage.addItem ("foo", _a),
+				() => _storage.AddItem ("foo", _a),
 				"Category not found exception should be raised");
 
-			_storage.addCategory ("foo");
+			_storage.AddCategory ("foo");
 
 			Guid id = Guid.Empty;
 			Assert.DoesNotThrow (
-				() => id = _storage.addItem ("foo", _a),
+				() => id = _storage.AddItem ("foo", _a),
 				"Unable to add item");
 
 			Assert.AreNotEqual (id, Guid.Empty, "Item ID should be generated");
 
 			IEnumerable<KeyValuePair<Guid, Dic>> items = null;
 			Assert.DoesNotThrow(
-				() => items = _storage.selectItems("foo"),
+				() => items = _storage.SelectItems("foo"),
 				"Unable to select items");
 
 			Assert.NotNull (items, "Items not selected");
@@ -119,18 +119,18 @@ namespace NyaWatch.Core.Data.Tests
 		public void TestSelectItems()
 		{
 			Assert.Throws<CategoryNotFoundException> (
-				() => _storage.selectItems ("foo"),
+				() => _storage.SelectItems ("foo"),
 				"Category not found exception should be thrown");
 
-			_storage.addCategory ("foo");
+			_storage.AddCategory ("foo");
 
-			Assert.AreEqual (0, _storage.selectItems ("foo").Count (), "No items should be found yet");
+			Assert.AreEqual (0, _storage.SelectItems ("foo").Count (), "No items should be found yet");
 
-			var aid = _storage.addItem ("foo", _a);
-			var bid = _storage.addItem ("foo", _b);
-			var cid = _storage.addItem ("foo", _c);
+			var aid = _storage.AddItem ("foo", _a);
+			var bid = _storage.AddItem ("foo", _b);
+			var cid = _storage.AddItem ("foo", _c);
 
-			var items = _storage.selectItems ("foo");
+			var items = _storage.SelectItems ("foo");
 			Assert.AreEqual (3, items.Count (), "3 items should be found");
 
 			var itemsList = items.ToDictionary (kv => kv.Key, kv => kv.Value);
@@ -143,23 +143,23 @@ namespace NyaWatch.Core.Data.Tests
 		public void TestRemoveItem()
 		{
 			Assert.Throws<CategoryNotFoundException> (
-				() => _storage.removeItem ("foo", Guid.Empty),
+				() => _storage.RemoveItem ("foo", Guid.Empty),
 				"Category not found exception should be thrown");
 
-			_storage.addCategory("foo");
+			_storage.AddCategory("foo");
 
 			Assert.DoesNotThrow (
-				() => _storage.removeItem ("foo", Guid.Empty),
+				() => _storage.RemoveItem ("foo", Guid.Empty),
 				"Nothing should be done but no exception should be thrown");
 
-			var aid = _storage.addItem ("foo", _a);
-			var bid = _storage.addItem ("foo", _b);
+			var aid = _storage.AddItem ("foo", _a);
+			var bid = _storage.AddItem ("foo", _b);
 
 			Assert.DoesNotThrow (
-				() => _storage.removeItem ("foo", bid),
+				() => _storage.RemoveItem ("foo", bid),
 				"Item b should be removed");
 
-			var items = _storage.selectItems ("foo");
+			var items = _storage.SelectItems ("foo");
 			Assert.AreEqual (1, items.Count (), "Only one items should remain");
 			Assert.AreEqual (aid,
 			                 items.First ().Key,
@@ -170,33 +170,53 @@ namespace NyaWatch.Core.Data.Tests
 		public void TestUpdateItem()
 		{
 			Assert.Throws<CategoryNotFoundException> (
-				() => _storage.updateItem ("foo", Guid.Empty, null),
+				() => _storage.UpdateItem ("foo", Guid.Empty, null),
 				"Category not found exception should be thrown");
 
-			_storage.addCategory ("foo");
+			_storage.AddCategory ("foo");
 
 			Assert.DoesNotThrow (
-				() => _storage.updateItem ("foo", Guid.Empty, null),
+				() => _storage.UpdateItem ("foo", Guid.Empty, null),
 				"Should do nothing and not fail");
 
-			var aid = _storage.addItem ("foo", _a);
-			_storage.addItem ("foo", _b);
+			var aid = _storage.AddItem ("foo", _a);
+			_storage.AddItem ("foo", _b);
 
 			Assert.DoesNotThrow (
-				() => _storage.updateItem ("foo", aid, null),
+				() => _storage.UpdateItem ("foo", aid, null),
 				"Should do nothing and not fail");
 
 			var newAValue = new Dictionary<string, string> ();
 			newAValue ["data"] = "aax";
 
 			Assert.DoesNotThrow (
-				() => _storage.updateItem ("foo", aid, newAValue),
+				() => _storage.UpdateItem ("foo", aid, newAValue),
 				"Item a should be updated");
 
-			var updatedA = _storage.selectItems ("foo").First (kv => kv.Key == aid);
+			var updatedA = _storage.SelectItems ("foo").First (kv => kv.Key == aid);
 			Assert.AreEqual ("aax", 
 			                 updatedA.Value ["data"],
 			                "Item a data should be aax");
+		}
+
+		[Test]
+		public void TestGetItem()
+		{
+			Assert.Throws<CategoryNotFoundException> (
+				() => _storage.GetItem ("foo", Guid.Empty),
+				"Category not found exception should be thrown");
+
+			_storage.AddCategory ("foo");
+
+			var aid = _storage.AddItem ("foo", _a);
+
+			Assert.IsNull (_storage.GetItem ("foo", Guid.Empty));
+			Assert.IsNull (_storage.GetItem ("foo", Guid.NewGuid()));
+
+			var a = _storage.GetItem ("foo", aid);
+			Assert.IsNotNull (a, "A should be found");
+			Assert.AreEqual (_a, a, "A should be A");
+
 		}
 	}
 }

@@ -27,26 +27,26 @@ namespace NyaWatch.Core.Data
 
 		#region IStorage implementation
 
-		public void addCategory (string category)
+		public void AddCategory (string category)
 		{
-			if (!checkCategoryExistence (category)) {
+			if (!CheckCategoryExistence (category)) {
 				_db.Add (category, new CategoryAlias ());
 			}
 		}
 
-		public void removeCategory (string category)
+		public void RemoveCategory (string category)
 		{
 			_db.Remove (category);
 		}
 
-		public bool checkCategoryExistence (string category)
+		public bool CheckCategoryExistence (string category)
 		{
 			return _db.ContainsKey (category);
 		}
 
-		public Guid addItem (string category, Dic item)
+		public Guid AddItem (string category, Dic item)
 		{
-			if (!checkCategoryExistence (category)) {
+			if (!CheckCategoryExistence (category)) {
 				throw new CategoryNotFoundException (category);
 			}
 
@@ -57,9 +57,9 @@ namespace NyaWatch.Core.Data
 			return id;
 		}
 
-		public void removeItem(string category, Guid id)
+		public void RemoveItem(string category, Guid id)
 		{
-			if (!checkCategoryExistence (category)) {
+			if (!CheckCategoryExistence (category)) {
 				throw new CategoryNotFoundException (category);
 			}
 
@@ -72,29 +72,37 @@ namespace NyaWatch.Core.Data
 			}
 		}
 
-		public void updateItem(string category, Guid id, Dic values)
+		public void UpdateItem(string category, Guid id, Dic values)
 		{
-			if (!checkCategoryExistence (category)) {
-				throw new CategoryNotFoundException (category);
-			}
-			if (id == Guid.Empty) {
+			var item = GetItem (category, id);
+			if (item == null || values == null) {
 				return;
 			}
-			if (values == null) {
-				return;
-			}
-			var item = _db [category] [id];
 			foreach (var kv in values) {
 				item [kv.Key] = kv.Value;
 			}
 		}
 
-		public IEnumerable<KeyValuePair<Guid, Dic>> selectItems (string category)
+		public IEnumerable<KeyValuePair<Guid, Dic>> SelectItems (string category)
 		{
-			if (!checkCategoryExistence (category)) {
+			if (!CheckCategoryExistence (category)) {
 				throw new CategoryNotFoundException (category);
 			}
 			return _db [category];
+		}
+
+		public Dic GetItem(string category, Guid id)
+		{
+			if (!CheckCategoryExistence (category)) {
+				throw new CategoryNotFoundException (category);
+			}
+
+			try
+			{
+				return _db [category] [id];
+			} catch (KeyNotFoundException) {
+				return null;
+			}
 		}
 
 		#endregion
