@@ -19,18 +19,6 @@ namespace NyaWatch
 			_items.Add (new Anime ("Bar", "25"));
 			_items.Add (new Anime ("Buz", "30"));
 			_items.Add (new Anime ("Nge", "26"));
-
-
-			/*var d1 = new NSDictionary ();
-			d1.SetValueForKey (new NSString ("NGE"), new NSString ("title"));
-			d1.SetValueForKey (new NSString ("25"), new NSString ("episodes"));
-
-			var d2 = new NSDictionary ();
-			d2.SetValueForKey (new NSString ("Cocoa"), new NSString ("title"));
-			d2.SetValueForKey (new NSString ("13"), new NSString ("episodes"));
-
-			_items.Add (d1);
-			_items.Add (d2);*/
 		}
 
 		/// <summary>
@@ -41,7 +29,7 @@ namespace NyaWatch
 		[Export ("numberOfRowsInTableView:")]
 		public int NumberOfRowsInTableView(NSTableView table)
 		{
-			Console.WriteLine("numberOfRowsInTableView:");
+			//Console.WriteLine("numberOfRowsInTableView:");
 			return _items.Count();
 		}
 
@@ -55,8 +43,8 @@ namespace NyaWatch
 		[Export ("tableView:objectValueForTableColumn:row:")]
 		public NSObject ObjectValueForTableColumn(NSTableView table, NSTableColumn col, int row)
 		{
-			Console.WriteLine("tableView:objectValueForTableColumn:row:");
-			return (_items [row]);
+			//Console.WriteLine("tableView:objectValueForTableColumn:row:");
+			return _items [row];
 		}
 	}
 
