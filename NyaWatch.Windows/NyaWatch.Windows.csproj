@@ -35,9 +35,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>NyaWatch.Windows.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon_32x32.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -99,6 +106,42 @@
       <Project>{2DD2F8F0-E65A-48B2-BBB0-CCFF60DB3761}</Project>
       <Name>NyaWatch.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_16x16%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_32x32%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_128x128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_128x128%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_256x256%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_512x512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_512x512%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_32x32.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
