@@ -41,7 +41,7 @@
                     <TextBlock Text="{x:Static fonts:Awesome.PauseIcon}" />
                 </Button>
                 <Button ToolTip="Dropped">
-                    <TextBlock Text="{x:Static fonts:Awesome.EjectIcon}" />
+                    <TextBlock Text="{x:Static fonts:Awesome.EjectIcon  }" />
                 </Button>
             </StackPanel>
 
@@ -86,14 +86,20 @@
                                         <Label Content="{Binding Type}" 
                                                FontWeight="Bold"
                                                Foreground="{Binding TypeColor}" 
-                                               MinWidth="50" />
+                                               Margin="0 0 -20 0"
+                                               MinWidth="50">
+                                            <Label.RenderTransform>
+                                                <TransformGroup>
+                                                    <RotateTransform Angle="-20" />
+                                                </TransformGroup>
+                                            </Label.RenderTransform>
+                                        </Label>
                                     
-                                        <Label Content="{Binding Title}" 
-                                               FontWeight="Bold" />    
+                                        <Label Content="{Binding Title}" FontWeight="Bold" />
                                     </StackPanel>
                                 
                                     <Label Content="{Binding TorrentsMessage}" 
-                                           Foreground="{Binding TorrentsColor}" Margin="20 0 0 0" />
+                                           Foreground="{Binding TorrentsColor}" Margin="15 0 0 0" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2" Orientation="Vertical">
