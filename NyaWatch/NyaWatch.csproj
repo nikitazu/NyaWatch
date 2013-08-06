@@ -88,7 +88,7 @@
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
     <Compile Include="FontAwesome.cs" />
-    <Compile Include="AnimesTableSource.cs" />
+    <Compile Include="Anime.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

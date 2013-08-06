@@ -47,13 +47,12 @@ namespace NyaWatch
 			LoadAwesomeFont ();
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
 
-			animesTable.DataSource = new AnimesTableSource ();
+			var a1 = new Anime ("Slayers: Excellent", "OVA", 20, 0, "Aired");
+			var a2 = new Anime ("Asura", "Movie", 25, 1, "Not yet aired");
+			var a3 = new Anime ("Slayers", "TV", 30, 4, "Airing");
+			var a4 = new Anime ("Neon Genesis Evangelion", "TV", 26, 0, "Aired");
 
-			/*
-			var o1 = new Anime { Title = "Foo" };
-			var o2 = new Anime { Title = "Bar" };
-
-			animesArrayController.AddObjects(NSArray.FromObjects(o1, o2));*/
+			animesArrayController.AddObjects(NSArray.FromObjects(a1,a2,a3,a4));
 		}
 
 		void LoadAwesomeFont()
