@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Anime.cs" />
     <Compile Include="ViewModel\Root.cs" />
+    <Compile Include="WPF\UnbreakableScroller.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:fonts="clr-namespace:NyaWatch.Core.Fonts;assembly=NyaWatch.Core"
         xmlns:vm="clr-namespace:NyaWatch.Windows.ViewModel"
+        xmlns:wpf="clr-namespace:NyaWatch.Windows.WPF"
         Title="NyaWatch" 
         Icon="pack://application:,,,/Resources/icon_32x32.ico"
         Height="600" 
@@ -116,12 +117,12 @@
                        Width="200" 
                        Source="{Binding SelectedAnime.ActualImagePath}" />
 
-                <ScrollViewer Height="300" Grid.Column="1">
+                <wpf:UnbreakableScroller Height="300" Grid.Column="1">
                     <ListView IsSynchronizedWithCurrentItem="True"
                               SelectedItem="{Binding SelectedAnime}"
                               ItemTemplate="{StaticResource AnimeTemplate}"
                               ItemsSource="{Binding Animes}" />
-                </ScrollViewer>
+                </wpf:UnbreakableScroller>
             </Grid>
 
         </StackPanel>

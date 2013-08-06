@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using NyaWatch.Windows.WPF;
+
 namespace NyaWatch.Windows
 {
     /// <summary>
@@ -27,6 +29,8 @@ namespace NyaWatch.Windows
 
             Model = new ViewModel.Root();
             DataContext = Model;
+
+            //AnimesScrollViewer.FixVerticalScroll();
         }
     }
 }
