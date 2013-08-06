@@ -13,11 +13,12 @@
     
     <Window.Resources>
         <DataTemplate x:Key="AnimeTemplate" DataType="vm:Anime">
-            <Border BorderBrush="Gray" 
-                                BorderThickness="0.5" 
-                                Margin="5" 
-                                Padding="5" 
-                                MinWidth="550">
+            <Border BorderBrush="{x:Static SystemColors.ControlDarkBrush}" 
+                    BorderThickness="0.5" 
+                    Background="{x:Static SystemColors.ControlLightLightBrush}"
+                    Margin="5" 
+                    Padding="5" 
+                    MinWidth="550">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -67,8 +68,8 @@
             <Border Name="Border" 
                     CornerRadius="2" 
                     Padding="2"
-                    Background="#FFFFFF" 
-                    BorderBrush="#888888" 
+                    Background="{x:Static SystemColors.ControlLightLightBrush}"
+                    BorderBrush="{x:Static SystemColors.ControlDarkBrush}" 
                     BorderThickness="1" >
                 <Grid>
                     <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
@@ -76,7 +77,7 @@
                                    x:Name="WatermarkText" 
                                    FontFamily="./Resources/Fonts/#FontAwesome"
                                    IsHitTestVisible="False" 
-                                   Foreground="Gray"
+                                   Foreground="{x:Static SystemColors.GrayTextBrush}"
                                    Text="&#xf002; Search ..." />
                 </Grid>
             </Border>

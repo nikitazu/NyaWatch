@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Media;
 
 namespace NyaWatch.Windows.ViewModel
@@ -54,30 +55,26 @@ namespace NyaWatch.Windows.ViewModel
 
         public Brush TorrentsColor
         {
-            get
-            {
-                return TorrentsCount > 0 ? Brushes.Blue : Brushes.LightGray;
-            }
+            get { return MaybeActiveTextBrush(TorrentsCount > 0); }
         }
 
         public string Status { get; set; }
 
         public Brush StatusColor
         {
-            get
-            {
-                return Status == "Airing" ? Brushes.Blue : Brushes.LightGray;
-            }
+            get { return MaybeActiveTextBrush(Status == "Airing"); }
         }
 
         public string ImagePath { get; set; }
 
         public string ActualImagePath
         {
-            get
-            {
-                return ImagePath ?? "pack://application:,,,/Resources/icon_256x256.png";
-            }
+            get { return ImagePath ?? "pack://application:,,,/Resources/icon_256x256.png"; }
+        }
+
+        private Brush MaybeActiveTextBrush(bool isActive)
+        {
+            return isActive ? SystemColors.HotTrackBrush : SystemColors.GrayTextBrush;
         }
 
         public Anime(string title, string type, int episodes, int torrents, string status)
