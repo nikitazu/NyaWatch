@@ -29,8 +29,6 @@ namespace NyaWatch.Windows
 
             Model = new ViewModel.Root();
             DataContext = Model;
-
-            //AnimesScrollViewer.FixVerticalScroll();
         }
     }
 }
