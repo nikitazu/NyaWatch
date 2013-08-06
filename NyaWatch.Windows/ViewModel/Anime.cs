@@ -16,20 +16,20 @@ namespace NyaWatch.Windows.ViewModel
 
         public string Type { get; set; }
 
-        public Color TypeColor
+        public Brush TypeColor
         {
             get
             {
                 switch (Type)
                 {
                     case "TV":
-                        return Colors.Brown;
+                        return Brushes.Brown;
                     case "OVA":
-                        return Colors.Orange;
+                        return Brushes.Orange;
                     case "Movie":
-                        return Colors.Magenta;
+                        return Brushes.Magenta;
                     default:
-                        return Colors.Black;
+                        return Brushes.Black;
                 }
             }
         }
@@ -52,21 +52,21 @@ namespace NyaWatch.Windows.ViewModel
             }
         }
 
-        public Color TorrentsColor
+        public Brush TorrentsColor
         {
             get
             {
-                return TorrentsCount > 0 ? Colors.Blue : Colors.LightGray;
+                return TorrentsCount > 0 ? Brushes.Blue : Brushes.LightGray;
             }
         }
 
         public string Status { get; set; }
 
-        public Color StatusColor
+        public Brush StatusColor
         {
             get
             {
-                return Status == "Airing" ? Colors.Blue : Colors.LightGray;
+                return Status == "Airing" ? Brushes.Blue : Brushes.LightGray;
             }
         }
 
