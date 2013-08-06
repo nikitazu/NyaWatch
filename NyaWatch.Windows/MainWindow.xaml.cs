@@ -19,9 +19,14 @@ namespace NyaWatch.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ViewModel.Root Model { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Model = new ViewModel.Root();
+            DataContext = Model;
         }
     }
 }
