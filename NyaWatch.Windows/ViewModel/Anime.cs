@@ -70,6 +70,16 @@ namespace NyaWatch.Windows.ViewModel
             }
         }
 
+        public string ImagePath { get; set; }
+
+        public string ActualImagePath
+        {
+            get
+            {
+                return ImagePath ?? "pack://application:,,,/Resources/icon_256x256.png";
+            }
+        }
+
         public Anime(string title, string type, int episodes, int torrents, string status)
         {
             Title = title;

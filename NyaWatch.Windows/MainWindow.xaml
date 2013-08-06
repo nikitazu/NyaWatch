@@ -54,12 +54,21 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Image Height="300" Width="200"></Image>
+            <Image Height="300" 
+                   Width="200" 
+                   Source="{Binding SelectedAnime.ActualImagePath}"></Image>
             
-            <ListView Grid.Column="1" ItemsSource="{Binding Animes}">
+            <ListView Grid.Column="1" 
+                      IsSynchronizedWithCurrentItem="True"
+                      SelectedItem="{Binding SelectedAnime}"
+                      ItemsSource="{Binding Animes}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="5" MinWidth="550">
+                        <Border BorderBrush="Gray" 
+                                BorderThickness="0.5" 
+                                Margin="5" 
+                                Padding="5" 
+                                MinWidth="550">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -67,17 +76,19 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                             
-                                <Border BorderBrush="Gray" BorderThickness="1">
-                                    <Image Height="70" Width="40"></Image>
-                                </Border>
+                                <Image Height="70" 
+                                        Width="50" 
+                                        Source="{Binding ActualImagePath}"></Image>
                             
                                 <StackPanel Grid.Column="1" Orientation="Vertical" MinWidth="300">
                                     <StackPanel Orientation="Horizontal">
                                         <Label Content="{Binding Type}" 
+                                               FontWeight="Bold"
                                                Foreground="{Binding TypeColor}" 
                                                MinWidth="50" />
                                     
-                                        <Label Content="{Binding Title}" />    
+                                        <Label Content="{Binding Title}" 
+                                               FontWeight="Bold" />    
                                     </StackPanel>
                                 
                                     <Label Content="{Binding TorrentsMessage}" 

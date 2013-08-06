@@ -8,6 +8,7 @@ namespace NyaWatch.Windows.ViewModel
     public class Root
     {
         public List<Anime> Animes { get; private set; }
+        public Anime SelectedAnime { get; set; }
 
         public Root()
         {
