@@ -75,6 +75,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Resources\Fonts\" />
+    <Folder Include="Resources\NyaWatch.iconset\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -107,5 +108,16 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\fontawesome-webfont.ttf" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_128x128.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_128x128%402x.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_16x16.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_16x16%402x.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_256x256.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_256x256%402x.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_32x32.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_32x32%402x.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_512x512.png" />
+    <BundleResource Include="Resources\NyaWatch.iconset\icon_512x512%402x.png" />
+    <BundleResource Include="Resources\NyaWatch.icns" />
   </ItemGroup>
 </Project>

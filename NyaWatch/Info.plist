@@ -14,5 +14,7 @@
 	<string>NSApplication</string>
 	<key>ATSApplicationFontsPath</key>
 	<string>Fonts</string>
+	<key>CFBundleIconFile</key>
+	<string>NyaWatch</string>
 </dict>
 </plist>
