@@ -62,69 +62,72 @@
     </Window.Resources>
     
     <StackPanel Orientation="Vertical">
-        <!-- buttons -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        
+        <StackPanel Orientation="Vertical">
+            <!-- buttons -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <StackPanel.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Width" Value="40" />
-                        <Setter Property="Margin" Value="10 0 5 0" />
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Width" Value="40" />
+                            <Setter Property="Margin" Value="10 0 5 0" />
                         
-                        <Style.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontFamily" Value="./Resources/Fonts/#FontAwesome" />
-                            </Style>
-                        </Style.Resources>
-                    </Style>
-                </StackPanel.Resources>
+                            <Style.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontFamily" Value="./Resources/Fonts/#FontAwesome" />
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+                    </StackPanel.Resources>
                 
-                <Button ToolTip="Plan to watch">
-                    <TextBlock Text="{x:Static fonts:Awesome.FastForwardIcon}" />
-                </Button>
-                <Button ToolTip="Watching">
-                    <TextBlock Text="{x:Static fonts:Awesome.PlayIcon}" />
-                </Button>
-                <Button ToolTip="Completed">
-                    <TextBlock Text="{x:Static fonts:Awesome.StopIcon}" />
-                </Button>
-                <Button ToolTip="On hold">
-                    <TextBlock Text="{x:Static fonts:Awesome.PauseIcon}" />
-                </Button>
-                <Button ToolTip="Dropped">
-                    <TextBlock Text="{x:Static fonts:Awesome.EjectIcon  }" />
-                </Button>
-            </StackPanel>
+                    <Button ToolTip="Plan to watch">
+                        <TextBlock Text="{x:Static fonts:Awesome.FastForwardIcon}" />
+                    </Button>
+                    <Button ToolTip="Watching">
+                        <TextBlock Text="{x:Static fonts:Awesome.PlayIcon}" />
+                    </Button>
+                    <Button ToolTip="Completed">
+                        <TextBlock Text="{x:Static fonts:Awesome.StopIcon}" />
+                    </Button>
+                    <Button ToolTip="On hold">
+                        <TextBlock Text="{x:Static fonts:Awesome.PauseIcon}" />
+                    </Button>
+                    <Button ToolTip="Dropped">
+                        <TextBlock Text="{x:Static fonts:Awesome.EjectIcon  }" />
+                    </Button>
+                </StackPanel>
 
-            <TextBox Grid.Column="1" Margin="5 0 10 0" Height="25">Search anime</TextBox>
-        </Grid>
+                <TextBox Grid.Column="1" Margin="5 0 10 0" Height="25">Search anime</TextBox>
+            </Grid>
         
-        <!-- animes -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <!-- animes -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Image Height="300" 
-                   Width="200" 
-                   Source="{Binding SelectedAnime.ActualImagePath}" />
-            
-            <ListView Grid.Column="1" 
-                      IsSynchronizedWithCurrentItem="True"
-                      SelectedItem="{Binding SelectedAnime}"
-                      ItemTemplate="{StaticResource AnimeTemplate}"
-                      ItemsSource="{Binding Animes}" />
-        </Grid>
-        
-        <!-- torrents search -->
-        <TextBox>Search torrents</TextBox>
+                <Image Height="300" 
+                       Width="200" 
+                       Source="{Binding SelectedAnime.ActualImagePath}" />
+
+                <ScrollViewer Height="300" Grid.Column="1">
+                    <ListView IsSynchronizedWithCurrentItem="True"
+                              SelectedItem="{Binding SelectedAnime}"
+                              ItemTemplate="{StaticResource AnimeTemplate}"
+                              ItemsSource="{Binding Animes}" />
+                </ScrollViewer>
+            </Grid>
+
+        </StackPanel>
         
         <!-- torrents -->
+        <TextBox>Search torrents</TextBox>        
         <ListView></ListView>
     </StackPanel>
 </Window>
