@@ -38,34 +38,42 @@
             <ListView Grid.Column="1" ItemsSource="{Binding Animes}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="5" MinWidth="550">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
                             
-                            <Image Height="70" Width="40"></Image>
+                                <Border BorderBrush="Gray" BorderThickness="1">
+                                    <Image Height="70" Width="40"></Image>
+                                </Border>
                             
-                            <StackPanel Grid.Column="1" Orientation="Vertical" MinWidth="300">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Type}" Foreground="{Binding TypeColor}" />
-                                    <Label Content="{Binding Title}" />    
-                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" MinWidth="300">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Type}" 
+                                               Foreground="{Binding TypeColor}" 
+                                               MinWidth="50" />
+                                    
+                                        <Label Content="{Binding Title}" />    
+                                    </StackPanel>
                                 
-                                <Label Content="{Binding TorrentsMessage}" Foreground="{Binding TorrentsColor}" />
-                            </StackPanel>
+                                    <Label Content="{Binding TorrentsMessage}" 
+                                           Foreground="{Binding TorrentsColor}" Margin="20 0 0 0" />
+                                </StackPanel>
 
-                            <StackPanel Grid.Column="2" Orientation="Vertical">
-                                <Label Content="{Binding Status}" Foreground="{Binding StatusColor}" />
+                                <StackPanel Grid.Column="2" Orientation="Vertical">
+                                    <Label Content="{Binding Status}" Foreground="{Binding StatusColor}" />
                                 
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Watched}" />
-                                    <Label>of</Label>
-                                    <Label Content="{Binding Episodes}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Watched}" />
+                                        <Label>of</Label>
+                                        <Label Content="{Binding Episodes}" />
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </Grid>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
