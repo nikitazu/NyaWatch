@@ -48,7 +48,11 @@
                             <Image Height="70" Width="40"></Image>
                             
                             <StackPanel Grid.Column="1" Orientation="Vertical" MinWidth="300">
-                                <Label Content="{Binding Title}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding Type}" />
+                                    <Label Content="{Binding Title}" />    
+                                </StackPanel>
+                                
                                 <Label Content="{Binding TorrentsMessage}" />
                             </StackPanel>
 
