@@ -1,6 +1,7 @@
 ﻿<Window x:Class="NyaWatch.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fonts="clr-namespace:NyaWatch.Core.Fonts;assembly=NyaWatch.Core"
         Title="NyaWatch" 
         Icon="pack://application:,,,/Resources/icon_32x32.ico"
         Height="600" 
@@ -28,19 +29,19 @@
                 </StackPanel.Resources>
                 
                 <Button ToolTip="Plan to watch">
-                    <TextBlock Text="&#xf050;" />
+                    <TextBlock Text="{x:Static fonts:Awesome.FastForwardIcon}" />
                 </Button>
                 <Button ToolTip="Watching">
-                    <TextBlock Text="&#xf04b;" />
+                    <TextBlock Text="{x:Static fonts:Awesome.PlayIcon}" />
                 </Button>
                 <Button ToolTip="Completed">
-                    <TextBlock Text="&#xf04d;" />
+                    <TextBlock Text="{x:Static fonts:Awesome.StopIcon}" />
                 </Button>
                 <Button ToolTip="On hold">
-                    <TextBlock Text="&#xf04c;" />
+                    <TextBlock Text="{x:Static fonts:Awesome.PauseIcon}" />
                 </Button>
                 <Button ToolTip="Dropped">
-                    <TextBlock Text="&#xf052;" />
+                    <TextBlock Text="{x:Static fonts:Awesome.EjectIcon}" />
                 </Button>
             </StackPanel>
 
