@@ -63,11 +63,11 @@ namespace NyaWatch
 			categoryOnHoldButton.Font = FontAwesome.Font;
 			categoryDroppedButton.Font = FontAwesome.Font;
 
-			categoryPlanToWatchButton.Title = FontAwesome.FastForwardIcon;
-			categoryWatchingButton.Title = FontAwesome.PlayIcon;
-			categoryCompletedButton.Title = FontAwesome.StopIcon;
-			categoryOnHoldButton.Title = FontAwesome.PauseIcon;
-			categoryDroppedButton.Title = FontAwesome.EjectIcon;
+			categoryPlanToWatchButton.Title = Core.Fonts.Awesome.FastForwardIcon;
+			categoryWatchingButton.Title = Core.Fonts.Awesome.PlayIcon;
+			categoryCompletedButton.Title = Core.Fonts.Awesome.StopIcon;
+			categoryOnHoldButton.Title = Core.Fonts.Awesome.PauseIcon;
+			categoryDroppedButton.Title = Core.Fonts.Awesome.EjectIcon;
 		}
 
 		#endregion
