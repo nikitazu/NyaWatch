@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+
+using NyaWatch.Core.ComponentModel;
 using cd = NyaWatch.Core.Domain;
 
 namespace NyaWatch.Windows.ViewModel
@@ -14,14 +16,7 @@ namespace NyaWatch.Windows.ViewModel
         public List<Anime> Animes 
         {
             get { return _animes; }
-            set
-            {
-                if (_animes != value)
-                {
-                    _animes = value;
-                    OnChanged("Animes");
-                }
-            }
+            set { PropertyChanged.ChangeAndNotify(ref _animes, value, () => Animes); }
         }
 
         Anime _selectedAnime;
@@ -29,14 +24,7 @@ namespace NyaWatch.Windows.ViewModel
         public Anime SelectedAnime 
         {
             get { return _selectedAnime; }
-            set
-            {
-                if (_selectedAnime != value)
-                {
-                    _selectedAnime = value;
-                    OnChanged("SelectedAnime");
-                }
-            }
+            set {  PropertyChanged.ChangeAndNotify(ref _selectedAnime, value, () => SelectedAnime); }
         }
 
         public cd.Categories SelectedCategory { get; set; }
@@ -70,13 +58,5 @@ namespace NyaWatch.Windows.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

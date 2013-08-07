@@ -6,6 +6,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
+using NyaWatch.Core.ComponentModel;
+
 namespace NyaWatch.Windows.ViewModel
 {
     public class Anime : Core.Domain.IAnime, INotifyPropertyChanged
@@ -21,14 +23,7 @@ namespace NyaWatch.Windows.ViewModel
         public int Watched 
         {
             get { return _watched; }
-            set
-            {
-                if (_watched != value)
-                {
-                    _watched = value;
-                    OnChanged("Watched");
-                }
-            }
+            set { PropertyChanged.ChangeAndNotify(ref _watched, value, () => Watched); }
         }
 
         public string Type { get; set; }
@@ -109,13 +104,5 @@ namespace NyaWatch.Windows.ViewModel
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

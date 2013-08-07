@@ -39,6 +39,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentModel\NotifyPropertyChanged.cs" />
     <Compile Include="Domain\Anime.cs" />
     <Compile Include="Domain\Categories.cs" />
     <Compile Include="Domain\IAnime.cs" />
