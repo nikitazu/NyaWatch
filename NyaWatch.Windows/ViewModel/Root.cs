@@ -90,17 +90,18 @@ namespace NyaWatch.Windows.ViewModel
             DecrementWatched = new RelayCommand<Anime>(
                 anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.DecrementWatched()));
 
-            Func<cd.Categories, Action<Anime>> moveTo = target => anime =>
+            Func<cd.Categories, RelayCommand<Anime>> moveTo = target => 
+                new RelayCommand<Anime>(anime =>
                 {
                     cd.Anime.Move(SelectedCategory, target, anime);
                     SelectedCategory = SelectedCategory;
-                };
+                }, _ => SelectedCategory != target);
 
-            MoveToPlanToWatch = new RelayCommand<Anime>(moveTo(cd.Categories.PlanToWatch));
-            MoveToWatching = new RelayCommand<Anime>(moveTo(cd.Categories.Watching));
-            MoveToCompleted = new RelayCommand<Anime>(moveTo(cd.Categories.Completed));
-            MoveToOnHold = new RelayCommand<Anime>(moveTo(cd.Categories.OnHold));
-            MoveToDropped = new RelayCommand<Anime>(moveTo(cd.Categories.Dropped));
+            MoveToPlanToWatch = moveTo(cd.Categories.PlanToWatch);
+            MoveToWatching = moveTo(cd.Categories.Watching);
+            MoveToCompleted = moveTo(cd.Categories.Completed);
+            MoveToOnHold = moveTo(cd.Categories.OnHold);
+            MoveToDropped = moveTo(cd.Categories.Dropped);
         }
 
         #endregion
