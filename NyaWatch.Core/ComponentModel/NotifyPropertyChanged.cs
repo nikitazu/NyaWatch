@@ -57,6 +57,7 @@ namespace NyaWatch.Core.ComponentModel
             return true;
         }
 
+        static object _syncRoot = new object();
 
         static Dictionary<string, PropertyChangedEventArgs> _cache =
             new Dictionary<string, PropertyChangedEventArgs>();
@@ -65,7 +66,7 @@ namespace NyaWatch.Core.ComponentModel
         {
             PropertyChangedEventArgs eventArgs;
 
-            lock (typeof(NotifyPropertyChanged))
+            lock (_syncRoot)
             {
                 if (!_cache.TryGetValue(property, out eventArgs))
                 {
