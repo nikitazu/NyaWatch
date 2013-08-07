@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using NyaWatch.Windows.WPF;
+using cd = NyaWatch.Core.Domain;
 
 namespace NyaWatch.Windows
 {
@@ -33,27 +34,27 @@ namespace NyaWatch.Windows
 
         private void PlanToWatchClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.PlanToWatch);
+            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.PlanToWatch);
         }
 
         private void WatchingClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.Watching);
+            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.Watching);
         }
 
         private void CompletedClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.Completed);
+            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.Completed);
         }
 
         private void OnHoldClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.OnHold);
+            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.OnHold);
         }
 
         private void DroppedClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.Dropped);
+            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.Dropped);
         }
     }
 }

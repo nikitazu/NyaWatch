@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using cd = NyaWatch.Core.Domain;
 
 namespace NyaWatch.Windows.ViewModel
 {
@@ -40,17 +41,17 @@ namespace NyaWatch.Windows.ViewModel
             var a8 = new Anime("Slayers: Gourgeous", "OVA", 3, 4, "Airing");
             var a9 = new Anime("Slayers: The motion picture", "Movie", 1, 4, "Airing");
 
-            Core.Domain.Anime.Put(Core.Domain.Categories.PlanToWatch, a1);
-            Core.Domain.Anime.Put(Core.Domain.Categories.PlanToWatch, a2);
-            Core.Domain.Anime.Put(Core.Domain.Categories.Watching, a3);
-            Core.Domain.Anime.Put(Core.Domain.Categories.Watching, a4);
-            Core.Domain.Anime.Put(Core.Domain.Categories.Completed, a5);
-            Core.Domain.Anime.Put(Core.Domain.Categories.Completed, a6);
-            Core.Domain.Anime.Put(Core.Domain.Categories.Completed, a7);
-            Core.Domain.Anime.Put(Core.Domain.Categories.OnHold, a8);
-            Core.Domain.Anime.Put(Core.Domain.Categories.Dropped, a9);
+            cd.Anime.Put(cd.Categories.PlanToWatch, a1);
+            cd.Anime.Put(cd.Categories.PlanToWatch, a2);
+            cd.Anime.Put(cd.Categories.Watching, a3);
+            cd.Anime.Put(cd.Categories.Watching, a4);
+            cd.Anime.Put(cd.Categories.Completed, a5);
+            cd.Anime.Put(cd.Categories.Completed, a6);
+            cd.Anime.Put(cd.Categories.Completed, a7);
+            cd.Anime.Put(cd.Categories.OnHold, a8);
+            cd.Anime.Put(cd.Categories.Dropped, a9);
 
-            Animes.AddRange(Core.Domain.Anime.Find<Anime>(Core.Domain.Categories.Watching));
+            Animes.AddRange(cd.Anime.Find<Anime>(cd.Categories.Watching));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
