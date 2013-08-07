@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 using NyaWatch.Core.ComponentModel;
 using cd = NyaWatch.Core.Domain;
@@ -36,8 +37,15 @@ namespace NyaWatch.Windows.ViewModel
             }
         }
 
+
+        public ICommand ChangeCurrentCategory { get; private set; }
+
         public Root()
         {
+            ChangeCurrentCategory = new RelayCommand<string>(cat => 
+                SelectedCategory = (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));
+
+
             Animes = new List<Anime>();
 
             var a1 = new Anime("Slayers: Excellent", "OVA", 3, 0, "Aired");
@@ -65,5 +73,8 @@ namespace NyaWatch.Windows.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+
+
     }
 }

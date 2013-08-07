@@ -32,35 +32,6 @@ namespace NyaWatch.Windows
             DataContext = Model;
         }
 
-        #region Categories filters
-
-        private void PlanToWatchClick(object sender, RoutedEventArgs e)
-        {
-            Model.SelectedCategory = cd.Categories.PlanToWatch;
-        }
-
-        private void WatchingClick(object sender, RoutedEventArgs e)
-        {
-            Model.SelectedCategory = cd.Categories.Watching;
-        }
-
-        private void CompletedClick(object sender, RoutedEventArgs e)
-        {
-            Model.SelectedCategory = cd.Categories.Completed;
-        }
-
-        private void OnHoldClick(object sender, RoutedEventArgs e)
-        {
-            Model.SelectedCategory = cd.Categories.OnHold;
-        }
-
-        private void DroppedClick(object sender, RoutedEventArgs e)
-        {
-            Model.SelectedCategory = cd.Categories.Dropped;
-        }
-
-        #endregion
-
         #region Increment/decrement
 
         private void IncrementClick(object sender, RoutedEventArgs e)

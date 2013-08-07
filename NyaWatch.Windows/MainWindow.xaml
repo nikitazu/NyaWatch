@@ -26,17 +26,15 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Height="70" 
-                                        Width="50" 
-                                        Source="{Binding ActualImagePath}"></Image>
+                    <Image Height="70" Width="50" Source="{Binding ActualImagePath}" />
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" MinWidth="300">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="{Binding Type}" 
-                                               FontWeight="Bold"
-                                               Foreground="{Binding TypeColor}" 
-                                               Margin="0 0 -20 0"
-                                               MinWidth="50">
+                                    FontWeight="Bold"
+                                    Foreground="{Binding TypeColor}" 
+                                    Margin="0 0 -20 0"
+                                    MinWidth="50">
                                 <Label.RenderTransform>
                                     <TransformGroup>
                                         <RotateTransform Angle="-20" />
@@ -48,7 +46,8 @@
                         </StackPanel>
 
                         <Label Content="{Binding TorrentsMessage}" 
-                                           Foreground="{Binding TorrentsColor}" Margin="15 0 0 0" />
+                               Foreground="{Binding TorrentsColor}" 
+                               Margin="15 0 0 0" />
                     </StackPanel>
 
                     <StackPanel Grid.Column="2" Orientation="Vertical">
@@ -107,6 +106,7 @@
                         <Style TargetType="Button">
                             <Setter Property="Width" Value="40" />
                             <Setter Property="Margin" Value="10 0 5 0" />
+                            <Setter Property="Command" Value="{Binding ChangeCurrentCategory}" />
                         
                             <Style.Resources>
                                 <Style TargetType="TextBlock">
@@ -116,19 +116,23 @@
                         </Style>
                     </StackPanel.Resources>
                 
-                    <Button ToolTip="Plan to watch" Click="PlanToWatchClick">
+                    <Button ToolTip="Plan to watch" CommandParameter="PlanToWatch">
                         <TextBlock Text="{x:Static fonts:Awesome.FastForwardIcon}" />
                     </Button>
-                    <Button ToolTip="Watching" Click="WatchingClick">
+
+                    <Button ToolTip="Watching" CommandParameter="Watching">
                         <TextBlock Text="{x:Static fonts:Awesome.PlayIcon}" />
                     </Button>
-                    <Button ToolTip="Completed" Click="CompletedClick">
+
+                    <Button ToolTip="Completed" CommandParameter="Completed">
                         <TextBlock Text="{x:Static fonts:Awesome.StopIcon}" />
                     </Button>
-                    <Button ToolTip="On hold" Click="OnHoldClick">
+
+                    <Button ToolTip="On hold" CommandParameter="OnHold">
                         <TextBlock Text="{x:Static fonts:Awesome.PauseIcon}" />
                     </Button>
-                    <Button ToolTip="Dropped" Click="DroppedClick">
+
+                    <Button ToolTip="Dropped" CommandParameter="Dropped">
                         <TextBlock Text="{x:Static fonts:Awesome.EjectIcon  }" />
                     </Button>
                 </StackPanel>
