@@ -85,10 +85,12 @@ namespace NyaWatch.Windows.ViewModel
                 cat => SelectedCategory != (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));
 
             IncrementWatched = new RelayCommand<Anime>(
-                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.IncrementWatched()));
+                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.IncrementWatched()),
+                anime => anime != null && anime.CanIncrementWatched());
 
             DecrementWatched = new RelayCommand<Anime>(
-                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.DecrementWatched()));
+                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.DecrementWatched()),
+                anime => anime != null && anime.CanDecrementWatched());
 
             Func<cd.Categories, RelayCommand<Anime>> moveTo = target => 
                 new RelayCommand<Anime>(anime =>

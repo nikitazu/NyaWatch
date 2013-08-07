@@ -34,10 +34,20 @@ namespace NyaWatch.Windows.ViewModel
             return this;
         }
 
+        public bool CanIncrementWatched()
+        {
+            return Episodes > 0 && Watched < Episodes;
+        }
+
         public Anime DecrementWatched()
         {
             Watched -= 1;
             return this;
+        }
+
+        public bool CanDecrementWatched()
+        {
+            return Watched > 0;
         }
 
         public string Type { get; set; }
