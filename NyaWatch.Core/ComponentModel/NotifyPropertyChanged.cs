@@ -50,31 +50,11 @@ namespace NyaWatch.Core.ComponentModel
             {
                 if (handler != null)
                 {
-                    NotifyWithCaching(sender, handler, body.Member.Name);
+                    handler(sender, new PropertyChangedEventArgs(body.Member.Name));
                 }
             }
 
             return true;
-        }
-
-        static object _syncRoot = new object();
-
-        static Dictionary<string, PropertyChangedEventArgs> _cache =
-            new Dictionary<string, PropertyChangedEventArgs>();
-
-        static void NotifyWithCaching(object sender, PropertyChangedEventHandler handler, string property)
-        {
-            PropertyChangedEventArgs eventArgs;
-
-            lock (_syncRoot)
-            {
-                if (!_cache.TryGetValue(property, out eventArgs))
-                {
-                    _cache.Add(property, (eventArgs = new PropertyChangedEventArgs(property)));
-                }
-            }
-
-            handler(sender, eventArgs);
         }
     }
 }
