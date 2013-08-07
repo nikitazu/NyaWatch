@@ -189,7 +189,7 @@
         </StackPanel>
         
         <!-- torrents -->
-        <TextBox Control.Template="{StaticResource WaterBox}" />        
-        <ListView></ListView>
+        <TextBox Control.Template="{StaticResource WaterBox}" Margin="5" />        
+        <ListView Margin="5" MinHeight="100"></ListView>
     </StackPanel>
 </Window>
