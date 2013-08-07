@@ -95,7 +95,8 @@ namespace NyaWatch.Windows.ViewModel
                 {
                     cd.Anime.Move(SelectedCategory, target, anime);
                     SelectedCategory = SelectedCategory;
-                }, _ => SelectedCategory != target);
+                }, 
+                _ => SelectedCategory != target);
 
             MoveToPlanToWatch = moveTo(cd.Categories.PlanToWatch);
             MoveToWatching = moveTo(cd.Categories.Watching);
