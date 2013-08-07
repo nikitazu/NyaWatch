@@ -32,10 +32,8 @@ namespace NyaWatch.Windows.ViewModel
             get { return _selectedCategory; }
             set 
             {
-                if (PropertyChanged.ChangeAndNotify(this, ref _selectedCategory, value, () => SelectedCategory))
-                {
-                    Animes = cd.Anime.Find<ViewModel.Anime>(value).Select(a => a.WithRoot(this)).ToList();
-                }
+                PropertyChanged.ChangeAndNotify(this, ref _selectedCategory, value, () => SelectedCategory);
+                Animes = cd.Anime.Find<ViewModel.Anime>(value).Select(a => a.WithRoot(this)).ToList();
             }
         }
 
@@ -65,7 +63,6 @@ namespace NyaWatch.Windows.ViewModel
             cd.Anime.Put(cd.Categories.OnHold, a8);
             cd.Anime.Put(cd.Categories.Dropped, a9);
 
-            Animes.AddRange(cd.Anime.Find<Anime>(cd.Categories.Watching));
             SelectedCategory = cd.Categories.Watching;
         }
 
@@ -74,6 +71,12 @@ namespace NyaWatch.Windows.ViewModel
         public ICommand ChangeCurrentCategory { get; private set; }
         public ICommand IncrementWatched { get; private set; }
         public ICommand DecrementWatched { get; private set; }
+
+        public ICommand MoveToPlanToWatch { get; private set; }
+        public ICommand MoveToWatching { get; private set; }
+        public ICommand MoveToCompleted { get; private set; }
+        public ICommand MoveToOnHold { get; private set; }
+        public ICommand MoveToDropped { get; private set; }
 
         void InitCommands()
         {
@@ -86,6 +89,18 @@ namespace NyaWatch.Windows.ViewModel
 
             DecrementWatched = new RelayCommand<Anime>(
                 anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.DecrementWatched()));
+
+            Action<Anime, cd.Categories> moveTo = (anime, target) =>
+            {
+                cd.Anime.Move(SelectedCategory, target, anime);
+                SelectedCategory = SelectedCategory;
+            };
+
+            MoveToPlanToWatch = new RelayCommand<Anime>(anime => moveTo(anime, cd.Categories.PlanToWatch));
+            MoveToWatching = new RelayCommand<Anime>(anime => moveTo(anime, cd.Categories.Watching));
+            MoveToCompleted = new RelayCommand<Anime>(anime => moveTo(anime, cd.Categories.Completed));
+            MoveToOnHold = new RelayCommand<Anime>(anime => moveTo(anime, cd.Categories.OnHold));
+            MoveToDropped = new RelayCommand<Anime>(anime =>moveTo(anime, cd.Categories.Dropped));
         }
 
         #endregion

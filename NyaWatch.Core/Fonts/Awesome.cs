@@ -17,5 +17,9 @@ namespace NyaWatch.Core.Fonts
         public const string StopIcon = "\uf04d";
         public const string PauseIcon = "\uf04c";
         public const string EjectIcon = "\uf052";
+
+        public const string PlusIcon = "\uf055";
+        public const string MinusIcon = "\uf056";
+        public const string ListIcon = "\uf03a";
     }
 }

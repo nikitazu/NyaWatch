@@ -65,6 +65,8 @@
     <Compile Include="ViewModel\Anime.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Root.cs" />
+    <Compile Include="WPF\AwesomeText.cs" />
+    <Compile Include="WPF\ContextButton.cs" />
     <Compile Include="WPF\UnbreakableScroller.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

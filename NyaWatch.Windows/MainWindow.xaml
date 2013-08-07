@@ -25,7 +25,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-
+                    
                     <Image Height="70" Width="50" Source="{Binding ActualImagePath}" />
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" MinWidth="300">
@@ -54,12 +54,41 @@
                         <Label Content="{Binding Status}" Foreground="{Binding StatusColor}" />
 
                         <StackPanel Orientation="Horizontal">
+                            <StackPanel.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="CommandParameter" Value="{Binding .}" />
+                                </Style>
+                                <Style TargetType="wpf:ContextButton">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Style>
+                                <Style TargetType="MenuItem">
+                                    <Setter Property="CommandParameter" Value="{Binding .}" />
+                                </Style>
+                            </StackPanel.Resources>
+                            
                             <Label Content="{Binding Watched}" />
                             <Label>of</Label>
                             <Label Content="{Binding Episodes}" />
                             
-                            <Button Command="{Binding Root.IncrementWatched}" CommandParameter="{Binding .}">+</Button>
-                            <Button Command="{Binding Root.DecrementWatched}" CommandParameter="{Binding .}">-</Button>
+                            <Button Command="{Binding Root.IncrementWatched}">
+                                <wpf:AwesomeText Text="{x:Static fonts:Awesome.PlusIcon}" />
+                            </Button>
+                            <Button Command="{Binding Root.DecrementWatched}">
+                                <wpf:AwesomeText Text="{x:Static fonts:Awesome.MinusIcon}" />
+                            </Button>
+                            <wpf:ContextButton>
+                                <wpf:AwesomeText Text="{x:Static fonts:Awesome.ListIcon}" />
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Plan to watch" Command="{Binding Root.MoveToPlanToWatch}" />
+                                        <MenuItem Header="Watch now" Command="{Binding Root.MoveToWatching}" />
+                                        <MenuItem Header="Complete" Command="{Binding Root.MoveToCompleted}" />
+                                        <MenuItem Header="Put on hold" Command="{Binding Root.MoveToOnHold}" />
+                                        <MenuItem Header="Drop" Command="{Binding Root.MoveToDropped}"  />
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                            </wpf:ContextButton>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -107,33 +136,27 @@
                             <Setter Property="Width" Value="40" />
                             <Setter Property="Margin" Value="10 0 5 0" />
                             <Setter Property="Command" Value="{Binding ChangeCurrentCategory}" />
-                        
-                            <Style.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontFamily" Value="./Resources/Fonts/#FontAwesome" />
-                                </Style>
-                            </Style.Resources>
                         </Style>
                     </StackPanel.Resources>
                 
                     <Button ToolTip="Plan to watch" CommandParameter="PlanToWatch">
-                        <TextBlock Text="{x:Static fonts:Awesome.FastForwardIcon}" />
+                        <wpf:AwesomeText Text="{x:Static fonts:Awesome.FastForwardIcon}" />
                     </Button>
 
                     <Button ToolTip="Watching" CommandParameter="Watching">
-                        <TextBlock Text="{x:Static fonts:Awesome.PlayIcon}" />
+                        <wpf:AwesomeText Text="{x:Static fonts:Awesome.PlayIcon}" />
                     </Button>
 
                     <Button ToolTip="Completed" CommandParameter="Completed">
-                        <TextBlock Text="{x:Static fonts:Awesome.StopIcon}" />
+                        <wpf:AwesomeText Text="{x:Static fonts:Awesome.StopIcon}" />
                     </Button>
 
                     <Button ToolTip="On hold" CommandParameter="OnHold">
-                        <TextBlock Text="{x:Static fonts:Awesome.PauseIcon}" />
+                        <wpf:AwesomeText Text="{x:Static fonts:Awesome.PauseIcon}" />
                     </Button>
 
                     <Button ToolTip="Dropped" CommandParameter="Dropped">
-                        <TextBlock Text="{x:Static fonts:Awesome.EjectIcon  }" />
+                        <wpf:AwesomeText Text="{x:Static fonts:Awesome.EjectIcon  }" />
                     </Button>
                 </StackPanel>
 
