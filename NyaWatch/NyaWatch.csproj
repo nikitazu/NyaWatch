@@ -76,6 +76,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Resources\NyaWatch.iconset\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -89,7 +90,8 @@
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
     <Compile Include="FontAwesome.cs" />
-    <Compile Include="Anime.cs" />
+    <Compile Include="ViewModel\Anime.cs" />
+    <Compile Include="ViewModel\Root.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

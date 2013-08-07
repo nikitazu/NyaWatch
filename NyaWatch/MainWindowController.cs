@@ -4,6 +4,8 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
+using cd = NyaWatch.Core.Domain;
+
 namespace NyaWatch
 {
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
@@ -41,18 +43,17 @@ namespace NyaWatch
 
 		#region Init
 
+		public ViewModel.Root Root { get; set; }
+
 		public override void AwakeFromNib ()
 		{
 			base.AwakeFromNib ();
 			LoadAwesomeFont ();
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
 
-			var a1 = new Anime ("Slayers: Excellent", "OVA", 20, 0, "Aired");
-			var a2 = new Anime ("Asura", "Movie", 25, 1, "Not yet aired");
-			var a3 = new Anime ("Slayers", "TV", 30, 4, "Airing");
-			var a4 = new Anime ("Neon Genesis Evangelion", "TV", 26, 0, "Aired");
+			Root = new ViewModel.Root ();
 
-			animesArrayController.AddObjects(NSArray.FromObjects(a1,a2,a3,a4));
+			animesArrayController.AddObjects (NSArray.FromObjects (Root.Animes.ToArray ()));
 		}
 
 		void LoadAwesomeFont()

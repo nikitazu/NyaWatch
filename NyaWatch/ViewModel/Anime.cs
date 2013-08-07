@@ -5,10 +5,14 @@ using System.Runtime.Serialization;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
-namespace NyaWatch
+using cd = NyaWatch.Core.Domain;
+
+namespace NyaWatch.ViewModel
 {
-	public class Anime : NSObject
+	public class Anime : NSObject, cd.IAnime
 	{
+		public Guid ID { get; set; }
+
 		[Export("title")]
 		public string Title { get; set; }
 
@@ -71,6 +75,15 @@ namespace NyaWatch
 			}
 		}
 
+		public string ImagePath { get; set; }
+
+		[Export("actualImagePath")]
+		public string ActualImagePath {
+			get {
+				return ImagePath ?? "NyaWatch.icns";
+			}
+		}
+
 		public Anime (string title, string type, int episodes, int torrents, string status)
 		{
 			Title = title;
@@ -78,6 +91,11 @@ namespace NyaWatch
 			Episodes = episodes;
 			TorrentsCount = torrents;
 			Status = status;
+		}
+
+		public Anime ()
+		{
+			// empty
 		}
 
 		[Export("copyWithZone:")]
