@@ -7,8 +7,10 @@ using System.Windows.Media;
 
 namespace NyaWatch.Windows.ViewModel
 {
-    public class Anime
+    public class Anime : Core.Domain.IAnime
     {
+        public Guid ID { get; set; }
+
         public string Title { get; set; }
 
         public int Episodes { get; set; }
@@ -84,6 +86,11 @@ namespace NyaWatch.Windows.ViewModel
             Episodes = episodes;
             TorrentsCount = torrents;
             Status = status;
+        }
+
+        public Anime()
+        {
+            // empty
         }
     }
 }
