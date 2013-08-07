@@ -30,5 +30,30 @@ namespace NyaWatch.Windows
             Model = new ViewModel.Root();
             DataContext = Model;
         }
+
+        private void PlanToWatchClick(object sender, RoutedEventArgs e)
+        {
+            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.PlanToWatch);
+        }
+
+        private void WatchingClick(object sender, RoutedEventArgs e)
+        {
+            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.Watching);
+        }
+
+        private void CompletedClick(object sender, RoutedEventArgs e)
+        {
+            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.Completed);
+        }
+
+        private void OnHoldClick(object sender, RoutedEventArgs e)
+        {
+            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.OnHold);
+        }
+
+        private void DroppedClick(object sender, RoutedEventArgs e)
+        {
+            Model.Animes = Core.Domain.Anime.Find<ViewModel.Anime>(Core.Domain.Categories.Dropped);
+        }
     }
 }

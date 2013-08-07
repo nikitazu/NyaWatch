@@ -113,19 +113,19 @@
                         </Style>
                     </StackPanel.Resources>
                 
-                    <Button ToolTip="Plan to watch">
+                    <Button ToolTip="Plan to watch" Click="PlanToWatchClick">
                         <TextBlock Text="{x:Static fonts:Awesome.FastForwardIcon}" />
                     </Button>
-                    <Button ToolTip="Watching">
+                    <Button ToolTip="Watching" Click="WatchingClick">
                         <TextBlock Text="{x:Static fonts:Awesome.PlayIcon}" />
                     </Button>
-                    <Button ToolTip="Completed">
+                    <Button ToolTip="Completed" Click="CompletedClick">
                         <TextBlock Text="{x:Static fonts:Awesome.StopIcon}" />
                     </Button>
-                    <Button ToolTip="On hold">
+                    <Button ToolTip="On hold" Click="OnHoldClick">
                         <TextBlock Text="{x:Static fonts:Awesome.PauseIcon}" />
                     </Button>
-                    <Button ToolTip="Dropped">
+                    <Button ToolTip="Dropped" Click="DroppedClick">
                         <TextBlock Text="{x:Static fonts:Awesome.EjectIcon  }" />
                     </Button>
                 </StackPanel>
