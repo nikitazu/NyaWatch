@@ -58,8 +58,8 @@
                             <Label>of</Label>
                             <Label Content="{Binding Episodes}" />
                             
-                            <Button Tag="{Binding .}" Click="IncrementClick">+</Button>
-                            <Button Tag="{Binding .}" Click="DecrementClick">-</Button>
+                            <Button Command="{Binding Root.IncrementWatched}" CommandParameter="{Binding .}">+</Button>
+                            <Button Command="{Binding Root.DecrementWatched}" CommandParameter="{Binding .}">-</Button>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

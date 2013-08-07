@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Input;
 
 using NyaWatch.Core.ComponentModel;
+using cd = NyaWatch.Core.Domain;
 
 namespace NyaWatch.Windows.ViewModel
 {
@@ -24,6 +26,18 @@ namespace NyaWatch.Windows.ViewModel
         {
             get { return _watched; }
             set { PropertyChanged.ChangeAndNotify(this, ref _watched, value, () => Watched); }
+        }
+
+        public Anime IncrementWatched()
+        {
+            Watched += 1;
+            return this;
+        }
+
+        public Anime DecrementWatched()
+        {
+            Watched -= 1;
+            return this;
         }
 
         public string Type { get; set; }
@@ -86,6 +100,13 @@ namespace NyaWatch.Windows.ViewModel
         private Brush MaybeActiveTextBrush(bool isActive)
         {
             return isActive ? SystemColors.HotTrackBrush : SystemColors.GrayTextBrush;
+        }
+
+        public Root Root { get; set; }
+        public Anime WithRoot(Root root)
+        {
+            Root = root;
+            return this;
         }
 
         public Anime(string title, string type, int episodes, int torrents, string status)

@@ -31,25 +31,5 @@ namespace NyaWatch.Windows
             Model = new ViewModel.Root();
             DataContext = Model;
         }
-
-        #region Increment/decrement
-
-        private void IncrementClick(object sender, RoutedEventArgs e)
-        {
-            var anime = (sender as Control).Tag as ViewModel.Anime;
-            Model.SelectedAnime = anime;
-            Model.SelectedAnime.Watched += 1;
-            cd.Anime.Save(Model.SelectedCategory, Model.SelectedAnime);
-        }
-
-        private void DecrementClick(object sender, RoutedEventArgs e)
-        {
-            var anime = (sender as Control).Tag as ViewModel.Anime;
-            Model.SelectedAnime = anime;
-            Model.SelectedAnime.Watched -= 1;
-            cd.Anime.Save(Model.SelectedCategory, Model.SelectedAnime);
-        }
-
-        #endregion
     }
 }

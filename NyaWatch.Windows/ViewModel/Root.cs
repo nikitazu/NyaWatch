@@ -31,22 +31,17 @@ namespace NyaWatch.Windows.ViewModel
         {
             get { return _selectedCategory; }
             set 
-            { 
-                PropertyChanged.ChangeAndNotify(this, ref _selectedCategory, value, () => SelectedCategory);
-                Animes = cd.Anime.Find<ViewModel.Anime>(value);
+            {
+                if (PropertyChanged.ChangeAndNotify(this, ref _selectedCategory, value, () => SelectedCategory))
+                {
+                    Animes = cd.Anime.Find<ViewModel.Anime>(value).Select(a => a.WithRoot(this)).ToList();
+                }
             }
         }
 
-
-        public ICommand ChangeCurrentCategory { get; private set; }
-
         public Root()
         {
-            ChangeCurrentCategory = new RelayCommand<string>(
-                cat => SelectedCategory = (cd.Categories)Enum.Parse(typeof(cd.Categories), cat),
-                cat => SelectedCategory != (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));
-
-
+            InitCommands();
 
             Animes = new List<Anime>();
 
@@ -73,6 +68,27 @@ namespace NyaWatch.Windows.ViewModel
             Animes.AddRange(cd.Anime.Find<Anime>(cd.Categories.Watching));
             SelectedCategory = cd.Categories.Watching;
         }
+
+        #region Commands
+
+        public ICommand ChangeCurrentCategory { get; private set; }
+        public ICommand IncrementWatched { get; private set; }
+        public ICommand DecrementWatched { get; private set; }
+
+        void InitCommands()
+        {
+            ChangeCurrentCategory = new RelayCommand<string>(
+                cat => SelectedCategory = (cd.Categories)Enum.Parse(typeof(cd.Categories), cat),
+                cat => SelectedCategory != (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));
+
+            IncrementWatched = new RelayCommand<Anime>(
+                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.IncrementWatched()));
+
+            DecrementWatched = new RelayCommand<Anime>(
+                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.DecrementWatched()));
+        }
+
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 
