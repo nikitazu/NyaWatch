@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Text;
 
 namespace NyaWatch.Core.ComponentModel
@@ -25,6 +24,7 @@ namespace NyaWatch.Core.ComponentModel
         /// <returns>True if value changed, othrewise false.</returns>
         public static bool ChangeAndNotify<T>(
             this PropertyChangedEventHandler handler,
+            object sender,
             ref T field, 
             T value, 
             Expression<Func<T>> memberExpression)
@@ -48,14 +48,9 @@ namespace NyaWatch.Core.ComponentModel
             var vmExpression = body.Expression as ConstantExpression;
             if (vmExpression != null)
             {
-                LambdaExpression lambda = Expression.Lambda(vmExpression);
-                Delegate vmFunc = lambda.Compile();
-                object sender = vmFunc.DynamicInvoke();
-
                 if (handler != null)
                 {
-                    //handler(sender, new PropertyChangedEventArgs(body.Member.Name));
-                    NotifyWithCaching(sender, handler, body.Member);
+                    NotifyWithCaching(sender, handler, body.Member.Name);
                 }
             }
 
@@ -63,10 +58,10 @@ namespace NyaWatch.Core.ComponentModel
         }
 
 
-        static Dictionary<MemberInfo, PropertyChangedEventArgs> _cache = 
-            new Dictionary<MemberInfo, PropertyChangedEventArgs>();
+        static Dictionary<string, PropertyChangedEventArgs> _cache =
+            new Dictionary<string, PropertyChangedEventArgs>();
 
-        static void NotifyWithCaching(object sender, PropertyChangedEventHandler handler, MemberInfo property)
+        static void NotifyWithCaching(object sender, PropertyChangedEventHandler handler, string property)
         {
             try
             {
@@ -77,7 +72,7 @@ namespace NyaWatch.Core.ComponentModel
             }
             catch (KeyNotFoundException)
             {
-                var eventArgs = new PropertyChangedEventArgs(property.Name);
+                var eventArgs = new PropertyChangedEventArgs(property);
                 handler(sender, eventArgs);
                 lock (typeof(NotifyPropertyChanged))
                 {

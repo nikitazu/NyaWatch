@@ -23,7 +23,7 @@ namespace NyaWatch.Windows.ViewModel
         public int Watched 
         {
             get { return _watched; }
-            set { PropertyChanged.ChangeAndNotify(ref _watched, value, () => Watched); }
+            set { PropertyChanged.ChangeAndNotify(this, ref _watched, value, () => Watched); }
         }
 
         public string Type { get; set; }

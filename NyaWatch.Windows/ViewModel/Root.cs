@@ -16,7 +16,7 @@ namespace NyaWatch.Windows.ViewModel
         public List<Anime> Animes 
         {
             get { return _animes; }
-            set { PropertyChanged.ChangeAndNotify(ref _animes, value, () => Animes); }
+            set { PropertyChanged.ChangeAndNotify(this, ref _animes, value, () => Animes); }
         }
 
         Anime _selectedAnime;
@@ -24,7 +24,7 @@ namespace NyaWatch.Windows.ViewModel
         public Anime SelectedAnime 
         {
             get { return _selectedAnime; }
-            set {  PropertyChanged.ChangeAndNotify(ref _selectedAnime, value, () => SelectedAnime); }
+            set {  PropertyChanged.ChangeAndNotify(this, ref _selectedAnime, value, () => SelectedAnime); }
         }
 
         public cd.Categories SelectedCategory { get; set; }
