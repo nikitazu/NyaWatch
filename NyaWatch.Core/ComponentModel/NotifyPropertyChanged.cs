@@ -63,22 +63,17 @@ namespace NyaWatch.Core.ComponentModel
 
         static void NotifyWithCaching(object sender, PropertyChangedEventHandler handler, string property)
         {
-            try
+            PropertyChangedEventArgs eventArgs;
+
+            lock (typeof(NotifyPropertyChanged))
             {
-                lock (typeof(NotifyPropertyChanged))
+                if (!_cache.TryGetValue(property, out eventArgs))
                 {
-                    handler(sender, _cache[property]);
+                    _cache.Add(property, (eventArgs = new PropertyChangedEventArgs(property)));
                 }
             }
-            catch (KeyNotFoundException)
-            {
-                var eventArgs = new PropertyChangedEventArgs(property);
-                handler(sender, eventArgs);
-                lock (typeof(NotifyPropertyChanged))
-                {
-                    _cache[property] = eventArgs;
-                }
-            }
+
+            handler(sender, eventArgs);
         }
     }
 }
