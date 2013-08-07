@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 
 namespace NyaWatch.Core.ComponentModel
@@ -53,11 +54,36 @@ namespace NyaWatch.Core.ComponentModel
 
                 if (handler != null)
                 {
-                    handler(sender, new PropertyChangedEventArgs(body.Member.Name));
+                    //handler(sender, new PropertyChangedEventArgs(body.Member.Name));
+                    NotifyWithCaching(sender, handler, body.Member);
                 }
             }
 
             return true;
+        }
+
+
+        static Dictionary<MemberInfo, PropertyChangedEventArgs> _cache = 
+            new Dictionary<MemberInfo, PropertyChangedEventArgs>();
+
+        static void NotifyWithCaching(object sender, PropertyChangedEventHandler handler, MemberInfo property)
+        {
+            try
+            {
+                lock (typeof(NotifyPropertyChanged))
+                {
+                    handler(sender, _cache[property]);
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                var eventArgs = new PropertyChangedEventArgs(property.Name);
+                handler(sender, eventArgs);
+                lock (typeof(NotifyPropertyChanged))
+                {
+                    _cache[property] = eventArgs;
+                }
+            }
         }
     }
 }
