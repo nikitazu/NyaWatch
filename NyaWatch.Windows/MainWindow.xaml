@@ -58,6 +58,9 @@
                             <Label Content="{Binding Watched}" />
                             <Label>of</Label>
                             <Label Content="{Binding Episodes}" />
+                            
+                            <Button Tag="{Binding .}" Click="IncrementClick">+</Button>
+                            <Button Tag="{Binding .}" Click="DecrementClick">-</Button>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

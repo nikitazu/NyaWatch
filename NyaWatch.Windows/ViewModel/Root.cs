@@ -26,6 +26,7 @@ namespace NyaWatch.Windows.ViewModel
         
         
         public Anime SelectedAnime { get; set; }
+        public cd.Categories SelectedCategory { get; set; }
 
         public Root()
         {
@@ -52,6 +53,7 @@ namespace NyaWatch.Windows.ViewModel
             cd.Anime.Put(cd.Categories.Dropped, a9);
 
             Animes.AddRange(cd.Anime.Find<Anime>(cd.Categories.Watching));
+            SelectedCategory = cd.Categories.Watching;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
