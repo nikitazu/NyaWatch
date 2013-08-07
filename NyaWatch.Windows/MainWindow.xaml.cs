@@ -36,39 +36,32 @@ namespace NyaWatch.Windows
 
         private void PlanToWatchClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.PlanToWatch);
             Model.SelectedCategory = cd.Categories.PlanToWatch;
         }
 
         private void WatchingClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.Watching);
             Model.SelectedCategory = cd.Categories.Watching;
         }
 
         private void CompletedClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.Completed);
             Model.SelectedCategory = cd.Categories.Completed;
         }
 
         private void OnHoldClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.OnHold);
             Model.SelectedCategory = cd.Categories.OnHold;
         }
 
         private void DroppedClick(object sender, RoutedEventArgs e)
         {
-            Model.Animes = cd.Anime.Find<ViewModel.Anime>(cd.Categories.Dropped);
             Model.SelectedCategory = cd.Categories.Dropped;
         }
 
         #endregion
 
         #region Increment/decrement
-
-        // FIXME: button click should change selection before increment
 
         private void IncrementClick(object sender, RoutedEventArgs e)
         {

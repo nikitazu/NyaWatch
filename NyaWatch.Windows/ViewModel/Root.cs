@@ -12,7 +12,6 @@ namespace NyaWatch.Windows.ViewModel
     public class Root : INotifyPropertyChanged
     {
         List<Anime> _animes;
-
         public List<Anime> Animes 
         {
             get { return _animes; }
@@ -20,14 +19,22 @@ namespace NyaWatch.Windows.ViewModel
         }
 
         Anime _selectedAnime;
-
         public Anime SelectedAnime 
         {
             get { return _selectedAnime; }
             set {  PropertyChanged.ChangeAndNotify(this, ref _selectedAnime, value, () => SelectedAnime); }
         }
 
-        public cd.Categories SelectedCategory { get; set; }
+        cd.Categories _selectedCategory;
+        public cd.Categories SelectedCategory 
+        {
+            get { return _selectedCategory; }
+            set 
+            { 
+                PropertyChanged.ChangeAndNotify(this, ref _selectedCategory, value, () => SelectedCategory);
+                Animes = cd.Anime.Find<ViewModel.Anime>(value);
+            }
+        }
 
         public Root()
         {
