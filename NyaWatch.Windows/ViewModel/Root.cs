@@ -42,8 +42,10 @@ namespace NyaWatch.Windows.ViewModel
 
         public Root()
         {
-            ChangeCurrentCategory = new RelayCommand<string>(cat => 
-                SelectedCategory = (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));
+            ChangeCurrentCategory = new RelayCommand<string>(
+                cat => SelectedCategory = (cd.Categories)Enum.Parse(typeof(cd.Categories), cat),
+                cat => SelectedCategory != (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));
+
 
 
             Animes = new List<Anime>();
