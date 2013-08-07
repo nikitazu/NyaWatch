@@ -23,9 +23,22 @@ namespace NyaWatch.Windows.ViewModel
                 }
             }
         }
-        
-        
-        public Anime SelectedAnime { get; set; }
+
+        Anime _selectedAnime;
+
+        public Anime SelectedAnime 
+        {
+            get { return _selectedAnime; }
+            set
+            {
+                if (_selectedAnime != value)
+                {
+                    _selectedAnime = value;
+                    OnChanged("SelectedAnime");
+                }
+            }
+        }
+
         public cd.Categories SelectedCategory { get; set; }
 
         public Root()
