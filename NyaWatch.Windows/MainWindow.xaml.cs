@@ -34,18 +34,10 @@ namespace NyaWatch.Windows
 
         private void AnimeElementBorderMouseDown(object sender, MouseButtonEventArgs e)
         {
-#if DEBUG
             var source = sender as Border;
-            if (source == null)
-            {
-                return;
-            }
-
             var anime = source.Tag as ViewModel.Anime;
-            if (anime == null)
-            {
-                return;
-            }
+#if DEBUG
+            if (source == null || anime == null ) { return; }
 #endif
             var package = new DataObject(DropFormats.InternalReference, anime);
             DragDrop.DoDragDrop(source, package, DragDropEffects.Move);
@@ -53,15 +45,15 @@ namespace NyaWatch.Windows
 
         private void CategoryDrop(object sender, DragEventArgs e)
         {
-#if DEBUG
             var categoryButton = sender as Button;
+            var targetCategory = categoryButton.CommandParameter as string;
+#if DEBUG
             if (categoryButton == null)
             {
                 MessageBox.Show("Wrong target");
                 return;
             }
 
-            var targetCategory = categoryButton.CommandParameter as string;
             if (string.IsNullOrWhiteSpace(targetCategory))
             {
                 MessageBox.Show("Empty category");
