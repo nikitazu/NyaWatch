@@ -32,17 +32,6 @@ namespace NyaWatch.Windows
             DataContext = Model;
         }
 
-        private void AnimeElementBorderMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var source = sender as Border;
-            var anime = source.Tag as ViewModel.Anime;
-#if DEBUG
-            if (source == null || anime == null ) { return; }
-#endif
-            var package = new DataObject(DropFormats.InternalReference, anime);
-            DragDrop.DoDragDrop(source, package, DragDropEffects.Move);
-        }
-
         private void CategoryDrop(object sender, DragEventArgs e)
         {
             var categoryButton = sender as Button;
@@ -74,6 +63,20 @@ namespace NyaWatch.Windows
             }
 
             Model.MoveAnimeToCategory(anime, targetCategory);
+        }
+
+        private void AnimeElementBorderMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.MouseDevice.LeftButton != MouseButtonState.Pressed) { return; }
+
+            var source = sender as Border;
+            var anime = source.Tag as ViewModel.Anime;
+#if DEBUG
+            if (source == null || anime == null) { return; }
+#endif
+            Model.SelectedAnime = anime;
+            var package = new DataObject(DropFormats.InternalReference, anime);
+            DragDrop.DoDragDrop(source, package, DragDropEffects.Move);
         }
     }
 }

@@ -122,6 +122,7 @@ namespace NyaWatch.Windows.ViewModel
 
             cd.Anime.Move(SelectedCategory, targetCategory, anime);
             SelectedCategory = SelectedCategory;
+            SelectedAnime = Animes.FirstOrDefault();
         }
     }
 }
