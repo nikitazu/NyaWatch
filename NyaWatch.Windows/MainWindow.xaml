@@ -16,7 +16,7 @@
             <Border BorderBrush="{x:Static SystemColors.ControlDarkBrush}" 
                     BorderThickness="0.5" 
                     Background="{x:Static SystemColors.ControlLightLightBrush}"
-                    PreviewMouseMove="AnimeElementBorderMouseMove"
+                    MouseMove="AnimeElementBorderMouseMove"
                     Tag="{Binding .}"
                     Margin="5" 
                     Padding="5" 
