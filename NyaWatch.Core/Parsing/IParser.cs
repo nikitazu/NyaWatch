@@ -6,8 +6,8 @@ namespace NyaWatch.Core.Parsing
 {
 	public interface IParser
 	{
-		IList<Dictionary<string, string>> ParseAnime(TextReader input);
-		IList<Dictionary<string, string>> ParseAnimePreview(TextReader input);
+		IList<Dictionary<string, string>> ParseAnime(TextReader reader);
+		IList<Dictionary<string, string>> ParseAnimePreview(TextReader reader);
 	}
 }
 

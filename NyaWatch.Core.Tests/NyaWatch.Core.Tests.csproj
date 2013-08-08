@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Parsing\SimpleParserTests.cs" />
     <Compile Include="Data\MemoryStorageTests.cs" />
+    <Compile Include="Parsing\WorldArtParserTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -49,4 +50,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Parsing\WorldArtParser_TestParseAnime.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
