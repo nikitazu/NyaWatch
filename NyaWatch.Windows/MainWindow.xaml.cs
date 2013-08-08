@@ -31,5 +31,57 @@ namespace NyaWatch.Windows
             Model = new ViewModel.Root();
             DataContext = Model;
         }
+
+        private void AnimeElementBorderMouseDown(object sender, MouseButtonEventArgs e)
+        {
+#if DEBUG
+            var source = sender as Border;
+            if (source == null)
+            {
+                return;
+            }
+
+            var anime = source.Tag as ViewModel.Anime;
+            if (anime == null)
+            {
+                return;
+            }
+#endif
+            var package = new DataObject(DropFormats.InternalReference, anime);
+            DragDrop.DoDragDrop(source, package, DragDropEffects.Move);
+        }
+
+        private void CategoryDrop(object sender, DragEventArgs e)
+        {
+#if DEBUG
+            var categoryButton = sender as Button;
+            if (categoryButton == null)
+            {
+                MessageBox.Show("Wrong target");
+                return;
+            }
+
+            var targetCategory = categoryButton.CommandParameter as string;
+            if (string.IsNullOrWhiteSpace(targetCategory))
+            {
+                MessageBox.Show("Empty category");
+                return;
+            }
+#endif
+            if (!e.Data.GetDataPresent(DropFormats.InternalReference))
+            {
+                MessageBox.Show("Wrong data");
+                return;
+            }
+
+            var anime = e.Data.GetData(DropFormats.InternalReference) as ViewModel.Anime;
+            if (anime == null)
+            {
+                MessageBox.Show("Bad data");
+                return;
+            }
+
+            Model.MoveAnimeToCategory(anime, targetCategory);
+        }
     }
 }
