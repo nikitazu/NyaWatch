@@ -112,6 +112,17 @@ namespace NyaWatch.Windows.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
 
+        public void MoveAnimeToCategory(Anime anime, string categoryName)
+        {
+            cd.Categories targetCategory;
+            if (!Enum.TryParse<cd.Categories>(categoryName, out targetCategory))
+            {
+                throw new InvalidOperationException("Unknown category " + categoryName);
+            }
 
+            cd.Anime.Move(SelectedCategory, targetCategory, anime);
+            SelectedCategory = SelectedCategory;
+            SelectedAnime = Animes.FirstOrDefault();
+        }
     }
 }

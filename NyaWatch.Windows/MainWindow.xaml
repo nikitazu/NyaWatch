@@ -16,6 +16,8 @@
             <Border BorderBrush="{x:Static SystemColors.ControlDarkBrush}" 
                     BorderThickness="0.5" 
                     Background="{x:Static SystemColors.ControlLightLightBrush}"
+                    MouseMove="AnimeElementBorderMouseMove"
+                    Tag="{Binding .}"
                     Margin="5" 
                     Padding="5" 
                     MinWidth="550">
@@ -137,6 +139,8 @@
                             <Setter Property="Margin" Value="10 0 5 0" />
                             <Setter Property="Background" Value="Transparent" />
                             <Setter Property="Command" Value="{Binding ChangeCurrentCategory}" />
+                            <Setter Property="AllowDrop" Value="True" />
+                            <EventSetter Event="Drop" Handler="CategoryDrop" />
                         </Style>
                     </StackPanel.Resources>
                 

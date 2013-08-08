@@ -18,6 +18,7 @@ namespace NyaWatch.Core.ComponentModel
         /// </summary>
         /// <typeparam name="T">Type of value.</typeparam>
         /// <param name="handler">Event handler.</param>
+        /// <param name="sender">Object whos value changed.</param>
         /// <param name="field">Underlying field reference.</param>
         /// <param name="value">New value.</param>
         /// <param name="memberExpression">Property reference (its name will be used for notification).</param>
