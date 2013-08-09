@@ -47,7 +47,21 @@ namespace NyaWatch.Core.Parsing
 				throw new ParserException ("... | //table/tr/td/a");
 			}
 
-			return new Dictionary<string, string> ();
+			List<string> otherTitles = null;
+			try
+			{
+				otherTitles = dataTable.SelectSingleNode ("tr[2]/td[3]").OuterHtml
+					.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries)
+					.Where(title => !title.Contains("<"))
+					.Select(title => HtmlEntity.DeEntitize(title))
+					.ToList();
+			} catch (Exception) {
+				otherTitles = new List<string> ();
+			}
+
+			var result = new Dictionary<string, string> ();
+			result ["otherTitles"] = string.Join (",", otherTitles);
+			return result;
 		}
 
 		public IList<Dictionary<string, string>> ParseAnimePreview (TextReader reader)

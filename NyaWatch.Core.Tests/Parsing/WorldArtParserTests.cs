@@ -33,8 +33,12 @@ namespace NyaWatch.Core.Parsing.Tests
 			using (var reader = new StreamReader(stream)) {
 				anime = _parser.ParseAnime (reader);
 			}
-
+			File.WriteAllText ("/Users/nikitazu/test.txt", anime ["otherTitles"]);
 			Assert.IsNotNull (anime, "Result should not be null");
+			Assert.True (anime.ContainsKey ("otherTitles"), "otherTitles not found");
+			Assert.AreEqual ("Slayers Excellent,Slayers: Lina-chan's Great Fashion Strategy,Slayers: The Fearful Future,Slayers: The Labyrinth,スレイヤーズえくせれんと",
+			                 anime ["otherTitles"], "otherTitles wrong data");
+
 		}
 	}
 }
