@@ -27,15 +27,14 @@ namespace NyaWatch.Core.Parsing.Tests
 		[Test()]
 		public void TestParseAnime ()
 		{
-			IList<Dictionary<string, string>> result = null;
+			Dictionary<string, string> anime = null;
 
 			using (var stream = File.OpenRead(_parseAnimeFile))
 			using (var reader = new StreamReader(stream)) {
-				result = _parser.ParseAnime (reader);
+				anime = _parser.ParseAnime (reader);
 			}
 
-			Assert.IsNotNull (result, "Result should not be null");
-			Assert.AreEqual (13, result.Count, "Result should contain 13 animes");
+			Assert.IsNotNull (anime, "Result should not be null");
 		}
 	}
 }

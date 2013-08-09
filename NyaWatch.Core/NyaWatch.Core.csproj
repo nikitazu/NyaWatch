@@ -57,6 +57,7 @@
     <Compile Include="Data\CategoryNotFoundException.cs" />
     <Compile Include="Data\IStorageOnDisk.cs" />
     <Compile Include="Parsing\WorldArtParser.cs" />
+    <Compile Include="Parsing\ParserException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

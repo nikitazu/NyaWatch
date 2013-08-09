@@ -14,35 +14,40 @@ namespace NyaWatch.Core.Parsing
 
 		#region IParser implementation
 
-		public IList<Dictionary<string, string>> ParseAnime (TextReader reader)
+		public Dictionary<string, string> ParseAnime (TextReader reader)
 		{
 			var doc = new HtmlDocument ();
 			doc.Load (reader);
 
-			var table = doc.DocumentNode.SelectSingleNode ("//html/body//table[6]");
-			if (table == null) {
-				return null;
+			var contentTable = doc.DocumentNode.SelectNodes ("//html/body//table")
+				.FirstOrDefault (table => {
+					var header = table.SelectNodes("//table/tr/td[@class=\"bg2\"]");
+					if (header == null) {
+						return false;
+					}
+					var info = header.FirstOrDefault(
+						h => !string.IsNullOrWhiteSpace(h.InnerText) &&
+						h.InnerHtml.Contains("Основная информация"));
+					return info != null;
+			});
+
+			if (contentTable == null) {
+				throw new ParserException ("//html/body//table | //table/tr/td[@class=\"bg2\"]");
 			}
 
-			//var x = table.OuterHtml ();
-			//throw new Exception (x);
-
-			var rows = table.SelectNodes ("tr");
-			if (rows == null) {
-				return null;
+			var dataTable = contentTable.SelectNodes ("//table")
+				.FirstOrDefault (table => {
+					var links = table.SelectNodes("tr/td/a");
+					return links != null && links.Any(a => {
+						return a.Attributes["href"].Value.Contains(
+							@"http://www.world-art.ru/animation/animation_poster.php?id=");
+					});
+			});
+			if (dataTable == null) {
+				throw new ParserException ("... | //table/tr/td/a");
 			}
 
-			var results = new List<Dictionary<string, string>> ();
-
-			// data starts at row 5 and last row is useless
-			var dataRows = rows.Skip (5).Take (rows.Count () - 5);
-			foreach (var row in rows) {
-				var result = new Dictionary<string, string> ();
-				throw new Exception (row.OuterHtml);
-				results.Add (result);
-			}
-
-			return results;
+			return new Dictionary<string, string> ();
 		}
 
 		public IList<Dictionary<string, string>> ParseAnimePreview (TextReader reader)

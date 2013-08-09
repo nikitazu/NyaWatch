@@ -8,29 +8,20 @@ namespace NyaWatch.Core.Parsing
 {
 	public class SimpleParser : IParser
 	{
-		public IList<Dictionary<string, string>> ParseAnime (TextReader reader)
+		public Dictionary<string, string> ParseAnime (TextReader reader)
 		{
-			var result = new List<Dictionary<string, string>> ();
-
 			var doc = new HtmlDocument ();
 			doc.Load (reader);
 
-			var nodes = doc.DocumentNode.SelectNodes ("//div[@class=\"animes\"]/table/tr");
+			var nodes = doc.DocumentNode.SelectNodes ("//div[@class=\"animes\"]/table/tr/td");
 			if (nodes == null) {
-				return result;
+				return null;
 			}
 
-			foreach (var node in nodes) {
-				var dataNodes = node.SelectNodes ("td");
-				if (dataNodes != null) {
-					var data = new Dictionary<string, string> ();
+			var result = new Dictionary<string, string> ();
 
-					data ["title"] = dataNodes [0].InnerText;
-					data ["episodes"] = dataNodes [1].InnerText;
-
-					result.Add (data);
-				}
-			}
+			result ["title"] = nodes [0].InnerText;
+			result ["episodes"] = nodes [1].InnerText;
 
 			return result;
 		}

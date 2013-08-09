@@ -19,7 +19,6 @@ namespace NyaWatch.Core.Parsing.Tests
 			<table>
 				<tr><th>Title</th><th>Episodes</th></tr>
 				<tr><td>NGE</td><td>26</td></tr>
-				<tr><td>Slayers</td><td>26</td></tr>
 			</table>
 		</div>
 		<div>Other useless stuff</div>
@@ -43,22 +42,13 @@ namespace NyaWatch.Core.Parsing.Tests
 		public void TestParseAnime ()
 		{
 			using (var reader = new StringReader(_html)) {
-				var animes = _parser.ParseAnime (reader);
-				Assert.IsNotNull (animes, "Should be some data");
-				Assert.AreEqual (2, animes.Count (), "Should find 2 animes");
+				var anime = _parser.ParseAnime (reader);
+				Assert.IsNotNull (anime, "Should be some data");
 
-				var nge = animes [0];
-				var slayers = animes [1];
-
-				Assert.IsTrue (nge.ContainsKey ("title"), "Title for nge not found");
-				Assert.AreEqual ("NGE", nge ["title"], "Title for nge should be NGE");
-				Assert.IsTrue (nge.ContainsKey ("episodes"), "Episodes for nge not found");
-				Assert.AreEqual ("26", nge ["episodes"], "Episodes for nge should be 26");
-
-				Assert.IsTrue (slayers.ContainsKey ("title"), "Title for nge not found");
-				Assert.AreEqual ("Slayers", slayers ["title"], "Title for nge should be Slayers");
-				Assert.IsTrue (slayers.ContainsKey ("episodes"), "Episodes for nge not found");
-				Assert.AreEqual ("26", slayers ["episodes"], "Episodes for nge should be 26");
+				Assert.IsTrue (anime.ContainsKey ("title"), "Title for nge not found");
+				Assert.AreEqual ("NGE", anime ["title"], "Title for nge should be NGE");
+				Assert.IsTrue (anime.ContainsKey ("episodes"), "Episodes for nge not found");
+				Assert.AreEqual ("26", anime ["episodes"], "Episodes for nge should be 26");
 			}
 		}
 	}
