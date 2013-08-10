@@ -53,8 +53,8 @@ namespace NyaWatch.Core.Parsing
 
 			try 
 			{
-				var otherTitles = dataTable.SelectSingleNode ("tr[2]/td[3]").OuterHtml			// property otherTitles
-					.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries)
+				var otherTitles = dataTable.SelectSingleNode ("tr[2]/td[3]").OuterHtml									// property otherTitles
+					.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries)								// --------------------
 					.Where(title => !title.Contains("<"))
 					.Select(title => HtmlEntity.DeEntitize(title))
 					.ToList();
@@ -69,10 +69,13 @@ namespace NyaWatch.Core.Parsing
 				throw new ParserException ("tr/td/font");
 			}
 
-			var typeAndSeries = HtmlEntity.DeEntitize (fonts [3].InnerText);					// property country
-			var countryRe = new Regex (@"Производство:\s*(.+)Жанр:", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-			var countryM = countryRe.Match (typeAndSeries);
+			var typeAndSeries = HtmlEntity.DeEntitize (fonts [3].InnerText);					
+			var countryRe = new Regex (@"Производство:\s*(.+)Жанр:", RegexOptions.IgnoreCase | RegexOptions.Compiled);	// property country
+			var countryM = countryRe.Match (typeAndSeries);																// ----------------
 			result ["country"] = countryM.Success ? countryM.Groups [1].Value : string.Empty;
+
+			result ["title"] = fonts [0].InnerText.Replace (" [", string.Empty);										// property title
+			result ["year"] = fonts [1].InnerText;																		// property year
 
 			return result;
 		}
