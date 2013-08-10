@@ -33,7 +33,7 @@ namespace NyaWatch.Core.Parsing.Tests
 			using (var reader = new StreamReader(stream)) {
 				anime = _parser.ParseAnime (reader);
 			}
-			File.WriteAllText ("/Users/nikitazu/test.txt", anime ["otherTitles"]);
+			//File.WriteAllText ("/Users/nikitazu/test.txt", anime ["otherTitles"]);
 			Assert.IsNotNull (anime, "Result should not be null");
 
 			Assert.True (anime.ContainsKey ("otherTitles"), "otherTitles not found");
