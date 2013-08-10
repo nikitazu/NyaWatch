@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 
 namespace NyaWatch.Core.Parsing
@@ -32,7 +34,7 @@ namespace NyaWatch.Core.Parsing
 			});
 
 			if (contentTable == null) {
-				throw new ParserException ("//html/body//table | //table/tr/td[@class=\"bg2\"]");
+				throw new ParserException ("//html/body//table//table/tr/td[@class=\"bg2\"]");
 			}
 
 			var dataTable = contentTable.SelectNodes ("//table")
@@ -44,23 +46,34 @@ namespace NyaWatch.Core.Parsing
 					});
 			});
 			if (dataTable == null) {
-				throw new ParserException ("... | //table/tr/td/a");
+				throw new ParserException ("//table/tr/td/a");
 			}
 
-			List<string> otherTitles = null;
-			try
+			var result = new Dictionary<string, string> ();
+
+			try 
 			{
-				otherTitles = dataTable.SelectSingleNode ("tr[2]/td[3]").OuterHtml
+				var otherTitles = dataTable.SelectSingleNode ("tr[2]/td[3]").OuterHtml			// property otherTitles
 					.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries)
 					.Where(title => !title.Contains("<"))
 					.Select(title => HtmlEntity.DeEntitize(title))
 					.ToList();
+
+				result ["otherTitles"] = string.Join(",", otherTitles);
 			} catch (Exception) {
-				otherTitles = new List<string> ();
+				result ["otherTitles"] = string.Empty;
 			}
 
-			var result = new Dictionary<string, string> ();
-			result ["otherTitles"] = string.Join (",", otherTitles);
+			var fonts = dataTable.SelectNodes ("tr//td//font");
+			if (fonts == null || fonts.Count < 4) {
+				throw new ParserException ("tr/td/font");
+			}
+
+			var typeAndSeries = HtmlEntity.DeEntitize (fonts [3].InnerText);					// property country
+			var countryRe = new Regex (@"Производство:\s*(.+)Жанр:", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+			var countryM = countryRe.Match (typeAndSeries);
+			result ["country"] = countryM.Success ? countryM.Groups [1].Value : string.Empty;
+
 			return result;
 		}
 

@@ -35,10 +35,14 @@ namespace NyaWatch.Core.Parsing.Tests
 			}
 			File.WriteAllText ("/Users/nikitazu/test.txt", anime ["otherTitles"]);
 			Assert.IsNotNull (anime, "Result should not be null");
+
 			Assert.True (anime.ContainsKey ("otherTitles"), "otherTitles not found");
+			Assert.True (anime.ContainsKey ("country"), "country not found");
+
 			Assert.AreEqual ("Slayers Excellent,Slayers: Lina-chan's Great Fashion Strategy,Slayers: The Fearful Future,Slayers: The Labyrinth,スレイヤーズえくせれんと",
 			                 anime ["otherTitles"], "otherTitles wrong data");
 
+			Assert.AreEqual ("Япония", anime ["country"], "country wrong data");
 		}
 	}
 }
