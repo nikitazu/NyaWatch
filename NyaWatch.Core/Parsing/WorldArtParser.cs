@@ -69,13 +69,41 @@ namespace NyaWatch.Core.Parsing
 				throw new ParserException ("tr/td/font");
 			}
 
+			result ["title"] = fonts [0].InnerText.Replace (" [", string.Empty);										// property title
+			result ["year"] = fonts [1].InnerText;																		// property year
+
 			var typeAndSeries = HtmlEntity.DeEntitize (fonts [3].InnerText);					
 			var countryRe = new Regex (@"Производство:\s*(.+)Жанр:", RegexOptions.IgnoreCase | RegexOptions.Compiled);	// property country
 			var countryM = countryRe.Match (typeAndSeries);																// ----------------
 			result ["country"] = countryM.Success ? countryM.Groups [1].Value : string.Empty;
 
-			result ["title"] = fonts [0].InnerText.Replace (" [", string.Empty);										// property title
-			result ["year"] = fonts [1].InnerText;																		// property year
+			var type = string.Empty;
+			var episodes = string.Empty;
+			var time = string.Empty;
+			var typeAndSeriesRe = new Regex (@"Тип: (.+), (\d+) мин\.(Выпуск|Премьера):", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+			var typeAndSeriesM = typeAndSeriesRe.Match (typeAndSeries);
+
+			if (typeAndSeriesM.Success) {
+				type = typeAndSeriesM.Groups [1].Value;
+				time = typeAndSeriesM.Groups [2].Value;
+				if (type.Contains ("фильм")) {
+					type = "Movie";
+					episodes = "1";
+				} else {
+					var tsRe = new Regex (@"(\w+) \((\d+) эп.\)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+					var tsM = tsRe.Match (type);
+					if (tsM.Success) {
+						type = tsM.Groups [1].Value;
+						episodes = tsM.Groups [2].Value;
+						if (type == "ТВ") {
+							type = "TV";
+						}
+					}
+				}
+			}
+
+			result ["type"] = type;
+			result ["episodes"] = episodes;
 
 			return result;
 		}

@@ -40,6 +40,8 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.True (anime.ContainsKey ("country"), "country not found");
 			Assert.True (anime.ContainsKey ("title"), "title not found");
 			Assert.True (anime.ContainsKey ("year"), "year not found");
+			Assert.True (anime.ContainsKey ("type"), "type not found");
+			Assert.True (anime.ContainsKey ("episodes"), "episodes not found");
 
 			Assert.AreEqual ("Slayers Excellent,Slayers: Lina-chan's Great Fashion Strategy,Slayers: The Fearful Future,Slayers: The Labyrinth,スレイヤーズえくせれんと",
 			                 anime ["otherTitles"], "otherTitles wrong data");
@@ -47,6 +49,8 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("Япония", anime ["country"], "country wrong data");
 			Assert.AreEqual ("Превосходные Рубаки", anime ["title"], "title wrong data");
 			Assert.AreEqual ("1998", anime ["year"], "year wrong data");
+			Assert.AreEqual ("OVA", anime ["type"], "type wrong data");
+			Assert.AreEqual ("3", anime ["episodes"], "episodes wrong data");
 
 			/*
 			     result.should eql([{
