@@ -34,7 +34,7 @@ namespace NyaWatch.Core.Parsing
 			});
 
 			if (contentTable == null) {
-				throw new ParserException ("//html/body//table//table/tr/td[@class=\"bg2\"]");
+				throw new ParserException ("//html/body//table//table/tr/td[@class=\"bg2\"]", doc.DocumentNode.InnerHtml, "contentTable");
 			}
 
 			var dataTable = contentTable.SelectNodes ("//table")
@@ -46,7 +46,7 @@ namespace NyaWatch.Core.Parsing
 					});
 			});
 			if (dataTable == null) {
-				throw new ParserException ("//table/tr/td/a");
+				throw new ParserException ("//table/tr/td/a", contentTable.InnerHtml, "dataTable");
 			}
 
 			var result = new Dictionary<string, string> ();
@@ -66,7 +66,7 @@ namespace NyaWatch.Core.Parsing
 
 			var fonts = dataTable.SelectNodes ("tr//td//font");
 			if (fonts == null || fonts.Count < 4) {
-				throw new ParserException ("tr/td/font");
+				throw new ParserException ("tr/td/font", fonts == null ? "NULL" : fonts.ToString(), "font tags with data");
 			}
 
 			result ["title"] = fonts [0].InnerText.Replace (" [", string.Empty);										// property title
