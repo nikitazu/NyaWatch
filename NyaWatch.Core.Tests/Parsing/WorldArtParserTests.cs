@@ -42,6 +42,10 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.True (anime.ContainsKey ("year"), "year not found");
 			Assert.True (anime.ContainsKey ("type"), "type not found");
 			Assert.True (anime.ContainsKey ("episodes"), "episodes not found");
+			Assert.True (anime.ContainsKey ("airingStart"), "airingStart not found");
+			Assert.True (anime.ContainsKey ("airingEnd"), "airingEnd not found");
+			Assert.True (anime.ContainsKey ("imageUrl"), "imageUrl not found");
+			Assert.True (anime.ContainsKey ("posterUrl"), "posterUrl not found");
 
 			Assert.AreEqual ("Slayers Excellent,Slayers: Lina-chan's Great Fashion Strategy,Slayers: The Fearful Future,Slayers: The Labyrinth,スレイヤーズえくせれんと",
 			                 anime ["otherTitles"], "otherTitles wrong data");
@@ -51,17 +55,10 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("1998", anime ["year"], "year wrong data");
 			Assert.AreEqual ("OVA", anime ["type"], "type wrong data");
 			Assert.AreEqual ("3", anime ["episodes"], "episodes wrong data");
-
-			/*
-			     result.should eql([{
-      #:web_url    =>  "http://www.world-art.ru/animation/animation.php?id=203", 
-      :type       =>  "OVA", 
-      :series     =>  "3", 
-      :image_url  =>  "http://www.world-art.ru/animation/img/1000/203/1.jpg",
-      :airing_start => DateTime.new(1998, 10, 25),
-      :airing_end   => DateTime.new(1999,  3, 25),
-    }])
-			 */
+			Assert.AreEqual ("25.10.1998", anime ["airingStart"], "airingStart wrong data");
+			Assert.AreEqual ("25.03.1999", anime ["airingEnd"], "airingEnd wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/img/1000/203/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=203", anime ["posterUrl"], "posterUrl wrong data");
 		}
 	}
 }

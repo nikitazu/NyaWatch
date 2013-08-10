@@ -77,8 +77,8 @@ namespace NyaWatch.Core.Parsing
 			var countryM = countryRe.Match (typeAndSeries);																// ----------------
 			result ["country"] = countryM.Success ? countryM.Groups [1].Value : string.Empty;
 
-			var type = string.Empty;
-			var episodes = string.Empty;
+			var type = string.Empty;																					// property type
+			var episodes = string.Empty;																				// property episodes
 			var time = string.Empty;
 			var typeAndSeriesRe = new Regex (@"Тип: (.+), (\d+) мин\.(Выпуск|Премьера):", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 			var typeAndSeriesM = typeAndSeriesRe.Match (typeAndSeries);
@@ -104,6 +104,36 @@ namespace NyaWatch.Core.Parsing
 
 			result ["type"] = type;
 			result ["episodes"] = episodes;
+
+			// property airingStart
+			// property airingEnd
+			var airingRe = new Regex (@"Выпуск: c (\d\d\.\d\d\.\d\d\d\d) по  (\d\d\.\d\d\.\d\d\d\d)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+			var airingM = airingRe.Match (typeAndSeries);
+			if (!airingM.Success) {
+				//File.WriteAllText ("/Users/nikitazu/test", typeAndSeries); crazy unseen character near "по" must be copied
+				airingRe = new Regex (@"Выпуск: с (\d\d\.\d\d\.\d\d\d\d)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+				airingM = airingRe.Match (typeAndSeries);
+				if (!airingM.Success) {
+					airingRe = new Regex (@"Премьера: (\d\d\.\d\d\.\d\d\d\d)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+					airingM = airingRe.Match (typeAndSeries);
+				}
+			}
+
+			if (airingM.Success) {
+				result ["airingStart"] = airingM.Groups [1].Value;
+				result ["airingEnd"] = airingM.Groups.Count == 3 ? airingM.Groups [2].Value : string.Empty;
+			} else {
+				result ["airingStart"] = string.Empty;
+				result ["airingEnd"] = string.Empty;
+			}
+
+			var image = dataTable.SelectSingleNode ("tr/td/a/img[1]");
+			var imageUrl = image != null ? image.Attributes ["src"].Value : string.Empty;
+			var poster = dataTable.SelectSingleNode ("tr/td/a[1]");
+			var posterUrl = poster != null ? poster.Attributes ["href"].Value : string.Empty;
+
+			result ["imageUrl"] = imageUrl;
+			result ["posterUrl"] = posterUrl;
 
 			return result;
 		}
