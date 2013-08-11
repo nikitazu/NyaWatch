@@ -52,7 +52,6 @@ namespace NyaWatch.Core.Domain
                     Episodes = 1,
                     Status = "Not yet aired",
                     Watched = 0,
-                    Torrents = 0,
                     Pinned = true
                 });
 
@@ -64,7 +63,6 @@ namespace NyaWatch.Core.Domain
                     Episodes = 365,
                     Status = "Aired",
                     Watched = 356,
-                    Torrents = 1,
                     Pinned = false
                 });
 
@@ -76,7 +74,6 @@ namespace NyaWatch.Core.Domain
                     Episodes = 100500,
                     Status = "Airing",
                     Watched = 666,
-                    Torrents = 200,
                     Pinned = false
                 });
 
@@ -87,7 +84,6 @@ namespace NyaWatch.Core.Domain
                 Episodes = 26,
                 Status = "Aired",
                 Watched = 26,
-                Torrents = 0,
                 Pinned = false
             };
 
@@ -106,7 +102,6 @@ namespace NyaWatch.Core.Domain
                     Episodes = 1,
                     Status = "Aired",
                     Watched = 1,
-                    Torrents = 0,
                     Pinned = false
                 });
 
@@ -118,7 +113,6 @@ namespace NyaWatch.Core.Domain
                     Episodes = 3,
                     Status = "Aired",
                     Watched = 2,
-                    Torrents = 3,
                     Pinned = false
                 });
 
@@ -130,7 +124,6 @@ namespace NyaWatch.Core.Domain
                     Episodes = 26,
                     Status = "Airing",
                     Watched = 5,
-                    Torrents = 0,
                     Pinned = false
                 });
         }

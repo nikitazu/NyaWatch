@@ -116,10 +116,7 @@ namespace NyaWatch.Windows.ViewModel
 
         public Brush PinnedColor
         {
-            get
-            {
-                return MaybeActiveTextBrush(Pinned);
-            }
+            get { return MaybeActiveTextBrush(Pinned); }
         }
 
         private Brush MaybeActiveTextBrush(bool isActive)
