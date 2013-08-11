@@ -33,6 +33,7 @@
                     <Button Command="{Binding Root.TogglePinned}"
                             Background="Transparent"
                             VerticalAlignment="Top"
+                            ToolTip="Toggle anime pinned to top state"
                             CommandParameter="{Binding .}">
                         <wpf:AwesomeText Text="{x:Static fonts:Awesome.ThumbsUpIcon}" 
                                          Foreground="{Binding PinnedColor}" />
@@ -85,10 +86,10 @@
                             <Label>of</Label>
                             <Label Content="{Binding Episodes}" />
                             
-                            <Button Command="{Binding Root.IncrementWatched}">
+                            <Button Command="{Binding Root.IncrementWatched}" ToolTip="Increase watched episodes counter">
                                 <wpf:AwesomeText Text="{x:Static fonts:Awesome.PlusIcon}" />
                             </Button>
-                            <Button Command="{Binding Root.DecrementWatched}">
+                            <Button Command="{Binding Root.DecrementWatched}" ToolTip="Decrease watched episodes counter">
                                 <wpf:AwesomeText Text="{x:Static fonts:Awesome.MinusIcon}" />
                             </Button>
                             <wpf:ContextButton>
@@ -150,9 +151,9 @@
                 </MenuItem.Resources>
                 <MenuItem Header="Import anime" IsEnabled="False" />
                 <MenuItem Header="Selected anime" IsEnabled="{Binding Path=SelectedAnime, Converter={conv:NullToBool}}">
+                    <MenuItem Header="Toggle pinned" Command="{Binding TogglePinned}" />
                     <MenuItem Header="Increment" Command="{Binding IncrementWatched}" />
                     <MenuItem Header="Decrement" Command="{Binding DecrementWatched}" />
-                    <MenuItem Header="Toggle pinned" Command="{Binding TogglePinned}" />
                     <MenuItem Header="Move to category">
                         <MenuItem Header="Plan to watch" Command="{Binding MoveToPlanToWatch}" />
                         <MenuItem Header="Watching" Command="{Binding MoveToWatching}" />
