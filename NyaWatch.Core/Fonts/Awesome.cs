@@ -21,5 +21,7 @@ namespace NyaWatch.Core.Fonts
         public const string PlusIcon = "\uf055";
         public const string MinusIcon = "\uf056";
         public const string ListIcon = "\uf03a";
+
+        public const string ThumbsUpIcon = "\uf164";
     }
 }

@@ -92,6 +92,9 @@
                                     </ContextMenu>
                                 </Button.ContextMenu>
                             </wpf:ContextButton>
+                            <Button Command="{Binding Root.TogglePinned}">
+                                <wpf:AwesomeText Text="{x:Static fonts:Awesome.ThumbsUpIcon}" Foreground="{Binding PinnedColor}" />
+                            </Button>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

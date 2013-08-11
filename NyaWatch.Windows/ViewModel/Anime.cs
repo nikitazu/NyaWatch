@@ -114,6 +114,14 @@ namespace NyaWatch.Windows.ViewModel
             set { PropertyChanged.ChangeAndNotify(this, ref _pinned, value, () => Pinned); }
         }
 
+        public Brush PinnedColor
+        {
+            get
+            {
+                return MaybeActiveTextBrush(Pinned);
+            }
+        }
+
         private Brush MaybeActiveTextBrush(bool isActive)
         {
             return isActive ? SystemColors.HotTrackBrush : SystemColors.GrayTextBrush;
