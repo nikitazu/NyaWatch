@@ -103,6 +103,37 @@ namespace NyaWatch
 		}
 
 		#endregion
+
+		#region Selected anime actions
+
+		public void incrementWatchedAction(NSObject sender)
+		{
+			SelectedAnime.Increment ();
+		}
+
+		public void decrementWatchedAction(NSObject sender)
+		{
+			SelectedAnime.Decrement ();
+		}
+
+		public void togglePinnedAction(NSObject sender)
+		{
+			Console.WriteLine ("pin");
+			//SelectedAnime.SetValueForKey (NSNumber.FromBoolean(!SelectedAnime.Pinned), (NSString)"pinned");
+			SelectedAnime.TogglePinned ();
+		}
+
+		ViewModel.Anime SelectedAnime
+		{
+			get { 
+				if (animesArrayController.SelectedObjects.Length <= 0) {
+					return null;
+				}
+				return animesArrayController.SelectedObjects [0] as ViewModel.Anime;
+			}
+		}
+
+		#endregion
 	}
 }
 

@@ -21,6 +21,20 @@ namespace NyaWatch.ViewModel
 
 		[Export("watched")]
 		public int Watched { get; set; }
+		
+		public void Increment()
+		{
+			if (Watched < Episodes) {
+				SetValueForKey (NSNumber.FromInt32 (Watched + 1), (NSString)"watched");
+			}
+		}
+
+		public void Decrement()
+		{
+			if (Watched > 0) {
+				SetValueForKey (NSNumber.FromInt32 (Watched - 1), (NSString)"watched");
+			}
+		}
 
 		[Export("type")]
 		public string Type { get; set; }
@@ -86,6 +100,11 @@ namespace NyaWatch.ViewModel
 
 		[Export("pinned")]
 		public bool Pinned { get; set; }
+		
+		public void TogglePinned()
+		{
+			SetValueForKey (NSNumber.FromBoolean (!Pinned), (NSString)"pinned");
+		}
 
 		public Anime (string title, string type, int episodes, int torrents, string status)
 		{

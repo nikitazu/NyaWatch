@@ -24,6 +24,21 @@ namespace NyaWatch
 		{
 			return true;
 		}
+
+		partial void incrementWatchedAction(NSObject sender)
+		{
+			mainWindowController.incrementWatchedAction(sender);
+		}
+
+		partial void decrementWatchedAction(NSObject sender)
+		{
+			mainWindowController.decrementWatchedAction(sender);
+		}
+
+		partial void togglePinnedAction(NSObject sender)
+		{
+			mainWindowController.togglePinnedAction(sender);
+		}
 	}
 }
 
