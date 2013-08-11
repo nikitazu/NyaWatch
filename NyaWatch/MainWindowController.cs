@@ -49,7 +49,6 @@ namespace NyaWatch
 			base.AwakeFromNib ();
 			LoadAwesomeFont ();
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
-
 			LoadAnimes (cd.Categories.Watching);
 		}
 
