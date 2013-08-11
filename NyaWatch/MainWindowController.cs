@@ -44,21 +44,13 @@ namespace NyaWatch
 
 		#region Init
 
-		public ViewModel.Root Root { get; set; }
-
 		public override void AwakeFromNib ()
 		{
 			base.AwakeFromNib ();
 			LoadAwesomeFont ();
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
 
-			Root = new ViewModel.Root ();
-
 			LoadAnimes (cd.Categories.Watching);
-
-			//animesArrayController.Bind ("arrangedObjects", Root, "animes", null);
-
-			//animesArrayController.AddObjects (NSArray.FromObjects (Root.Animes.ToArray ()));
 		}
 
 		void LoadAwesomeFont()

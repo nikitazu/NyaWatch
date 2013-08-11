@@ -92,7 +92,6 @@
     </Compile>
     <Compile Include="FontAwesome.cs" />
     <Compile Include="ViewModel\Anime.cs" />
-    <Compile Include="ViewModel\Root.cs" />
     <Compile Include="Cocoa\ListToNSArray.cs" />
   </ItemGroup>
   <ItemGroup>
