@@ -67,6 +67,8 @@
     <Compile Include="ViewModel\Root.cs" />
     <Compile Include="WPF\AwesomeText.cs" />
     <Compile Include="WPF\ContextButton.cs" />
+    <Compile Include="WPF\Converters\ConverterBase.cs" />
+    <Compile Include="WPF\Converters\NullToBool.cs" />
     <Compile Include="WPF\DropFormats.cs" />
     <Compile Include="WPF\UnbreakableScroller.cs" />
     <Page Include="MainWindow.xaml">

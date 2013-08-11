@@ -4,6 +4,7 @@
         xmlns:fonts="clr-namespace:NyaWatch.Core.Fonts;assembly=NyaWatch.Core"
         xmlns:vm="clr-namespace:NyaWatch.Windows.ViewModel"
         xmlns:wpf="clr-namespace:NyaWatch.Windows.WPF"
+        xmlns:conv="clr-namespace:NyaWatch.Windows.WPF.Converters"
         Title="NyaWatch" 
         Icon="pack://application:,,,/Resources/icon_32x32.ico"
         MinHeight="600" 
@@ -124,6 +125,40 @@
     
     <StackPanel Orientation="Vertical">
         
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Save" IsEnabled="False" />
+                <MenuItem Header="Load" IsEnabled="False" />
+                <MenuItem Header="Autosave" IsEnabled="False" />
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem.Resources>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="CommandParameter" Value="{Binding SelectedAnime}" />
+                    </Style>
+                </MenuItem.Resources>
+                <MenuItem Header="Import anime" IsEnabled="False" />
+                <MenuItem Header="Selected anime" IsEnabled="{Binding Path=SelectedAnime, Converter={conv:NullToBool}}">
+                    <MenuItem Header="Increment" Command="{Binding IncrementWatched}" />
+                    <MenuItem Header="Decrement" Command="{Binding DecrementWatched}" />
+                    <MenuItem Header="Move to category">
+                        <MenuItem Header="Plan to watch" Command="{Binding MoveToPlanToWatch}" />
+                        <MenuItem Header="Watching" Command="{Binding MoveToWatching}" />
+                        <MenuItem Header="Completed" Command="{Binding MoveToCompleted}" />
+                        <MenuItem Header="On hold" Command="{Binding MoveToOnHold}" />
+                        <MenuItem Header="Dropped" Command="{Binding MoveToDropped}" />
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Plan to watch" Command="{Binding ChangeCurrentCategory}" CommandParameter="PlanToWatch" />
+                <MenuItem Header="Watching" Command="{Binding ChangeCurrentCategory}" CommandParameter="Watching" />
+                <MenuItem Header="Completed" Command="{Binding ChangeCurrentCategory}" CommandParameter="Completed" />
+                <MenuItem Header="On hold" Command="{Binding ChangeCurrentCategory}" CommandParameter="OnHold" />
+                <MenuItem Header="Dropped" Command="{Binding ChangeCurrentCategory}" CommandParameter="Dropped" />
+            </MenuItem>
+        </Menu>
+        
         <StackPanel Orientation="Vertical">
             <!-- buttons -->
             <Grid>
@@ -168,6 +203,7 @@
                 <TextBox Grid.Column="1" 
                          Margin="5 0 10 0" 
                          Height="25" 
+                         IsEnabled="False"
                          Control.Template="{StaticResource WaterBox}" />
             </Grid>
         
@@ -193,7 +229,7 @@
         </StackPanel>
         
         <!-- torrents -->
-        <TextBox Control.Template="{StaticResource WaterBox}" Margin="5" />        
-        <ListView Margin="5" MinHeight="100"></ListView>
+        <TextBox Control.Template="{StaticResource WaterBox}" IsEnabled="False" Margin="5" />        
+        <ListView Margin="5" MinHeight="100" IsEnabled="False"></ListView>
     </StackPanel>
 </Window>
