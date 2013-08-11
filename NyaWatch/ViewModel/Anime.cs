@@ -84,6 +84,9 @@ namespace NyaWatch.ViewModel
 			}
 		}
 
+		[Export("pinned")]
+		public bool Pinned { get; set; }
+
 		public Anime (string title, string type, int episodes, int torrents, string status)
 		{
 			Title = title;

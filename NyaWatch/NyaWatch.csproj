@@ -77,6 +77,7 @@
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Resources\NyaWatch.iconset\" />
     <Folder Include="ViewModel\" />
+    <Folder Include="Cocoa\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="FontAwesome.cs" />
     <Compile Include="ViewModel\Anime.cs" />
     <Compile Include="ViewModel\Root.cs" />
+    <Compile Include="Cocoa\ListToNSArray.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

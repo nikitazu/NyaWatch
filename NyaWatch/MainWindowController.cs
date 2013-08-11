@@ -4,6 +4,7 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
+using NyaWatch.Cocoa;
 using cd = NyaWatch.Core.Domain;
 
 namespace NyaWatch
@@ -53,7 +54,11 @@ namespace NyaWatch
 
 			Root = new ViewModel.Root ();
 
-			animesArrayController.AddObjects (NSArray.FromObjects (Root.Animes.ToArray ()));
+			LoadAnimes (cd.Categories.Watching);
+
+			//animesArrayController.Bind ("arrangedObjects", Root, "animes", null);
+
+			//animesArrayController.AddObjects (NSArray.FromObjects (Root.Animes.ToArray ()));
 		}
 
 		void LoadAwesomeFont()
@@ -77,27 +82,33 @@ namespace NyaWatch
 
 		partial void categoryPlanToWatchAction(NSObject sender)
 		{
-			Console.WriteLine("plan to watch category");
+			LoadAnimes (cd.Categories.PlanToWatch);
 		}
 
 		partial void categoryWatchingAction(NSObject sender)
 		{
-			Console.WriteLine("watching category");
+			LoadAnimes (cd.Categories.Watching);
 		}
 
 		partial void categoryCompletedAction(NSObject sender)
 		{
-			Console.WriteLine("completed category");
+			LoadAnimes (cd.Categories.Completed);
 		}
 
 		partial void categoryOnHoldAction(NSObject sender)
 		{
-			Console.WriteLine("on hold category");
+			LoadAnimes (cd.Categories.OnHold);
 		}
 
 		partial void categoryDroppedAction(NSObject sender)
 		{
-			Console.WriteLine("dropped category");
+			LoadAnimes (cd.Categories.Dropped);
+		}
+
+		void LoadAnimes(cd.Categories cat)
+		{
+			var animes = cd.Anime.Find<ViewModel.Anime> (cat);
+			animesArrayController.SetArrangedObjects (animes);
 		}
 
 		#endregion
