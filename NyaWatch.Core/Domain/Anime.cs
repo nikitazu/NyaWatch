@@ -26,6 +26,7 @@ namespace NyaWatch.Core.Domain
                         DeserializeAnime(kv.Value, anime);
                         return anime;
                     })
+                .OrderBy(a => a.Title)
                 .ToList();
         }
 
