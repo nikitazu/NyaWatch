@@ -21,7 +21,8 @@ namespace NyaWatch.ViewModel
 
 		[Export("watched")]
 		public int Watched { get; set; }
-		
+
+		[Export("incrementWatchedAction")]
 		public void Increment()
 		{
 			if (Watched < Episodes) {
@@ -29,11 +30,24 @@ namespace NyaWatch.ViewModel
 			}
 		}
 
+		[Export("decrementWatchedAction")]
 		public void Decrement()
 		{
 			if (Watched > 0) {
 				SetValueForKey (NSNumber.FromInt32 (Watched - 1), (NSString)"watched");
 			}
+		}
+
+		[Export("incrementIcon")]
+		public string incrementIcon
+		{
+			get { return Core.Fonts.Awesome.PlusIcon; }
+		}
+
+		[Export("decrementIcon")]
+		public string decrementIcon
+		{
+			get { return Core.Fonts.Awesome.MinusIcon; }
 		}
 
 		[Export("type")]
@@ -104,6 +118,17 @@ namespace NyaWatch.ViewModel
 		public void TogglePinned()
 		{
 			SetValueForKey (NSNumber.FromBoolean (!Pinned), (NSString)"pinned");
+		}
+
+		[Export("moveToCategoryAction")]
+		public void moveToCategoryAction(NSObject sender)
+		{
+			Console.WriteLine ("round: {0}", Title);
+		}
+
+		[Export("font")]
+		public NSFont Font {
+			get { return FontAwesome.Font; }
 		}
 
 		public Anime (string title, string type, int episodes, int torrents, string status)
