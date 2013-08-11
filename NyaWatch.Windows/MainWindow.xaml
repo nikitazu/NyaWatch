@@ -141,6 +141,7 @@
                 <MenuItem Header="Selected anime" IsEnabled="{Binding Path=SelectedAnime, Converter={conv:NullToBool}}">
                     <MenuItem Header="Increment" Command="{Binding IncrementWatched}" />
                     <MenuItem Header="Decrement" Command="{Binding DecrementWatched}" />
+                    <MenuItem Header="Toggle pinned" Command="{Binding TogglePinned}" />
                     <MenuItem Header="Move to category">
                         <MenuItem Header="Plan to watch" Command="{Binding MoveToPlanToWatch}" />
                         <MenuItem Header="Watching" Command="{Binding MoveToWatching}" />

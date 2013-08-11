@@ -18,16 +18,20 @@ namespace NyaWatch.Core.Domain
         /// <returns>List of anime.</returns>
         public static List<T> Find<T>(Categories category) where T : class, IAnime, new()
         {
-            return Init.Storage.SelectItems(category.ToString())
+            var query = Init.Storage.SelectItems(category.ToString())
                 .Select(kv =>
                     {
                         T anime = Activator.CreateInstance<T>();
                         anime.ID = kv.Key;
                         DeserializeAnime(kv.Value, anime);
                         return anime;
-                    })
-                .OrderBy(a => a.Title)
-                .ToList();
+                    });
+
+            var sorted = from anime in query
+                         orderby !anime.Pinned, anime.Title
+                         select anime;
+
+            return sorted.ToList();
         }
 
         /// <summary>
@@ -52,6 +56,7 @@ namespace NyaWatch.Core.Domain
             item["watched"] = anime.Watched.ToString();
             item["type"] = anime.Type;
             item["status"] = anime.Status;
+            item["pinned"] = anime.Pinned.ToString();
             return Init.Storage.AddItem(category.ToString(), item);
         }
 
@@ -77,6 +82,7 @@ namespace NyaWatch.Core.Domain
             anime.Watched = int.Parse(item["watched"]);
             anime.Type = item["type"];
             anime.Status = item["status"];
+            anime.Pinned = bool.Parse(item["pinned"]);
         }
 
         static IDictionary<string, string> SerializeAnime(IAnime anime)
@@ -87,6 +93,7 @@ namespace NyaWatch.Core.Domain
             item["watched"] = anime.Watched.ToString();
             item["type"] = anime.Type;
             item["status"] = anime.Status;
+            item["pinned"] = anime.Pinned.ToString();
             return item;
         }
     }

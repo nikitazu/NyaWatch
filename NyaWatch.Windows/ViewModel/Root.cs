@@ -50,6 +50,7 @@ namespace NyaWatch.Windows.ViewModel
         public ICommand ChangeCurrentCategory { get; private set; }
         public ICommand IncrementWatched { get; private set; }
         public ICommand DecrementWatched { get; private set; }
+        public ICommand TogglePinned { get; private set; }
 
         public ICommand MoveToPlanToWatch { get; private set; }
         public ICommand MoveToWatching { get; private set; }
@@ -70,6 +71,15 @@ namespace NyaWatch.Windows.ViewModel
             DecrementWatched = new RelayCommand<Anime>(
                 anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.DecrementWatched()),
                 anime => anime != null && anime.CanDecrementWatched());
+
+            TogglePinned = new RelayCommand<Anime>(
+                anime => 
+                { 
+                    anime.Pinned = !anime.Pinned; 
+                    cd.Anime.Save(SelectedCategory, anime); 
+                    SelectedCategory = SelectedCategory; 
+                },
+                anime => anime != null);
 
             Func<cd.Categories, RelayCommand<Anime>> moveTo = target => 
                 new RelayCommand<Anime>(anime =>

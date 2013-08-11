@@ -107,6 +107,13 @@ namespace NyaWatch.Windows.ViewModel
             get { return ImagePath ?? "pack://application:,,,/Resources/icon_256x256.png"; }
         }
 
+        bool _pinned = false;
+        public bool Pinned
+        {
+            get { return _pinned; }
+            set { PropertyChanged.ChangeAndNotify(this, ref _pinned, value, () => Pinned); }
+        }
+
         private Brush MaybeActiveTextBrush(bool isActive)
         {
             return isActive ? SystemColors.HotTrackBrush : SystemColors.GrayTextBrush;

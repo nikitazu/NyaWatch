@@ -40,7 +40,8 @@ namespace NyaWatch.Core.Domain
                     Episodes = 1,
                     Status = "Not yet aired",
                     Watched = 0,
-                    Torrents = 0
+                    Torrents = 0,
+                    Pinned = false
                 });
 
             Anime.PutDynamic(Categories.PlanToWatch,
@@ -51,7 +52,8 @@ namespace NyaWatch.Core.Domain
                     Episodes = 1,
                     Status = "Not yet aired",
                     Watched = 0,
-                    Torrents = 0
+                    Torrents = 0,
+                    Pinned = true
                 });
 
             Anime.PutDynamic(Categories.Watching,
@@ -62,7 +64,8 @@ namespace NyaWatch.Core.Domain
                     Episodes = 365,
                     Status = "Aired",
                     Watched = 356,
-                    Torrents = 1
+                    Torrents = 1,
+                    Pinned = false
                 });
 
             Anime.PutDynamic(Categories.Watching,
@@ -73,7 +76,8 @@ namespace NyaWatch.Core.Domain
                     Episodes = 100500,
                     Status = "Airing",
                     Watched = 666,
-                    Torrents = 200
+                    Torrents = 200,
+                    Pinned = false
                 });
 
             Func<string, dynamic> tvCompleted = title => new
@@ -83,7 +87,8 @@ namespace NyaWatch.Core.Domain
                 Episodes = 26,
                 Status = "Aired",
                 Watched = 26,
-                Torrents = 0
+                Torrents = 0,
+                Pinned = false
             };
 
             Anime.PutDynamic(Categories.Completed, tvCompleted("Slayers"));
@@ -101,7 +106,8 @@ namespace NyaWatch.Core.Domain
                     Episodes = 1,
                     Status = "Aired",
                     Watched = 1,
-                    Torrents = 0
+                    Torrents = 0,
+                    Pinned = false
                 });
 
             Anime.PutDynamic(Categories.OnHold,
@@ -112,7 +118,8 @@ namespace NyaWatch.Core.Domain
                     Episodes = 3,
                     Status = "Aired",
                     Watched = 2,
-                    Torrents = 3
+                    Torrents = 3,
+                    Pinned = false
                 });
 
             Anime.PutDynamic(Categories.Dropped,
@@ -123,7 +130,8 @@ namespace NyaWatch.Core.Domain
                     Episodes = 26,
                     Status = "Airing",
                     Watched = 5,
-                    Torrents = 0
+                    Torrents = 0,
+                    Pinned = false
                 });
         }
     }
