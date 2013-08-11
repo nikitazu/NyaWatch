@@ -43,6 +43,17 @@ namespace NyaWatch.Core.Domain
             return id;
         }
 
+        internal static Guid PutDynamic(Categories category, dynamic anime)
+        {
+            var item = new Dictionary<string, string>();
+            item["title"] = anime.Title;
+            item["episodes"] = anime.Episodes.ToString();
+            item["watched"] = anime.Watched.ToString();
+            item["type"] = anime.Type;
+            item["status"] = anime.Status;
+            return Init.Storage.AddItem(category.ToString(), item);
+        }
+
         public static Guid Move(Categories source, Categories target, IAnime anime)
         {
             var item = SerializeAnime(anime);
