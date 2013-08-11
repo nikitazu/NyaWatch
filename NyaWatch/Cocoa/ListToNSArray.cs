@@ -15,8 +15,10 @@ namespace NyaWatch.Cocoa
 
 		public static void SetArrangedObjects<T>(this NSArrayController controller, IEnumerable<T> items) where T :NSObject
 		{
+			var arr = items.ToArray ();
 			controller.Remove (controller.ArrangedObjects ());
-			controller.AddObjects (NSArray.FromNSObjects (items.ToArray ()));
+			controller.AddObjects (NSArray.FromNSObjects (arr));
+			controller.SelectedObjects = new NSObject[] { arr[0] };
 		}
 	}
 }

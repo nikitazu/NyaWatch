@@ -39,6 +39,31 @@ namespace NyaWatch
 		{
 			mainWindowController.togglePinnedAction(sender);
 		}
+		
+		partial void moveToPlanAction(NSObject sender)
+		{
+			mainWindowController.moveToPlanAction(sender);
+		}
+
+		partial void moveToWatchingAction(NSObject sender)
+		{
+			mainWindowController.moveToWatchingAction(sender);
+		}
+
+		partial void moveToCompletedAction(NSObject sender)
+		{
+			mainWindowController.moveToCompletedAction(sender);
+		}
+
+		partial void moveToOnHoldAction(NSObject sender)
+		{
+			mainWindowController.moveToOnHoldAction(sender);
+		}
+
+		partial void moveToDroppedAction(NSObject sender)
+		{
+			mainWindowController.moveToDroppedAction(sender);
+		}
 	}
 }
 

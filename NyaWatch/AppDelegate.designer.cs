@@ -18,6 +18,21 @@ namespace NyaWatch
 		[Action ("incrementWatchedAction:")]
 		partial void incrementWatchedAction (MonoMac.Foundation.NSObject sender);
 
+		[Action ("moveToCompletedAction:")]
+		partial void moveToCompletedAction (MonoMac.Foundation.NSObject sender);
+
+		[Action ("moveToDroppedAction:")]
+		partial void moveToDroppedAction (MonoMac.Foundation.NSObject sender);
+
+		[Action ("moveToOnHoldAction:")]
+		partial void moveToOnHoldAction (MonoMac.Foundation.NSObject sender);
+
+		[Action ("moveToPlanAction:")]
+		partial void moveToPlanAction (MonoMac.Foundation.NSObject sender);
+
+		[Action ("moveToWatchingAction:")]
+		partial void moveToWatchingAction (MonoMac.Foundation.NSObject sender);
+
 		[Action ("togglePinnedAction:")]
 		partial void togglePinnedAction (MonoMac.Foundation.NSObject sender);
 		

@@ -71,6 +71,8 @@ namespace NyaWatch
 
 		#region Category buttons click events
 
+		cd.Categories _selectedCategory;
+
 		partial void categoryPlanToWatchAction(NSObject sender)
 		{
 			LoadAnimes (cd.Categories.PlanToWatch);
@@ -100,6 +102,7 @@ namespace NyaWatch
 		{
 			var animes = cd.Anime.Find<ViewModel.Anime> (cat);
 			animesArrayController.SetArrangedObjects (animes);
+			_selectedCategory = cat;
 		}
 
 		#endregion
@@ -119,8 +122,40 @@ namespace NyaWatch
 		public void togglePinnedAction(NSObject sender)
 		{
 			Console.WriteLine ("pin");
-			//SelectedAnime.SetValueForKey (NSNumber.FromBoolean(!SelectedAnime.Pinned), (NSString)"pinned");
 			SelectedAnime.TogglePinned ();
+		}
+
+		public void moveToPlanAction(NSObject sender)
+		{
+			MoveAnimeTo (cd.Categories.PlanToWatch);
+		}
+
+		public void moveToWatchingAction(NSObject sender)
+		{
+			MoveAnimeTo (cd.Categories.Watching);
+		}
+
+		public void moveToCompletedAction(NSObject sender)
+		{
+			MoveAnimeTo (cd.Categories.Completed);
+		}
+
+		public void moveToOnHoldAction(NSObject sender)
+		{
+			MoveAnimeTo (cd.Categories.OnHold);
+		}
+
+		public void moveToDroppedAction(NSObject sender)
+		{
+			MoveAnimeTo (cd.Categories.Dropped);
+		}
+
+		void MoveAnimeTo(cd.Categories cat)
+		{
+			if (_selectedCategory != cat) {
+				cd.Anime.Move (_selectedCategory, cat, SelectedAnime);
+				animesArrayController.RemoveObject (SelectedAnime);
+			}
 		}
 
 		ViewModel.Anime SelectedAnime
