@@ -69,6 +69,23 @@ namespace NyaWatch
 
 		#endregion
 
+		partial void searchAnimeAction(NSObject sender)
+		{
+			var searchData = sender.ValueForKey((NSString)"stringValue").ToString();
+			if (string.IsNullOrWhiteSpace(searchData)) {
+				return;
+			}
+
+			if (searchData.StartsWith("http://www.world-art.ru")) {
+
+				var anime = new Core.Parsing.WorldArtParser().ParseAnimeFromWeb(searchData);
+				Console.WriteLine (anime["title"]);
+				return;
+			}
+
+			Console.WriteLine ("searching for keyword: {0}", searchData);
+		}
+
 		#region Category buttons click events
 
 		cd.Categories _selectedCategory;

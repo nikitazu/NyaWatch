@@ -11,6 +11,7 @@ namespace NyaWatch.Core.Parsing.Tests
 	{
 		IParser _parser;
 		const string _parseAnimeFile = @"Parsing/WorldArtParser_TestParseAnime.html";
+		const string _parseAnimeUrl = @"http://www.world-art.ru/animation/animation.php?id=203";
 
 		[SetUp]
 		public void Setup()
@@ -29,11 +30,9 @@ namespace NyaWatch.Core.Parsing.Tests
 		{
 			Dictionary<string, string> anime = null;
 
-			using (var stream = File.OpenRead(_parseAnimeFile))
-			using (var reader = new StreamReader(stream)) {
-				anime = _parser.ParseAnime (reader);
-			}
-			//File.WriteAllText ("/Users/nikitazu/test.txt", anime ["otherTitles"]);
+			anime = _parser.ParseAnimeFromFile (_parseAnimeFile);
+			//anime = _parser.ParseAnimeFromWeb (_parseAnimeUrl);
+
 			Assert.IsNotNull (anime, "Result should not be null");
 
 			Assert.True (anime.ContainsKey ("otherTitles"), "otherTitles not found");

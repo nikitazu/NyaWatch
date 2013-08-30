@@ -17,7 +17,7 @@ namespace NyaWatch.Core.Parsing
 				throw new ArgumentException ("Should not be empty", "phase");
 			}
 			XPath = xpath;
-			DataChunk = dataChunk;
+			DataChunk = dataChunk.Length > 1500 ? dataChunk.Substring(0, 1500) : dataChunk;
 			Phase = phase;
 		}
 

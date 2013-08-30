@@ -33,6 +33,9 @@ namespace NyaWatch
 		[Outlet]
 		MonoMac.AppKit.NSButton categoryWatchingButton { get; set; }
 
+		[Outlet]
+		MonoMac.AppKit.NSSearchField searchAnimeField { get; set; }
+
 		[Action ("categoryCompletedAction:")]
 		partial void categoryCompletedAction (MonoMac.Foundation.NSObject sender);
 
@@ -47,6 +50,9 @@ namespace NyaWatch
 
 		[Action ("categoryWatchingAction:")]
 		partial void categoryWatchingAction (MonoMac.Foundation.NSObject sender);
+
+		[Action ("searchAnimeAction:")]
+		partial void searchAnimeAction (MonoMac.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -83,6 +89,11 @@ namespace NyaWatch
 			if (categoryWatchingButton != null) {
 				categoryWatchingButton.Dispose ();
 				categoryWatchingButton = null;
+			}
+
+			if (searchAnimeField != null) {
+				searchAnimeField.Dispose ();
+				searchAnimeField = null;
 			}
 		}
 	}

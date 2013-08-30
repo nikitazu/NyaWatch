@@ -8,7 +8,7 @@ using HtmlAgilityPack;
 
 namespace NyaWatch.Core.Parsing
 {
-	public class WorldArtParser : IParser
+	public class WorldArtParser : Parser, IParser
 	{
 		public WorldArtParser ()
 		{
@@ -16,29 +16,38 @@ namespace NyaWatch.Core.Parsing
 
 		#region IParser implementation
 
-		public Dictionary<string, string> ParseAnime (TextReader reader)
+		protected override Dictionary<string, string> ParseAnime (HtmlDocument doc)
 		{
-			var doc = new HtmlDocument ();
-			doc.Load (reader);
+			var nodes = doc.DocumentNode.SelectNodes ("//html/body//table");
+			if (nodes == null) {
+				throw new ParserException (
+					"//html/body//table", 
+					doc.DocumentNode.InnerHtml, 
+					"contentTableNodes");
+			}
 
-			var contentTable = doc.DocumentNode.SelectNodes ("//html/body//table")
-				.FirstOrDefault (table => {
-					var header = table.SelectNodes("//table/tr/td[@class=\"bg2\"]");
-					if (header == null) {
-						return false;
-					}
-					var info = header.FirstOrDefault(
-						h => !string.IsNullOrWhiteSpace(h.InnerText) &&
-						h.InnerHtml.Contains("Основная информация"));
-					return info != null;
+			string phase = "contentTable:header search";
+			var contentTable = nodes.FirstOrDefault (table => {
+				var header = table.SelectNodes("//table/tr/td[@class=\"bg2\"]");
+				if (header == null) {
+					return false;
+				}
+				var info = header.FirstOrDefault(
+					h => !string.IsNullOrWhiteSpace(h.InnerText) &&
+					h.InnerHtml.Contains("Основная информация"));
+				phase = "contentTable:main info search";
+				return info != null;
 			});
 
 			if (contentTable == null) {
-				throw new ParserException ("//html/body//table//table/tr/td[@class=\"bg2\"]", doc.DocumentNode.InnerHtml, "contentTable");
+				throw new ParserException (
+					"//html/body//table//table/tr/td[@class=\"bg2\"]", 
+					doc.DocumentNode.InnerHtml, 
+					phase);
 			}
 
 			var dataTable = contentTable.SelectNodes ("//table")
-				.FirstOrDefault (table => {
+				.LastOrDefault (table => {
 					var links = table.SelectNodes("tr/td/a");
 					return links != null && links.Any(a => {
 						return a.Attributes["href"].Value.Contains(
@@ -51,15 +60,21 @@ namespace NyaWatch.Core.Parsing
 
 			var result = new Dictionary<string, string> ();
 
+			phase = "property:otherTitles";
+			var otherTitles = dataTable.SelectSingleNode ("tr[2]/td[3]");
+			if (otherTitles == null) {
+				throw new ParserException ("tr[2]/td[3]", dataTable.InnerHtml, phase);
+			}
+
 			try 
 			{
-				var otherTitles = dataTable.SelectSingleNode ("tr[2]/td[3]").OuterHtml									// property otherTitles
-					.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries)								// --------------------
+				var temp = otherTitles.OuterHtml
+					.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries)
 					.Where(title => !title.Contains("<"))
 					.Select(title => HtmlEntity.DeEntitize(title))
 					.ToList();
 
-				result ["otherTitles"] = string.Join(",", otherTitles);
+				result ["otherTitles"] = string.Join(",", temp);
 			} catch (Exception) {
 				result ["otherTitles"] = string.Empty;
 			}
@@ -138,9 +153,9 @@ namespace NyaWatch.Core.Parsing
 			return result;
 		}
 
-		public IList<Dictionary<string, string>> ParseAnimePreview (TextReader reader)
+		protected override Dictionary<string, string> ParseAnimePreview (HtmlDocument doc)
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException ("ParseAnimePreview");
 		}
 
 		#endregion

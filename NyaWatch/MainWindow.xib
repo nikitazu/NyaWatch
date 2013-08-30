@@ -521,7 +521,6 @@
 													<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 													<reference key="NSSuperview" ref="684259467"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:58</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<reference key="NSTarget" ref="684259467"/>
@@ -870,7 +869,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="11935515"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{938, 665}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -924,7 +923,6 @@
 							</object>
 							<string key="NSFrame">{{490, 5}, {39, 38}}</string>
 							<reference key="NSSuperview" ref="542609013"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1574</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="321758350">
@@ -1031,6 +1029,22 @@
 					<int key="connectionID">177</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">searchAnimeAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1024339400"/>
+					</object>
+					<int key="connectionID">733</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">searchAnimeField</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1024339400"/>
+					</object>
+					<int key="connectionID">735</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">content: arrangedObjects</string>
 						<reference key="source" ref="205677194"/>
@@ -1091,7 +1105,6 @@
 									</object>
 									<string key="NSFrame">{{12, 19}, {46, 61}}</string>
 									<reference key="NSSuperview" ref="825391314"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:11</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSImageCell" key="NSCell" id="904515824">
@@ -1281,7 +1294,6 @@
 													</object>
 													<string key="NSFrame">{{456, 5}, {39, 38}}</string>
 													<reference key="NSSuperview" ref="542609013"/>
-													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:1574</string>
 													<bool key="NSEnabled">YES</bool>
 													<object class="NSButtonCell" key="NSCell" id="460665366">
@@ -1308,7 +1320,6 @@
 													</object>
 													<string key="NSFrame">{{422, 5}, {39, 38}}</string>
 													<reference key="NSSuperview" ref="542609013"/>
-													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:1574</string>
 													<bool key="NSEnabled">YES</bool>
 													<object class="NSButtonCell" key="NSCell" id="536651097">
@@ -1336,7 +1347,6 @@
 									</object>
 									<string key="NSFrame">{{60, 0}, {542, 95}}</string>
 									<reference key="NSSuperview" ref="825391314"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSOffsets">{0, 0}</string>
 									<object class="NSTextFieldCell" key="NSTitleCell">
@@ -4143,7 +4153,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">732</int>
+			<int key="maxID">735</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4168,9 +4178,11 @@
 							<string>categoryOnHoldAction:</string>
 							<string>categoryPlanToWatchAction:</string>
 							<string>categoryWatchingAction:</string>
+							<string>searchAnimeAction:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4187,6 +4199,7 @@
 							<string>categoryOnHoldAction:</string>
 							<string>categoryPlanToWatchAction:</string>
 							<string>categoryWatchingAction:</string>
+							<string>searchAnimeAction:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4210,6 +4223,10 @@
 								<string key="name">categoryWatchingAction:</string>
 								<string key="candidateClassName">id</string>
 							</object>
+							<object class="IBActionInfo">
+								<string key="name">searchAnimeAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -4223,6 +4240,7 @@
 							<string>categoryOnHoldButton</string>
 							<string>categoryPlanToWatchButton</string>
 							<string>categoryWatchingButton</string>
+							<string>searchAnimeField</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4233,6 +4251,7 @@
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
+							<string>NSSearchField</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -4246,6 +4265,7 @@
 							<string>categoryOnHoldButton</string>
 							<string>categoryPlanToWatchButton</string>
 							<string>categoryWatchingButton</string>
+							<string>searchAnimeField</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4276,6 +4296,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">categoryWatchingButton</string>
 								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">searchAnimeField</string>
+								<string key="candidateClassName">NSSearchField</string>
 							</object>
 						</object>
 					</object>

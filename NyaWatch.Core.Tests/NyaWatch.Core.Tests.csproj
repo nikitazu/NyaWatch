@@ -36,6 +36,7 @@
     <Reference Include="nunit.framework">
       <HintPath>..\lib\NUnit-2.6.2\bin\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parsing\SimpleParserTests.cs" />
@@ -54,5 +55,6 @@
     <None Include="Parsing\WorldArtParser_TestParseAnime.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Parsing\WorldArtParser_TestParseAnime2.html" />
   </ItemGroup>
 </Project>

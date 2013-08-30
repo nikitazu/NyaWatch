@@ -6,13 +6,10 @@ using HtmlAgilityPack;
 
 namespace NyaWatch.Core.Parsing
 {
-	public class SimpleParser : IParser
+	public class SimpleParser : Parser, IParser
 	{
-		public Dictionary<string, string> ParseAnime (TextReader reader)
+		protected override Dictionary<string, string> ParseAnime (HtmlDocument doc)
 		{
-			var doc = new HtmlDocument ();
-			doc.Load (reader);
-
 			var nodes = doc.DocumentNode.SelectNodes ("//div[@class=\"animes\"]/table/tr/td");
 			if (nodes == null) {
 				return null;
@@ -26,7 +23,7 @@ namespace NyaWatch.Core.Parsing
 			return result;
 		}
 
-		public IList<Dictionary<string, string>> ParseAnimePreview (TextReader reader)
+		protected override Dictionary<string, string> ParseAnimePreview (HtmlDocument doc)
 		{
 			throw new NotImplementedException ();
 		}

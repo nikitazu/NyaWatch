@@ -41,15 +41,12 @@ namespace NyaWatch.Core.Parsing.Tests
 		[Test()]
 		public void TestParseAnime ()
 		{
-			using (var reader = new StringReader(_html)) {
-				var anime = _parser.ParseAnime (reader);
-				Assert.IsNotNull (anime, "Should be some data");
-
-				Assert.IsTrue (anime.ContainsKey ("title"), "Title for nge not found");
-				Assert.AreEqual ("NGE", anime ["title"], "Title for nge should be NGE");
-				Assert.IsTrue (anime.ContainsKey ("episodes"), "Episodes for nge not found");
-				Assert.AreEqual ("26", anime ["episodes"], "Episodes for nge should be 26");
-			}
+			var anime = _parser.ParseAnimeFromString (_html);
+			Assert.IsNotNull (anime, "Should be some data");
+			Assert.IsTrue (anime.ContainsKey ("title"), "Title for nge not found");
+			Assert.AreEqual ("NGE", anime ["title"], "Title for nge should be NGE");
+			Assert.IsTrue (anime.ContainsKey ("episodes"), "Episodes for nge not found");
+			Assert.AreEqual ("26", anime ["episodes"], "Episodes for nge should be 26");
 		}
 	}
 }
