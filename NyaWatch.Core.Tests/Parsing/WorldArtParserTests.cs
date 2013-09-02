@@ -17,6 +17,9 @@ namespace NyaWatch.Core.Parsing.Tests
 		const string _parseAnimeMovieFile = @"Parsing/WorldArtParser_TestParseAnime3.html";
 		const string _parseAnimeMovieUrl = @"http://www.world-art.ru/animation/animation.php?id=147";
 
+		const string _parseAnimeRailgunSFile = @"Parsing/WorldArtParser_TestParseAnime_RailgunS.html";
+		const string _parseAnimeRailgunSUrl = @"http://www.world-art.ru/animation/animation.php?id=1895";
+
 
 		[SetUp]
 		public void Setup()
@@ -98,6 +101,42 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("", anime ["airingEnd"], "airingEnd wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/img/1000/147/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=147", anime ["posterUrl"], "posterUrl wrong data");
+		}
+
+		[Test]
+		public void TestParseAnimeRailgunS()
+		{
+			// [ ] symbols in name
+			Dictionary<string, string> anime = null;
+
+			anime = _parser.ParseAnimeFromFile (_parseAnimeRailgunSFile);
+			//anime = _parser.ParseAnimeFromWeb (_parseAnimeRailgunSUrl);
+
+			Assert.IsNotNull (anime, "Result should not be null");
+
+			Assert.True (anime.ContainsKey ("otherTitles"), "otherTitles not found");
+			Assert.True (anime.ContainsKey ("country"), "country not found");
+			Assert.True (anime.ContainsKey ("title"), "title not found");
+			Assert.True (anime.ContainsKey ("year"), "year not found");
+			Assert.True (anime.ContainsKey ("type"), "type not found");
+			Assert.True (anime.ContainsKey ("episodes"), "episodes not found");
+			Assert.True (anime.ContainsKey ("airingStart"), "airingStart not found");
+			Assert.True (anime.ContainsKey ("airingEnd"), "airingEnd not found");
+			Assert.True (anime.ContainsKey ("imageUrl"), "imageUrl not found");
+			Assert.True (anime.ContainsKey ("posterUrl"), "posterUrl not found");
+
+			Assert.AreEqual ("Toaru Kagaku no Railgun S,とある科学の超電磁砲Ｓ",
+			                 anime ["otherTitles"], "otherTitles wrong data");
+
+			Assert.AreEqual ("Япония", anime ["country"], "country wrong data");
+			Assert.AreEqual ("Некий научный Рейлган [ТВ-2]", anime ["title"], "title wrong data");
+			Assert.AreEqual ("2013", anime ["year"], "year wrong data");
+			Assert.AreEqual ("TV", anime ["type"], "type wrong data");
+			Assert.AreEqual ("24", anime ["episodes"], "episodes wrong data");
+			Assert.AreEqual ("12.04.2013", anime ["airingStart"], "airingStart wrong data");
+			Assert.AreEqual ("27.09.2013", anime ["airingEnd"], "airingEnd wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/img/2000/1895/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=1895", anime ["posterUrl"], "posterUrl wrong data");
 		}
 	}
 }

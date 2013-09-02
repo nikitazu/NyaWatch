@@ -84,7 +84,7 @@ namespace NyaWatch.Core.Parsing
 				throw new ParserException ("tr/td/font", fonts == null ? "NULL" : fonts.ToString(), "font tags with data");
 			}
 
-			result ["title"] = fonts [0].InnerText.Replace (" [", string.Empty);										// property title
+			result ["title"] = ClearTitle (fonts [0].InnerText);														// property title
 			result ["year"] = fonts [1].InnerText;																		// property year
 
 			var typeAndSeries = HtmlEntity.DeEntitize (fonts [3].InnerText);					
@@ -161,6 +161,11 @@ namespace NyaWatch.Core.Parsing
 			result ["posterUrl"] = posterUrl;
 
 			return result;
+		}
+
+		string ClearTitle(string title)
+		{
+			return title.EndsWith (" [") ? title.Substring (0, title.Length - 2) : title;
 		}
 
 		protected override Dictionary<string, string> ParseAnimePreview (HtmlDocument doc)
