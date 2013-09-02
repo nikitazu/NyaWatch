@@ -78,8 +78,18 @@ namespace NyaWatch
 
 			if (searchData.StartsWith("http://www.world-art.ru")) {
 
-				var anime = new Core.Parsing.WorldArtParser().ParseAnimeFromWeb(searchData);
-				Console.WriteLine (anime["title"]);
+				var animeData = new Core.Parsing.WorldArtParser().ParseAnimeFromWeb(searchData);
+				var anime = new ViewModel.Anime(
+					animeData["title"],
+					animeData["type"],
+					int.Parse(animeData["episodes"]),
+					0,
+					animeData["airingStart"],
+					animeData["airingEnd"],
+					int.Parse(animeData["year"]));
+
+				cd.Anime.Put(cd.Categories.PlanToWatch, anime);
+				LoadAnimes(cd.Categories.PlanToWatch);
 				return;
 			}
 

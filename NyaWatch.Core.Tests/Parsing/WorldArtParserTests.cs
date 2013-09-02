@@ -10,8 +10,13 @@ namespace NyaWatch.Core.Parsing.Tests
 	public class WorldArtParserTests
 	{
 		IParser _parser;
+
 		const string _parseAnimeFile = @"Parsing/WorldArtParser_TestParseAnime.html";
 		const string _parseAnimeUrl = @"http://www.world-art.ru/animation/animation.php?id=203";
+
+		const string _parseAnimeMovieFile = @"Parsing/WorldArtParser_TestParseAnime3.html";
+		const string _parseAnimeMovieUrl = @"http://www.world-art.ru/animation/animation.php?id=147";
+
 
 		[SetUp]
 		public void Setup()
@@ -58,6 +63,41 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("25.03.1999", anime ["airingEnd"], "airingEnd wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/img/1000/203/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=203", anime ["posterUrl"], "posterUrl wrong data");
+		}
+
+		[Test]
+		public void TestParseAnimeMovie()
+		{
+			Dictionary<string, string> anime = null;
+
+			anime = _parser.ParseAnimeFromFile (_parseAnimeMovieFile);
+			//anime = _parser.ParseAnimeFromWeb (_parseAnimeMovieUrl);
+
+			Assert.IsNotNull (anime, "Result should not be null");
+
+			Assert.True (anime.ContainsKey ("otherTitles"), "otherTitles not found");
+			Assert.True (anime.ContainsKey ("country"), "country not found");
+			Assert.True (anime.ContainsKey ("title"), "title not found");
+			Assert.True (anime.ContainsKey ("year"), "year not found");
+			Assert.True (anime.ContainsKey ("type"), "type not found");
+			Assert.True (anime.ContainsKey ("episodes"), "episodes not found");
+			Assert.True (anime.ContainsKey ("airingStart"), "airingStart not found");
+			Assert.True (anime.ContainsKey ("airingEnd"), "airingEnd not found");
+			Assert.True (anime.ContainsKey ("imageUrl"), "imageUrl not found");
+			Assert.True (anime.ContainsKey ("posterUrl"), "posterUrl not found");
+
+			Assert.AreEqual ("Shin Evangelion Gekijouban:||,シン・エヴァンゲリオン劇場版：||",
+			                 anime ["otherTitles"], "otherTitles wrong data");
+
+			Assert.AreEqual ("Япония", anime ["country"], "country wrong data");
+			Assert.AreEqual ("Евангелион по-новому (фильм четвёртый)", anime ["title"], "title wrong data");
+			Assert.AreEqual ("2015", anime ["year"], "year wrong data");
+			Assert.AreEqual ("Movie", anime ["type"], "type wrong data");
+			Assert.AreEqual ("1", anime ["episodes"], "episodes wrong data");
+			Assert.AreEqual ("", anime ["airingStart"], "airingStart wrong data");
+			Assert.AreEqual ("", anime ["airingEnd"], "airingEnd wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/img/1000/147/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=147", anime ["posterUrl"], "posterUrl wrong data");
 		}
 	}
 }

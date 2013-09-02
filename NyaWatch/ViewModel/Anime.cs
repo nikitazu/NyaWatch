@@ -131,13 +131,41 @@ namespace NyaWatch.ViewModel
 			get { return FontAwesome.Font; }
 		}
 
-		public Anime (string title, string type, int episodes, int torrents, string status)
+		public string AiringStart { get; set; }
+		public string AiringEnd { get; set; }
+		public int Year { get; set; }
+
+		public Anime (string title, string type, int episodes, int torrents, string airingStart, string airingEnd, int year)
 		{
 			Title = title;
 			Type = type;
 			Episodes = episodes;
 			TorrentsCount = torrents;
-			Status = status;
+			AiringStart = airingStart;
+			AiringEnd = airingEnd;
+			Year = year;
+
+			if (string.IsNullOrWhiteSpace (airingStart)) {
+				Status = "Unknown";
+				if (year > DateTime.Today.Year) {
+					Status = "Not yet aired";
+				} else if (year < DateTime.Today.Year) {
+					Status = "Aired";
+				}
+			} else {
+				var startDate = DateTime.Parse (airingStart).Date;
+				if (startDate > DateTime.Today) {
+					Status = "Not yet aired";
+				} else {
+					Status = "Airing";
+					if (!string.IsNullOrWhiteSpace (airingEnd)) {
+						var endDate = DateTime.Parse (airingEnd).Date;
+						if (endDate <= DateTime.Today) {
+							Status = "Aired";
+						}
+					}
+				}
+			}
 		}
 
 		public Anime ()
@@ -148,7 +176,7 @@ namespace NyaWatch.ViewModel
 		[Export("copyWithZone:")]
 		public virtual NSObject CopyWithZone(IntPtr zone)
 		{
-			return new Anime(Title, Type, Episodes, TorrentsCount, Status);
+			return new Anime(Title, Type, Episodes, TorrentsCount, AiringStart, AiringEnd, Year);
 		}
 
 		public override NSObject ValueForUndefinedKey (NSString key)

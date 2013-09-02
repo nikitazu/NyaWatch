@@ -96,6 +96,7 @@ namespace NyaWatch.Core.Parsing
 			var episodes = string.Empty;																				// property episodes
 			var time = string.Empty;
 			var typeAndSeriesRe = new Regex (@"Тип: (.+), (\d+) мин\.(Выпуск|Премьера):", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+			var typeAndSeriesSimpleRe = new Regex (@"Тип: (.+)(Выпуск|Премьера):", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 			var typeAndSeriesM = typeAndSeriesRe.Match (typeAndSeries);
 
 			if (typeAndSeriesM.Success) {
@@ -113,6 +114,15 @@ namespace NyaWatch.Core.Parsing
 						if (type == "ТВ") {
 							type = "TV";
 						}
+					}
+				}
+			} else {
+				var typeAndSeriesSimpleM = typeAndSeriesSimpleRe.Match (typeAndSeries);
+				if (typeAndSeriesSimpleM.Success) {
+					type = typeAndSeriesSimpleM.Groups [1].Value;
+					if (type.Contains ("фильм")) {
+						type = "Movie";
+						episodes = "1";
 					}
 				}
 			}

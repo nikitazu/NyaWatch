@@ -56,5 +56,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Parsing\WorldArtParser_TestParseAnime2.html" />
+    <None Include="Parsing\WorldArtParser_TestParseAnime3.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
