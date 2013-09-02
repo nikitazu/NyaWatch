@@ -184,7 +184,7 @@
 															<string key="NSFrameSize">{724, 281}</string>
 															<reference key="NSSuperview" ref="496601987"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="825391314"/>
+															<reference key="NSNextKeyView" ref="651801578"/>
 															<string key="NSReuseIdentifierKey">_NS:13</string>
 															<bool key="NSEnabled">YES</bool>
 															<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -257,7 +257,20 @@
 															</object>
 															<double key="NSIntercellSpacingWidth">3</double>
 															<double key="NSIntercellSpacingHeight">2</double>
-															<reference key="NSBackgroundColor" ref="717409709"/>
+															<object class="NSColor" key="NSBackgroundColor">
+																<int key="NSColorSpace">6</int>
+																<string key="NSCatalogName">System</string>
+																<string key="NSColorName">_sourceListBackgroundColor</string>
+																<object class="NSColor" key="NSColor">
+																	<int key="NSColorSpace">6</int>
+																	<string key="NSCatalogName">System</string>
+																	<string key="NSColorName">alternateSelectedControlColor</string>
+																	<object class="NSColor" key="NSColor">
+																		<int key="NSColorSpace">1</int>
+																		<bytes key="NSRGB">MCAwIDEAA</bytes>
+																	</object>
+																</object>
+															</object>
 															<object class="NSColor" key="NSGridColor" id="342266529">
 																<int key="NSColorSpace">6</int>
 																<string key="NSCatalogName">System</string>
@@ -268,14 +281,16 @@
 																</object>
 															</object>
 															<double key="NSRowHeight">88</double>
-															<int key="NSTvFlags">-700448768</int>
+															<int key="NSTvFlags">-155189248</int>
 															<reference key="NSDelegate"/>
 															<reference key="NSDataSource"/>
+															<int key="NSGridStyleMask">2</int>
 															<int key="NSColumnAutoresizingStyle">4</int>
 															<int key="NSDraggingSourceMaskForLocal">15</int>
 															<int key="NSDraggingSourceMaskForNonLocal">0</int>
 															<bool key="NSAllowsTypeSelect">YES</bool>
-															<int key="NSTableViewDraggingDestinationStyle">0</int>
+															<int key="NSTableViewSelectionHighlightStyle">1</int>
+															<int key="NSTableViewDraggingDestinationStyle">1</int>
 															<int key="NSTableViewGroupRowStyle">1</int>
 														</object>
 													</object>
@@ -336,7 +351,7 @@
 											<string key="NSFrame">{{172, 0}, {726, 299}}</string>
 											<reference key="NSSuperview" ref="779146594"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="651801578"/>
+											<reference key="NSNextKeyView" ref="496601987"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<int key="NSsFlags">133682</int>
 											<reference key="NSVScroller" ref="400694153"/>
@@ -410,7 +425,7 @@
 															<string key="NSFrameSize">{896, 183}</string>
 															<reference key="NSSuperview" ref="126247160"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="995326971"/>
+															<reference key="NSNextKeyView" ref="193423775"/>
 															<string key="NSReuseIdentifierKey">_NS:13</string>
 															<bool key="NSEnabled">YES</bool>
 															<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -562,7 +577,7 @@
 											<string key="NSFrameSize">{898, 201}</string>
 											<reference key="NSSuperview" ref="936546151"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="193423775"/>
+											<reference key="NSNextKeyView" ref="126247160"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<int key="NSsFlags">133682</int>
 											<reference key="NSVScroller" ref="872802106"/>
@@ -869,7 +884,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="11935515"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{938, 665}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -4306,14 +4321,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MainWindowController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
 					</object>
 				</object>
 			</object>
