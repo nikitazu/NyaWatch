@@ -27,7 +27,8 @@ namespace NyaWatch.Core.Parsing.Tests
 
 		readonly string[] _niceNames = {
 			"name - 1",
-			"Commie"
+			"Commie",
+			"[name is][01]"
 		};
 
 		[Test]

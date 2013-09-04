@@ -5,7 +5,8 @@ namespace NyaWatch.Core.Parsing
 {
 	public static class NameCleaner
 	{
-		readonly static Regex _shittyCodes = new Regex (@"\[[\d|\w]+\]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+		readonly static Regex _shittyCodes = 
+			new Regex (@"\[[a-z|0-9]*[a-z]+[a-z|0-9]*\]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 		readonly static string[] _complexFansubers = {
 			"[UTW-Mazui]"
