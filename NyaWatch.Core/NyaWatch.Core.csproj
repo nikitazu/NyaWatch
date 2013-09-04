@@ -59,6 +59,8 @@
     <Compile Include="Data\IStorageOnDisk.cs" />
     <Compile Include="Parsing\WorldArtParser.cs" />
     <Compile Include="Parsing\ParserException.cs" />
+    <Compile Include="Parsing\ITorrentParser.cs" />
+    <Compile Include="Parsing\NyaaTorrentParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
