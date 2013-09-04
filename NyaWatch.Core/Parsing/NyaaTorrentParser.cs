@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
 
-namespace NyaWatch.Core
+namespace NyaWatch.Core.Parsing
 {
 	public class NyaaTorrentParser : TorrentParser, ITorrentParser
 	{

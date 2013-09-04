@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace NyaWatch.Core
+namespace NyaWatch.Core.Parsing
 {
 	public interface ITorrentParser
 	{
