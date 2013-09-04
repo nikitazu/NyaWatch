@@ -44,6 +44,7 @@
     <Compile Include="Parsing\WorldArtParserTests.cs" />
     <Compile Include="Parsing\NyaaTorrentParserTests.cs" />
     <Compile Include="Parsing\NameCleanerTests.cs" />
+    <Compile Include="Data\XmlStorageTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

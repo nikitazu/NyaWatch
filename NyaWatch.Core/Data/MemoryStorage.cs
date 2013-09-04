@@ -18,7 +18,7 @@ namespace NyaWatch.Core.Data
 		}
 
 
-		DatabaseAlias _db;
+		protected DatabaseAlias _db;
 
 		public MemoryStorage ()
 		{
@@ -55,6 +55,15 @@ namespace NyaWatch.Core.Data
 			_db [category][id] = item;
 
 			return id;
+		}
+
+		protected internal void AddItem (string category, Dic item, Guid id)
+		{
+			if (!CheckCategoryExistence (category)) {
+				throw new CategoryNotFoundException (category);
+			}
+
+			_db [category][id] = item;
 		}
 
 		public void RemoveItem(string category, Guid id)
