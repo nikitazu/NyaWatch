@@ -7,54 +7,45 @@ namespace NyaWatch.Core.Domain
 {
     public static class AnimeAiringStatus
     {
-        public static string Calculate(int year, string airingStart, string airingEnd, DateTime today)
+        public const string NotAired = "Not yet aired";
+        public const string Aired = "Aired";
+        public const string Airing = "Airing";
+        public const string Unknown = "Unknown";
+
+        public static string Calculate(IAnime anime, DateTime today)
         {
             return 
-                CalculateWithAiringDates(airingStart, airingEnd, today) ??
-                CalculateWithYear(year, today) ??
-                "Unknown";
+                CalculateWithAiringDates(anime, today) ??
+                CalculateWithYear(anime, today) ??
+                Unknown;
         }
 
-        public static string CalculateWithAiringDates(string airingStart, string airingEnd, DateTime today)
+        public static string CalculateWithAiringDates(IAnime anime, DateTime today)
         {
-            if (string.IsNullOrWhiteSpace(airingStart)) {
-                return null;
-            }
+            if (!anime.AiringStart.HasValue) { return null; }
 
-            var startDate = DateTime.Parse(airingStart).Date;
-            if (startDate > today)
+            if (anime.AiringStart.Value.Date > today)
             {
-                return "Not yet aired";
+                return NotAired;
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(airingEnd))
+                if (!anime.AiringEnd.HasValue)
                 {
 #warning Movie support code should be here (Movie should be Aired not Airing)
-                    return "Airing";
+                    return Airing;
                 }
                 else
                 {
-                    var endDate = DateTime.Parse(airingEnd).Date;
-                    return endDate <= today ? "Aired" : "Airing";
+                    return anime.AiringEnd.Value.Date <= today ? Aired : Airing;
                 }
             }
         }
 
-        public static string CalculateWithYear(int year, DateTime today)
+        public static string CalculateWithYear(IAnime anime, DateTime today)
         {
-            if (year > today.Year)
-            {
-                return "Not yet aired";
-            }
-            else if (year < today.Year)
-            {
-                return "Aired";
-            }
-            else
-            {
-                return null;
-            }
+            if (anime.Year == today.Year) { return null; }
+            return anime.Year > today.Year ? NotAired : Aired;
         }
     }
 }

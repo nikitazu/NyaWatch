@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimeDummy.cs" />
     <Compile Include="Domain\AnimeAiringStatusTests.cs" />
     <Compile Include="Parsing\AnimeUrlResolverTests.cs" />
     <Compile Include="Parsing\SimpleParserTests.cs" />

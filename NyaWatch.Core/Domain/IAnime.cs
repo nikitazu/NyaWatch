@@ -36,6 +36,21 @@ namespace NyaWatch.Core.Domain
         string Status { get; set; }
 
         /// <summary>
+        /// Year of anime airing start.
+        /// </summary>
+        int Year { get; set; }
+
+        /// <summary>
+        /// Date of anime airing start.
+        /// </summary>
+        DateTime? AiringStart { get; set; }
+
+        /// <summary>
+        /// Date of anime airing end.
+        /// </summary>
+        DateTime? AiringEnd { get; set; }
+
+        /// <summary>
         /// Path to image on disk (if NULL default image will be used).
         /// </summary>
         string ImagePath { get; set; }

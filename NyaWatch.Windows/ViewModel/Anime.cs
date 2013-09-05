@@ -124,8 +124,8 @@ namespace NyaWatch.Windows.ViewModel
             return isActive ? SystemColors.HotTrackBrush : SystemColors.GrayTextBrush;
         }
 
-        public string AiringStart { get; set; }
-		public string AiringEnd { get; set; }
+        public DateTime? AiringStart { get; set; }
+		public DateTime? AiringEnd { get; set; }
 		public int Year { get; set; }
 
         public Root Root { get; set; }
@@ -142,7 +142,7 @@ namespace NyaWatch.Windows.ViewModel
             Episodes = episodes;
             TorrentsCount = torrents;
             Year = year;
-            Status = cd.AnimeAiringStatus.Calculate(year, airingStart, airingEnd, DateTime.Today);
+            Status = cd.AnimeAiringStatus.Calculate(this, DateTime.Today);
         }
 
         public Anime()
