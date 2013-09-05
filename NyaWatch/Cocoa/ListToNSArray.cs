@@ -18,7 +18,11 @@ namespace NyaWatch.Cocoa
 			var arr = items.ToArray ();
 			controller.Remove (controller.ArrangedObjects ());
 			controller.AddObjects (NSArray.FromNSObjects (arr));
-			controller.SelectedObjects = new NSObject[] { arr[0] };
+			if (arr.Length > 0) {
+				controller.SelectedObjects = new NSObject[] { arr[0] };
+			} else {
+				controller.SelectedObjects = new NSObject[] { };
+			}
 		}
 	}
 }

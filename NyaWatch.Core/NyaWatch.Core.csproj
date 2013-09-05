@@ -66,6 +66,8 @@
     <Compile Include="Parsing\ITorrentParser.cs" />
     <Compile Include="Parsing\NyaaTorrentParser.cs" />
     <Compile Include="Parsing\NameCleaner.cs" />
+    <Compile Include="Folders.cs" />
+    <Compile Include="Files.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

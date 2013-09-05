@@ -62,6 +62,21 @@ namespace NyaWatch.Core.Data
 			}
 		}
 
+		public bool Exists()
+		{
+			return File.Exists (_path);
+		}
+
+		public void Drop()
+		{
+			foreach (var category in _db) {
+				category.Value.Clear ();
+			}
+			if (File.Exists (_path)) {
+				File.Delete (_path);
+			}
+		}
+
 		#endregion
 
 		XElement XItemWithID(Guid id)

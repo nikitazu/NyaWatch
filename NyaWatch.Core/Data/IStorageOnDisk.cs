@@ -16,5 +16,15 @@ namespace NyaWatch.Core.Data
 		/// Load data.
 		/// </summary>
 		void Load();
+
+		/// <summary>
+		/// Drop database.
+		/// </summary>
+		void Drop();
+
+		/// <summary>
+		/// Does database exist?
+		/// </summary>
+		bool Exists();
 	}
 }

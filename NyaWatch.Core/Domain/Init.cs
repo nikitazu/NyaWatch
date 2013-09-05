@@ -13,21 +13,26 @@ namespace NyaWatch.Core.Domain
         /// <summary>
         /// Data storage.
         /// </summary>
-        public static Data.IStorage Storage { get; private set; }
+        public static Data.IStorageOnDisk Storage { get; private set; }
 
         /// <summary>
         /// Initialization.
         /// </summary>
         static Init()
         {
-            Storage = new Data.MemoryStorage();
+			Storage = new Data.XmlStorage (Files.DatabasePath);
 
             foreach (var cat in Enum.GetNames(typeof(Categories)))
             {
                 Storage.AddCategory(cat);
             }
 
-            CreateTestAnimes();
+			if (Storage.Exists ()) {
+				Storage.Load ();
+			} else  {
+				CreateTestAnimes ();
+				Storage.Save ();
+			}
         }
 
         static void CreateTestAnimes()

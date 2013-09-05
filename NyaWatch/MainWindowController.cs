@@ -196,6 +196,33 @@ namespace NyaWatch
 		}
 
 		#endregion
+
+		#region Database file actions
+
+		public void saveAction(NSObject sender)
+		{
+			cd.Anime.Save ();
+		}
+
+		public void openAction(NSObject sender)
+		{
+			try
+			{
+				cd.Anime.Load ();
+			} catch (System.IO.FileNotFoundException ex) {
+				var alert = new NSAlert();
+				alert.MessageText = "Database open error (not found)";
+				alert.InformativeText = ex.Message;
+				alert.RunModal();
+			}
+		}
+
+		public void resetAction(NSObject sender)
+		{
+			cd.Anime.Drop ();
+		}
+
+		#endregion
 	}
 }
 

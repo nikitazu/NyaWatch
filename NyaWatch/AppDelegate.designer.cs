@@ -33,6 +33,15 @@ namespace NyaWatch
 		[Action ("moveToWatchingAction:")]
 		partial void moveToWatchingAction (MonoMac.Foundation.NSObject sender);
 
+		[Action ("openAction:")]
+		partial void openAction (MonoMac.Foundation.NSObject sender);
+
+		[Action ("resetAction:")]
+		partial void resetAction (MonoMac.Foundation.NSObject sender);
+
+		[Action ("saveAction:")]
+		partial void saveAction (MonoMac.Foundation.NSObject sender);
+
 		[Action ("togglePinnedAction:")]
 		partial void togglePinnedAction (MonoMac.Foundation.NSObject sender);
 		
