@@ -15,7 +15,7 @@ namespace NyaWatch.Core.Domain.Tests.Domain
         IAnime _airing1;
         IAnime _airing2;
         IAnime _aired;
-        IAnime _movieAiredSpecialCase;
+        IAnime _airedOneEpisode;
         
         IAnime _unknown1;
         IAnime _unknown2;
@@ -47,13 +47,13 @@ namespace NyaWatch.Core.Domain.Tests.Domain
                 AiringEnd = new DateTime(2008, 1, 1)
             };
 
-            // Airing end for movie can be NULL (at least in world-art) because 
+            // Airing end for one-episode anime can be NULL (at least in world-art) because 
             // obviously it is the same as Airing start.
             //
-            _movieAiredSpecialCase = new AnimeDummy
+            _airedOneEpisode = new AnimeDummy
             {
                 AiringStart = new DateTime(2009, 12, 12),
-                Type = "Movie"
+                Episodes = 1
             };
 
             _unknown1 = new AnimeDummy();
@@ -128,7 +128,7 @@ namespace NyaWatch.Core.Domain.Tests.Domain
         [Test]
         public void TestCalculateAiredMovieSpecialCase()
         {
-            Assert.AreEqual(AnimeAiringStatus.Aired, AnimeAiringStatus.Calculate(_movieAiredSpecialCase, Today));
+            Assert.AreEqual(AnimeAiringStatus.Aired, AnimeAiringStatus.Calculate(_airedOneEpisode, Today));
         }
     }
 }
