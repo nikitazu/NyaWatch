@@ -118,6 +118,7 @@ namespace NyaWatch.Windows
                 int.Parse(animeData["year"]));
             cd.Anime.Put(cd.Categories.PlanToWatch, anime);
             Model.ChangeCurrentCategory.Execute(cd.Categories.PlanToWatch.ToString());
+            searchBox.Text = string.Empty;
         }
     }
 }
