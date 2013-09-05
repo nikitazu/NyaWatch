@@ -78,5 +78,46 @@ namespace NyaWatch.Windows
             var package = new DataObject(DropFormats.InternalReference, anime);
             DragDrop.DoDragDrop(source, package, DragDropEffects.Move);
         }
+
+        private readonly Core.Parsing.AnimeUrlResolver _animeUrlResolver = 
+            new Core.Parsing.AnimeUrlResolver();
+
+        private void OnAnimeSearchBoxKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Return && e.Key != Key.Enter) {
+                return;
+            }
+
+            var searchBox = sender as TextBox;
+            if (searchBox == null) {
+                return;
+            }
+
+            var searchData = searchBox.Text;
+            var parser = _animeUrlResolver.CreateParserFor(searchData);
+            if (parser == null)
+            {
+                MessageBox.Show(
+                    "Only direct urls to anime are supported for now.\n" +
+                    "Please, provide url like:\n" +
+                    "http://www.world-art.ru/animation/animation.php?id=395", 
+                    "Incorrect input",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            var animeData = parser.ParseAnimeFromWeb(searchData);
+            var anime = new ViewModel.Anime(
+                animeData["title"],
+                animeData["type"],
+                int.Parse(animeData["episodes"]),
+                0,
+                animeData["airingStart"],
+                animeData["airingEnd"],
+                int.Parse(animeData["year"]));
+            cd.Anime.Put(cd.Categories.PlanToWatch, anime);
+            Model.ChangeCurrentCategory.Execute(cd.Categories.PlanToWatch.ToString());
+        }
     }
 }

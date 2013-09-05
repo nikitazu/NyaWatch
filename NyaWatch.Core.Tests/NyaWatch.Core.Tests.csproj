@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\AnimeAiringStatusTests.cs" />
+    <Compile Include="Parsing\AnimeUrlResolverTests.cs" />
     <Compile Include="Parsing\SimpleParserTests.cs" />
     <Compile Include="Data\MemoryStorageTests.cs" />
     <Compile Include="Parsing\WorldArtParserTests.cs" />

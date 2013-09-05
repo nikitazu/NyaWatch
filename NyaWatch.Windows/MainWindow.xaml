@@ -215,8 +215,8 @@
 
                 <TextBox Grid.Column="1" 
                          Margin="5 0 10 0" 
-                         Height="25" 
-                         IsEnabled="False"
+                         Height="25"
+                         KeyUp="OnAnimeSearchBoxKeyUp"
                          Control.Template="{StaticResource WaterBox}" />
             </Grid>
         

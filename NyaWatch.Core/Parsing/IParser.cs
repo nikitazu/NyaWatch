@@ -37,20 +37,9 @@ namespace NyaWatch.Core.Parsing
 			var web = new HtmlWeb ();
 			web.AutoDetectEncoding = false;
 			web.OverrideEncoding = System.Text.Encoding.GetEncoding ("windows-1251");
+            //web.OverrideEncoding = System.Text.Encoding.UTF8;
 			var doc = web.Load (url);
 			return ParseAnime (doc);
-			
-			/*var document = new HtmlDocument();
-			using (var client = new System.Net.WebClient())
-			{
-				using (var stream = client.OpenRead(url))
-				{
-					var reader = new StreamReader(stream, System.Text.Encoding.GetEncoding("windows-1251"));
-					var html = reader.ReadToEnd();
-					document.LoadHtml(html);
-				}
-			}
-			return ParseAnime(document);*/
 		}
 
 		public Dictionary<string, string> ParseAnimePreviewFromString(string html)
