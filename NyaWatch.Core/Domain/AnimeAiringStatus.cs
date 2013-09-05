@@ -32,8 +32,7 @@ namespace NyaWatch.Core.Domain
             {
                 if (!anime.AiringEnd.HasValue)
                 {
-#warning Movie support code should be here (Movie should be Aired not Airing)
-                    return Airing;
+                    return anime.Type == "Movie" ? Aired : Airing;
                 }
                 else
                 {

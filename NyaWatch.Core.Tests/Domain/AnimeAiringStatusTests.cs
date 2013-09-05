@@ -15,6 +15,7 @@ namespace NyaWatch.Core.Domain.Tests.Domain
         IAnime _airing1;
         IAnime _airing2;
         IAnime _aired;
+        IAnime _movieAiredSpecialCase;
         
         IAnime _unknown1;
         IAnime _unknown2;
@@ -44,6 +45,15 @@ namespace NyaWatch.Core.Domain.Tests.Domain
             {
                 AiringStart = new DateTime(2007, 1, 1),
                 AiringEnd = new DateTime(2008, 1, 1)
+            };
+
+            // Airing end for movie can be NULL (at least in world-art) because 
+            // obviously it is the same as Airing start.
+            //
+            _movieAiredSpecialCase = new AnimeDummy
+            {
+                AiringStart = new DateTime(2009, 12, 12),
+                Type = "Movie"
             };
 
             _unknown1 = new AnimeDummy();
@@ -105,10 +115,20 @@ namespace NyaWatch.Core.Domain.Tests.Domain
         }
 
         [Test]
-        public void CalculateWithYear()
+        public void TestCalculateWithYear()
         {
             Assert.AreEqual(AnimeAiringStatus.NotAired, AnimeAiringStatus.CalculateWithYear(_notAiredByYear, Today));
             Assert.AreEqual(AnimeAiringStatus.Aired, AnimeAiringStatus.CalculateWithYear(_airedByYear, Today));
+        }
+
+        /// <summary>
+        /// Airing end for movie can be NULL (at least in world-art) because 
+        /// obviously it is the same as Airing start.
+        /// </summary>
+        [Test]
+        public void TestCalculateAiredMovieSpecialCase()
+        {
+            Assert.AreEqual(AnimeAiringStatus.Aired, AnimeAiringStatus.Calculate(_movieAiredSpecialCase, Today));
         }
     }
 }
