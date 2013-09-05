@@ -71,5 +71,8 @@
     <None Include="Parsing\NyaaTorrentParser1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Parsing\WorldArtParser_TestParseAnime_RailgunWithSpecials.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
