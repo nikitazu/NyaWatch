@@ -32,99 +32,106 @@ namespace NyaWatch.Core.Domain
 
         static void CreateTestAnimes()
         {
-            Anime.PutDynamic(Categories.PlanToWatch,
-                new
+            Anime.Put(Categories.PlanToWatch,
+                new AnimeDummy
                 {
                     Title = "Attack on titan - The movie",
                     Type = "Movie",
                     Episodes = 1,
                     Status = "Not yet aired",
                     Watched = 0,
-                    Torrents = 0,
-                    Pinned = false
+                    Pinned = false,
+                    Year = 2010
                 });
 
-            Anime.PutDynamic(Categories.PlanToWatch,
-                new
+            Anime.Put(Categories.PlanToWatch,
+                new AnimeDummy
                 {
                     Title = "Murdoc Scramble: The third exaustion",
                     Type = "Movie",
                     Episodes = 1,
                     Status = "Not yet aired",
                     Watched = 0,
-                    Pinned = true
+                    Pinned = true,
+                    Year = 2010
                 });
 
-            Anime.PutDynamic(Categories.Watching,
-                new
+            Anime.Put(Categories.Watching,
+                new AnimeDummy
                 {
                     Title = "Bleach",
                     Type = "TV",
                     Episodes = 365,
                     Status = "Aired",
                     Watched = 356,
-                    Pinned = false
+                    Pinned = false,
+                    Year = 2010
                 });
 
-            Anime.PutDynamic(Categories.Watching,
-                new
+            Anime.Put(Categories.Watching,
+                new AnimeDummy
                 {
                     Title = "Naruto: Shippuuden",
                     Type = "TV",
                     Episodes = 100500,
                     Status = "Airing",
                     Watched = 666,
-                    Pinned = false
+                    Pinned = false,
+                    Year = 2010
                 });
 
-            Func<string, dynamic> tvCompleted = title => new
+            Func<string, IAnime> tvCompleted = title => new AnimeDummy
             {
                 Title = title,
                 Type = "TV",
                 Episodes = 26,
                 Status = "Aired",
                 Watched = 26,
-                Pinned = false
+                Pinned = false,
+                Year = 2010
             };
 
-            Anime.PutDynamic(Categories.Completed, tvCompleted("Slayers"));
-            Anime.PutDynamic(Categories.Completed, tvCompleted("Neon Genesis Evangelion"));
-            Anime.PutDynamic(Categories.Completed, tvCompleted("Slayers: Next"));
-            Anime.PutDynamic(Categories.Completed, tvCompleted("Slayers: Try"));
-            Anime.PutDynamic(Categories.Completed, tvCompleted("Slayers: Perfect"));
-            Anime.PutDynamic(Categories.Completed, tvCompleted("Lost Universe"));
-            Anime.PutDynamic(Categories.Completed, tvCompleted("Great Teacher Onizuka"));
-            Anime.PutDynamic(Categories.Completed,
-                new
+            Anime.Put(Categories.Completed, tvCompleted("Slayers"));
+            Anime.Put(Categories.Completed, tvCompleted("Neon Genesis Evangelion"));
+            Anime.Put(Categories.Completed, tvCompleted("Slayers: Next"));
+            Anime.Put(Categories.Completed, tvCompleted("Slayers: Try"));
+            Anime.Put(Categories.Completed, tvCompleted("Slayers: Perfect"));
+            Anime.Put(Categories.Completed, tvCompleted("Lost Universe"));
+            Anime.Put(Categories.Completed, tvCompleted("Great Teacher Onizuka"));
+            Anime.Put(Categories.Completed,
+                new AnimeDummy
                 {
                     Title = "Asura",
                     Type = "Movie",
                     Episodes = 1,
                     Status = "Aired",
                     Watched = 1,
-                    Pinned = false
+                    Pinned = false,
+                    Year = 2010
                 });
 
-            Anime.PutDynamic(Categories.OnHold,
-                new
+            Anime.Put(Categories.OnHold,
+                new AnimeDummy
                 {
                     Title = "Slayers: Gourgeous",
                     Type = "OVA",
                     Episodes = 3,
                     Status = "Aired",
                     Watched = 2,
-                    Pinned = false
+                    Pinned = false,
+                    Year = 2010
                 });
 
-            Anime.PutDynamic(Categories.Dropped,
-                new
+            Anime.Put(Categories.Dropped,
+                new AnimeDummy
                 {
                     Title = "Some shit",
                     Type = "TV",
                     Episodes = 26,
                     Status = "Airing",
                     Watched = 5,
-                    Pinned = false
+                    Pinned = false,
+                    Year = 2010
                 });
         }
     }

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentModel\NotifyPropertyChanged.cs" />
+    <Compile Include="Data\DateSerializationExtension.cs" />
     <Compile Include="Domain\Anime.cs" />
     <Compile Include="Domain\AnimeAiringStatus.cs" />
     <Compile Include="Domain\Categories.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Domain\Init.cs" />
     <Compile Include="Fonts\Awesome.cs" />
+    <Compile Include="AnimeDummy.cs" />
     <Compile Include="Parsing\AnimeUrlResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\IStorage.cs" />

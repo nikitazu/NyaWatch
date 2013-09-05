@@ -142,6 +142,24 @@ namespace NyaWatch.Windows.ViewModel
             Episodes = episodes;
             TorrentsCount = torrents;
             Year = year;
+
+            try
+            {
+                AiringStart = DateTime.Parse(airingStart);
+            } catch (FormatException)
+            {
+                AiringStart = null;
+            }
+
+            try
+            {
+                AiringEnd = DateTime.Parse(airingEnd);
+            }
+            catch (FormatException)
+            {
+                AiringEnd = null;
+            }
+
             Status = cd.AnimeAiringStatus.Calculate(this, DateTime.Today);
         }
 

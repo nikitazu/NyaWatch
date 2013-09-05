@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NyaWatch.Core.Data;
 
 namespace NyaWatch.Core.Domain
 {
@@ -57,6 +58,9 @@ namespace NyaWatch.Core.Domain
             item["type"] = anime.Type;
             item["status"] = anime.Status;
             item["pinned"] = anime.Pinned.ToString();
+            item["year"] = anime.Year.ToString();
+            item["airingStart"] = anime.AiringStart.SerializeDate();
+            item["airingEnd"] = anime.AiringEnd.SerializeDate();
             return Init.Storage.AddItem(category.ToString(), item);
         }
 
@@ -83,6 +87,9 @@ namespace NyaWatch.Core.Domain
             anime.Type = item["type"];
             anime.Status = item["status"];
             anime.Pinned = bool.Parse(item["pinned"]);
+            anime.Year = int.Parse(item["year"]);
+            anime.AiringStart = item["airingStart"].DeserializeDate();
+            anime.AiringEnd = item["airingEnd"].DeserializeDate();
         }
 
         static IDictionary<string, string> SerializeAnime(IAnime anime)
@@ -94,6 +101,9 @@ namespace NyaWatch.Core.Domain
             item["type"] = anime.Type;
             item["status"] = anime.Status;
             item["pinned"] = anime.Pinned.ToString();
+            item["year"] = anime.Year.ToString();
+            item["airingStart"] = anime.AiringStart.SerializeDate();
+            item["airingEnd"] = anime.AiringEnd.SerializeDate();
             return item;
         }
     }
