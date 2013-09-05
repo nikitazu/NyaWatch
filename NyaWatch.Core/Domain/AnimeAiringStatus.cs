@@ -30,6 +30,7 @@ namespace NyaWatch.Core.Domain
             {
                 if (string.IsNullOrWhiteSpace(airingEnd))
                 {
+#warning Movie support code should be here (Movie should be Aired not Airing)
                     return "Airing";
                 }
                 else
