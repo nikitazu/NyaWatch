@@ -131,8 +131,8 @@ namespace NyaWatch.ViewModel
 			get { return FontAwesome.Font; }
 		}
 
-		public string AiringStart { get; set; }
-		public string AiringEnd { get; set; }
+		public DateTime? AiringStart { get; set; }
+		public DateTime? AiringEnd { get; set; }
 		public int Year { get; set; }
 
 		public Anime (string title, string type, int episodes, int torrents, string airingStart, string airingEnd, int year)
@@ -141,31 +141,23 @@ namespace NyaWatch.ViewModel
 			Type = type;
 			Episodes = episodes;
 			TorrentsCount = torrents;
-			AiringStart = airingStart;
-			AiringEnd = airingEnd;
 			Year = year;
 
-			if (string.IsNullOrWhiteSpace (airingStart)) {
-				Status = "Unknown";
-				if (year > DateTime.Today.Year) {
-					Status = "Not yet aired";
-				} else if (year < DateTime.Today.Year) {
-					Status = "Aired";
-				}
-			} else {
-				var startDate = DateTime.Parse (airingStart).Date;
-				if (startDate > DateTime.Today) {
-					Status = "Not yet aired";
-				} else {
-					Status = "Airing";
-					if (!string.IsNullOrWhiteSpace (airingEnd)) {
-						var endDate = DateTime.Parse (airingEnd).Date;
-						if (endDate <= DateTime.Today) {
-							Status = "Aired";
-						}
-					}
-				}
+			try
+			{
+				AiringStart = DateTime.Parse(airingStart);
+			} catch (FormatException) {
+				AiringStart = null;
 			}
+
+			try
+			{
+				AiringEnd = DateTime.Parse(airingEnd);
+			} catch (FormatException) {
+				AiringEnd = null;
+			}
+
+			Status = cd.AnimeAiringStatus.Calculate (this, DateTime.Today);
 		}
 
 		public Anime ()
@@ -176,7 +168,11 @@ namespace NyaWatch.ViewModel
 		[Export("copyWithZone:")]
 		public virtual NSObject CopyWithZone(IntPtr zone)
 		{
-			return new Anime(Title, Type, Episodes, TorrentsCount, AiringStart, AiringEnd, Year);
+			return new Anime(
+				Title, Type, Episodes, TorrentsCount, 
+				AiringStart == null ? string.Empty : AiringStart.ToString(), 
+				AiringEnd == null ? string.Empty : AiringEnd.ToString(), 
+				Year);
 		}
 
 		public override NSObject ValueForUndefinedKey (NSString key)
