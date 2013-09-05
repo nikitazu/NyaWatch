@@ -64,7 +64,9 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="3" Orientation="Vertical">
-                        <Label Content="{Binding Status}" Foreground="{Binding StatusColor}" />
+                        <Label Content="{Binding Status}"
+                               HorizontalAlignment="Right"
+                               Foreground="{Binding StatusColor}" />
 
                         <StackPanel Orientation="Horizontal">
                             <StackPanel.Resources>
