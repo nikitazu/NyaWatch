@@ -82,18 +82,18 @@ namespace NyaWatch.Windows.ViewModel
                 cat => SelectedCategory != (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));
 
             IncrementWatched = new RelayCommand<Anime>(
-                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.IncrementWatched()),
+                anime => cd.Anime.Update(SelectedCategory, SelectedAnime = anime.IncrementWatched()),
                 anime => anime != null && anime.CanIncrementWatched());
 
             DecrementWatched = new RelayCommand<Anime>(
-                anime => cd.Anime.Save(SelectedCategory, SelectedAnime = anime.DecrementWatched()),
+                anime => cd.Anime.Update(SelectedCategory, SelectedAnime = anime.DecrementWatched()),
                 anime => anime != null && anime.CanDecrementWatched());
 
             TogglePinned = new RelayCommand<Anime>(
                 anime => 
                 { 
                     anime.Pinned = !anime.Pinned; 
-                    cd.Anime.Save(SelectedCategory, anime); 
+                    cd.Anime.Update(SelectedCategory, anime); 
                     SelectedCategory = SelectedCategory; 
                 },
                 anime => anime != null);
@@ -116,7 +116,7 @@ namespace NyaWatch.Windows.ViewModel
                 anime =>
                 {
                     new cd.ImageLoader ().LoadImageForAnime (anime);
-                    cd.Anime.Save (SelectedCategory, anime);
+                    cd.Anime.Update (SelectedCategory, anime);
                 },
                 anime => anime != null);
         }

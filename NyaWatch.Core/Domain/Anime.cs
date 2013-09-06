@@ -82,7 +82,7 @@ namespace NyaWatch.Core.Domain
             return id;
         }
 
-        public static void Save(Categories category, IAnime anime)
+        public static void Update(Categories category, IAnime anime)
         {
             var item = SerializeAnime(anime);
             Init.Storage.UpdateItem(category.ToString(), anime.ID, item);
