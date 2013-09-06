@@ -73,21 +73,6 @@ namespace NyaWatch.Core.Domain
             return id;
         }
 
-        internal static Guid PutDynamic(Categories category, dynamic anime)
-        {
-            var item = new Dictionary<string, string>();
-            item["title"] = anime.Title;
-            item["episodes"] = anime.Episodes.ToString();
-            item["watched"] = anime.Watched.ToString();
-            item["type"] = anime.Type;
-            item["status"] = anime.Status;
-            item["pinned"] = anime.Pinned.ToString();
-            item["year"] = anime.Year.ToString();
-            item["airingStart"] = anime.AiringStart.SerializeDate();
-            item["airingEnd"] = anime.AiringEnd.SerializeDate();
-            return Init.Storage.AddItem(category.ToString(), item);
-        }
-
         public static Guid Move(Categories source, Categories target, IAnime anime)
         {
             var item = SerializeAnime(anime);
@@ -103,32 +88,58 @@ namespace NyaWatch.Core.Domain
             Init.Storage.UpdateItem(category.ToString(), anime.ID, item);
         }
 
+        /// <summary>
+        /// Deserialize item to anime.
+        /// </summary>
+        /// <exception cref="DeserializeFailedException" />
         static void DeserializeAnime(IDictionary<string, string> item, IAnime anime)
         {
-            anime.Title = item["title"];
-            anime.Episodes = int.Parse(item["episodes"]);
-            anime.Watched = int.Parse(item["watched"]);
-            anime.Type = item["type"];
-            anime.Status = item["status"];
-            anime.Pinned = bool.Parse(item["pinned"]);
-            anime.Year = int.Parse(item["year"]);
-            anime.AiringStart = item["airingStart"].DeserializeDate();
-            anime.AiringEnd = item["airingEnd"].DeserializeDate();
+            try
+            {
+                anime.Title = item["title"];
+                anime.Episodes = int.Parse (item["episodes"]);
+                anime.Watched = int.Parse (item["watched"]);
+                anime.Type = item["type"];
+                anime.Status = item["status"];
+                anime.Pinned = bool.Parse (item["pinned"]);
+                anime.Year = int.Parse (item["year"]);
+                anime.AiringStart = item["airingStart"].DeserializeDate ();
+                anime.AiringEnd = item["airingEnd"].DeserializeDate ();
+                anime.ImageUrl = item["imageUrl"];
+                anime.ImagePath = item["imagePath"];
+            }
+            catch (Exception e)
+            {
+                throw new DeserializeFailedException (item, e);
+            }
         }
 
+        /// <summary>
+        /// Serialize anime.
+        /// </summary>
+        /// <exception cref="SerializeFailedException" />
         static IDictionary<string, string> SerializeAnime(IAnime anime)
         {
-            var item = new Dictionary<string, string>();
-            item["title"] = anime.Title;
-            item["episodes"] = anime.Episodes.ToString();
-            item["watched"] = anime.Watched.ToString();
-            item["type"] = anime.Type;
-            item["status"] = anime.Status;
-            item["pinned"] = anime.Pinned.ToString();
-            item["year"] = anime.Year.ToString();
-            item["airingStart"] = anime.AiringStart.SerializeDate();
-            item["airingEnd"] = anime.AiringEnd.SerializeDate();
-            return item;
+            try
+            {
+                var item = new Dictionary<string, string> ();
+                item["title"] = anime.Title;
+                item["episodes"] = anime.Episodes.ToString ();
+                item["watched"] = anime.Watched.ToString ();
+                item["type"] = anime.Type;
+                item["status"] = anime.Status;
+                item["pinned"] = anime.Pinned.ToString ();
+                item["year"] = anime.Year.ToString ();
+                item["airingStart"] = anime.AiringStart.SerializeDate ();
+                item["airingEnd"] = anime.AiringEnd.SerializeDate ();
+                item["imageUrl"] = anime.ImageUrl ?? string.Empty;
+                item["imagePath"] = anime.ImagePath ?? string.Empty;
+                return item;
+            }
+            catch (Exception e)
+            {
+                throw new SerializeFailedException (anime, e);
+            }
         }
     }
 }

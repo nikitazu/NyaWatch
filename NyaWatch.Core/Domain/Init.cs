@@ -46,7 +46,8 @@ namespace NyaWatch.Core.Domain
                     Status = "Not yet aired",
                     Watched = 0,
                     Pinned = false,
-                    Year = 2010
+                    Year = 2010,
+                    ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
                 });
 
             Anime.Put(Categories.PlanToWatch,
@@ -58,7 +59,8 @@ namespace NyaWatch.Core.Domain
                     Status = "Not yet aired",
                     Watched = 0,
                     Pinned = true,
-                    Year = 2010
+                    Year = 2010,
+                    ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
                 });
 
             Anime.Put(Categories.Watching,
@@ -70,7 +72,8 @@ namespace NyaWatch.Core.Domain
                     Status = "Aired",
                     Watched = 356,
                     Pinned = false,
-                    Year = 2010
+                    Year = 2010,
+                    ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
                 });
 
             Anime.Put(Categories.Watching,
@@ -82,7 +85,8 @@ namespace NyaWatch.Core.Domain
                     Status = "Airing",
                     Watched = 666,
                     Pinned = false,
-                    Year = 2010
+                    Year = 2010,
+                    ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
                 });
 
             Func<string, IAnime> tvCompleted = title => new AnimeDummy
@@ -93,7 +97,8 @@ namespace NyaWatch.Core.Domain
                 Status = "Aired",
                 Watched = 26,
                 Pinned = false,
-                Year = 2010
+                Year = 2010,
+                ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
             };
 
             Anime.Put(Categories.Completed, tvCompleted("Slayers"));
@@ -112,7 +117,8 @@ namespace NyaWatch.Core.Domain
                     Status = "Aired",
                     Watched = 1,
                     Pinned = false,
-                    Year = 2010
+                    Year = 2010,
+                    ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
                 });
 
             Anime.Put(Categories.OnHold,
@@ -124,7 +130,8 @@ namespace NyaWatch.Core.Domain
                     Status = "Aired",
                     Watched = 2,
                     Pinned = false,
-                    Year = 2010
+                    Year = 2010,
+                    ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
                 });
 
             Anime.Put(Categories.Dropped,
@@ -136,7 +143,8 @@ namespace NyaWatch.Core.Domain
                     Status = "Airing",
                     Watched = 5,
                     Pinned = false,
-                    Year = 2010
+                    Year = 2010,
+                    ImageUrl = "http://www.world-art.ru/animation/img/1000/395/1.jpg"
                 });
         }
     }

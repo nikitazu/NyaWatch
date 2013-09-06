@@ -13,6 +13,11 @@ namespace NyaWatch.Core
 		/// </summary>
 		public static readonly string Documents;
 
+        /// <summary>
+        /// Folder with anime images.
+        /// </summary>
+        public static readonly string Images;
+
 		/// <summary>
 		/// Initializes the <see cref="NyaWatch.Core.Folders"/> class.
 		/// </summary>
@@ -21,10 +26,18 @@ namespace NyaWatch.Core
 			var dataPath = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
 
 			Documents = Path.Combine (dataPath, "NyaWatch");
-			if (!Directory.Exists (Documents)) {
-				Directory.CreateDirectory (Documents);
-			}
+            MakeDirectory(Documents);
+
+            Images = Path.Combine(Documents, "Images");
+            MakeDirectory(Images);
 		}
+
+        static void MakeDirectory(string path)
+        {
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+        }
 	}
 }
 

@@ -56,6 +56,11 @@ namespace NyaWatch.Core.Domain
         string ImagePath { get; set; }
 
         /// <summary>
+        /// Image url to download it from web (if NULL default image will be used);
+        /// </summary>
+        string ImageUrl { get; set; }
+
+        /// <summary>
         /// Pinned anime is shown first in the interface.
         /// </summary>
         bool Pinned { get; set; }

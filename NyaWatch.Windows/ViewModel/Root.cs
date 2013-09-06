@@ -42,7 +42,14 @@ namespace NyaWatch.Windows.ViewModel
             InitCommands();
 
             Animes = new List<Anime>();
-            SelectedCategory = cd.Categories.Watching;
+            try
+            {
+                SelectedCategory = cd.Categories.Watching;
+            }
+            catch (Exception e)
+            {
+                Core.UI.Dialogs.Message.Error ("Selecting default category failed", e.Message);
+            }
         }
 
         #region Commands
@@ -61,6 +68,8 @@ namespace NyaWatch.Windows.ViewModel
         public ICommand MoveToCompleted { get; private set; }
         public ICommand MoveToOnHold { get; private set; }
         public ICommand MoveToDropped { get; private set; }
+
+        public ICommand LoadImage { get; private set; }
 
         void InitCommands()
         {
@@ -102,6 +111,13 @@ namespace NyaWatch.Windows.ViewModel
             MoveToCompleted = moveTo(cd.Categories.Completed);
             MoveToOnHold = moveTo(cd.Categories.OnHold);
             MoveToDropped = moveTo(cd.Categories.Dropped);
+
+            LoadImage = new RelayCommand<Anime> (
+                anime =>
+                {
+                    new cd.ImageLoader ().LoadImageForAnime (anime);
+                },
+                anime => anime != null);
         }
 
         #endregion

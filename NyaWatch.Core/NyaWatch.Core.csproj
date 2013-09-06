@@ -53,8 +53,10 @@
     <Compile Include="Domain\IAnime.cs" />
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Domain\Init.cs" />
+    <Compile Include="Domain\SerializationException.cs" />
     <Compile Include="Fonts\Awesome.cs" />
     <Compile Include="AnimeDummy.cs" />
+    <Compile Include="Domain\ImageLoad\ImageLoader.cs" />
     <Compile Include="Parsing\AnimeUrlResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\IStorage.cs" />

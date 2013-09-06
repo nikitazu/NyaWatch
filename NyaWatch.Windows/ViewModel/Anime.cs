@@ -100,12 +100,20 @@ namespace NyaWatch.Windows.ViewModel
             get { return MaybeActiveTextBrush(Status == "Airing"); }
         }
 
-        public string ImagePath { get; set; }
-
-        public string ActualImagePath
+        string _imagePath = "pack://application:,,,/Resources/icon_256x256.png";
+        public string ImagePath 
         {
-            get { return ImagePath ?? "pack://application:,,,/Resources/icon_256x256.png"; }
+            get { return _imagePath; }
+            set 
+            {
+                if (System.IO.File.Exists (value))
+                {
+                    PropertyChanged.ChangeAndNotify (this, ref _imagePath, value, () => ImagePath);
+                }
+            }
         }
+
+        public string ImageUrl { get; set; }
 
         bool _pinned = false;
         public bool Pinned

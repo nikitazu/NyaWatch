@@ -28,7 +28,7 @@ namespace NyaWatch.Windows
         {
             InitializeComponent();
 
-            Model = new ViewModel.Root();
+            Model = new ViewModel.Root ();
             DataContext = Model;
         }
 

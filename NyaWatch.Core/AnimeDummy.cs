@@ -17,6 +17,7 @@ namespace NyaWatch.Core
         public DateTime? AiringStart { get; set; }
         public DateTime? AiringEnd { get; set; }
         public string ImagePath { get; set; }
+        public string ImageUrl { get; set; }
         public bool Pinned { get; set; }
     }
 }

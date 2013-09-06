@@ -21,6 +21,16 @@ namespace NyaWatch.Core
 		{
 			DatabasePath = Path.Combine (Folders.Documents, "database.xml");
 		}
+
+        /// <summary>
+        /// Get path to anime image file.
+        /// </summary>
+        /// <param name="anime">Anime.</param>
+        /// <returns>Full path.</returns>
+        public static string ImagePath(Domain.IAnime anime)
+        {
+            return Path.Combine(Folders.Images, anime.ID.ToString("N"));
+        }
 	}
 }
 
