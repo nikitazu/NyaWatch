@@ -116,6 +116,7 @@ namespace NyaWatch.Windows.ViewModel
                 anime =>
                 {
                     new cd.ImageLoader ().LoadImageForAnime (anime);
+                    cd.Anime.Save (SelectedCategory, anime);
                 },
                 anime => anime != null);
         }
