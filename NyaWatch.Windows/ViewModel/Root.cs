@@ -47,6 +47,10 @@ namespace NyaWatch.Windows.ViewModel
 
         #region Commands
 
+        public ICommand Save { get; private set; }
+        public ICommand Load { get; private set; }
+        public ICommand Reset { get; private set; }
+
         public ICommand ChangeCurrentCategory { get; private set; }
         public ICommand IncrementWatched { get; private set; }
         public ICommand DecrementWatched { get; private set; }
@@ -60,6 +64,10 @@ namespace NyaWatch.Windows.ViewModel
 
         void InitCommands()
         {
+            Save = new RelayCommand(_ => cd.Anime.Save());
+            Load = new RelayCommand(_ => cd.Anime.Load());
+            Reset = new RelayCommand(_ => cd.Anime.Drop());
+
             ChangeCurrentCategory = new RelayCommand<string>(
                 cat => SelectedCategory = (cd.Categories)Enum.Parse(typeof(cd.Categories), cat),
                 cat => SelectedCategory != (cd.Categories)Enum.Parse(typeof(cd.Categories), cat));

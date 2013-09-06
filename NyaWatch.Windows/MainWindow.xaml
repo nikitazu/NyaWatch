@@ -141,8 +141,9 @@
         
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="Save" IsEnabled="False" />
-                <MenuItem Header="Load" IsEnabled="False" />
+                <MenuItem Header="Save" Command="{Binding Save}" />
+                <MenuItem Header="Load" Command="{Binding Load}" />
+                <MenuItem Header="Reset" Command="{Binding Reset}" />
                 <MenuItem Header="Autosave" IsEnabled="False" />
             </MenuItem>
             <MenuItem Header="Edit">
