@@ -66,6 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RegisterContainer.cs" />
+    <Compile Include="UI\MessageBoxWindows.cs" />
     <Compile Include="ViewModel\Anime.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Root.cs" />
