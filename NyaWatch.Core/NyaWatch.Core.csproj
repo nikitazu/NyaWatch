@@ -9,7 +9,9 @@
     <OutputType>Library</OutputType>
     <RootNamespace>NyaWatch.Core</RootNamespace>
     <AssemblyName>NyaWatch.Core</AssemblyName>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,7 +79,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Html\" />
-    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup />
 </Project>
