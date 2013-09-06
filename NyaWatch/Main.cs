@@ -10,6 +10,7 @@ namespace NyaWatch
 	{
 		static void Main (string[] args)
 		{
+			RegisterContainers.Init ();
 			NSApplication.Init ();
 			NSApplication.Main (args);
 		}

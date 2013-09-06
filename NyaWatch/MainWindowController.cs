@@ -6,11 +6,13 @@ using MonoMac.AppKit;
 
 using NyaWatch.Cocoa;
 using cd = NyaWatch.Core.Domain;
+using ui = NyaWatch.Core.UI;
 
 namespace NyaWatch
 {
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
 	{
+
 		#region Constructors
 		// Called when created from unmanaged code
 		public MainWindowController (IntPtr handle) : base (handle)
@@ -210,14 +212,11 @@ namespace NyaWatch
 			{
 				cd.Anime.Load ();
 			} catch (System.IO.FileNotFoundException ex) {
-				var alert = new NSAlert();
-				alert.MessageText = "Database open error (not found)";
-				alert.InformativeText = ex.Message;
-				alert.RunModal();
+				ui.Dialogs.Message.Error ("Database open error (not found)", ex);
 			}
 		}
 
-		public void resetAction(NSObject sender)
+		public void dropAction(NSObject sender)
 		{
 			cd.Anime.Drop ();
 		}

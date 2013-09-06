@@ -76,9 +76,9 @@ namespace NyaWatch
 			mainWindowController.openAction(sender);
 		}
 
-		partial void resetAction(NSObject sender)
+		partial void dropAction(NSObject sender)
 		{
-			mainWindowController.resetAction(sender);
+			mainWindowController.dropAction(sender);
 		}
 	}
 }

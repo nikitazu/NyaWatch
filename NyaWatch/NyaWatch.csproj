@@ -71,6 +71,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="MonoMac" />
+    <Reference Include="StructureMap">
+      <HintPath>..\lib\StructureMap-2.6.1\StructureMap.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -78,6 +81,7 @@
     <Folder Include="Resources\NyaWatch.iconset\" />
     <Folder Include="ViewModel\" />
     <Folder Include="Cocoa\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -93,6 +97,8 @@
     <Compile Include="FontAwesome.cs" />
     <Compile Include="ViewModel\Anime.cs" />
     <Compile Include="Cocoa\ListToNSArray.cs" />
+    <Compile Include="UI\MessageBoxCocoa.cs" />
+    <Compile Include="RegisterContainers.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

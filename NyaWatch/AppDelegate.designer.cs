@@ -15,6 +15,9 @@ namespace NyaWatch
 		[Action ("decrementWatchedAction:")]
 		partial void decrementWatchedAction (MonoMac.Foundation.NSObject sender);
 
+		[Action ("dropAction:")]
+		partial void dropAction (MonoMac.Foundation.NSObject sender);
+
 		[Action ("incrementWatchedAction:")]
 		partial void incrementWatchedAction (MonoMac.Foundation.NSObject sender);
 
@@ -35,9 +38,6 @@ namespace NyaWatch
 
 		[Action ("openAction:")]
 		partial void openAction (MonoMac.Foundation.NSObject sender);
-
-		[Action ("resetAction:")]
-		partial void resetAction (MonoMac.Foundation.NSObject sender);
 
 		[Action ("saveAction:")]
 		partial void saveAction (MonoMac.Foundation.NSObject sender);

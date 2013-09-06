@@ -11,16 +11,25 @@ namespace NyaWatch.Core.Domain
     /// </summary>
     public static class Anime
     {
+		/// <summary>
+		/// Save all changes.
+		/// </summary>
 		public static void Save()
 		{
 			Init.Storage.Save ();
 		}
 
+		/// <summary>
+		/// Loads last save.
+		/// </summary>
 		public static void Load()
 		{
 			Init.Storage.Load ();
 		}
 
+		/// <summary>
+		/// Drops all saved data.
+		/// </summary>
 		public static void Drop()
 		{
 			Init.Storage.Drop ();

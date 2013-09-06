@@ -38,6 +38,9 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\lib\HtmlAgilityPack-1.4.6\Net40-client\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\lib\StructureMap-2.6.1\StructureMap.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentModel\NotifyPropertyChanged.cs" />
@@ -68,10 +71,13 @@
     <Compile Include="Parsing\NameCleaner.cs" />
     <Compile Include="Folders.cs" />
     <Compile Include="Files.cs" />
+    <Compile Include="UI\IMessageBox.cs" />
+    <Compile Include="UI\Dialogs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Html\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup />
 </Project>
