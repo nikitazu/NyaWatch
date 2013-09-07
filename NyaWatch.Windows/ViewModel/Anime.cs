@@ -93,7 +93,12 @@ namespace NyaWatch.Windows.ViewModel
             get { return MaybeActiveTextBrush(TorrentsCount > 0); }
         }
 
-        public string Status { get; set; }
+        string _status = cd.AnimeAiringStatus.Unknown;
+        public string Status 
+        {
+            get { return _status; }
+            set { PropertyChanged.ChangeAndNotify(this, ref _status, value, () => Status); }
+        }
 
         public Brush StatusColor
         {
@@ -132,8 +137,28 @@ namespace NyaWatch.Windows.ViewModel
             return isActive ? SystemColors.HotTrackBrush : SystemColors.GrayTextBrush;
         }
 
-        public DateTime? AiringStart { get; set; }
-		public DateTime? AiringEnd { get; set; }
+        DateTime? _airingStart;
+        public DateTime? AiringStart 
+        {
+            get { return _airingStart; }
+            set
+            {
+                PropertyChanged.ChangeAndNotify (this, ref _airingStart, value, () => AiringStart);
+                Status = cd.AnimeAiringStatus.Calculate (this, DateTime.Today);
+            }
+        }
+
+        DateTime? _airingEnd;
+		public DateTime? AiringEnd 
+        {
+            get { return _airingEnd; }
+            set
+            {
+                PropertyChanged.ChangeAndNotify (this, ref _airingEnd, value, () => AiringEnd);
+                Status = cd.AnimeAiringStatus.Calculate (this, DateTime.Today);
+            }
+        }
+
 		public int Year { get; set; }
 
         public Root Root { get; set; }

@@ -107,17 +107,10 @@ namespace NyaWatch.Windows
                 return;
             }
 
-            var animeData = parser.ParseAnimeFromWeb(searchData);
-            var anime = new ViewModel.Anime(
-                animeData["title"],
-                animeData["type"],
-                int.Parse(animeData["episodes"]),
-                0,
-                animeData["airingStart"],
-                animeData["airingEnd"],
-                int.Parse(animeData["year"]));
-            cd.Anime.Put(cd.Categories.PlanToWatch, anime);
-            Model.ChangeCurrentCategory.Execute(cd.Categories.PlanToWatch.ToString());
+            var id = cd.Anime.ParseFromWeb (parser, searchData);
+            Model.ChangeCurrentCategory.Execute (cd.Categories.PlanToWatch.ToString ());
+            Model.LoadImage.Execute (Model.Animes.First (a => a.ID == id));
+
             searchBox.Text = string.Empty;
         }
     }

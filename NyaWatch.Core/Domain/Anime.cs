@@ -11,6 +11,14 @@ namespace NyaWatch.Core.Domain
     /// </summary>
     public static class Anime
     {
+        public static Guid ParseFromWeb (Parsing.IParser parser, string url)
+        {
+            var anime = new AnimeDummy ();
+            var animeData = parser.ParseAnimeFromWeb (url);
+            DeserializeAnime (animeData, anime);
+            return Put (Categories.PlanToWatch, anime);
+        }
+
 		/// <summary>
 		/// Save all changes.
 		/// </summary>
