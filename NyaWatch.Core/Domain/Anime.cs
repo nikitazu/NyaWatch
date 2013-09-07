@@ -96,17 +96,17 @@ namespace NyaWatch.Core.Domain
         {
             try
             {
-                anime.Title = item["title"];
-                anime.Episodes = int.Parse (item["episodes"]);
-                anime.Watched = int.Parse (item["watched"]);
-                anime.Type = item["type"];
-                anime.Status = item["status"];
-                anime.Pinned = bool.Parse (item["pinned"]);
-                anime.Year = int.Parse (item["year"]);
-                anime.AiringStart = item["airingStart"].DeserializeDate ();
-                anime.AiringEnd = item["airingEnd"].DeserializeDate ();
-                anime.ImageUrl = item["imageUrl"];
-                anime.ImagePath = item["imagePath"];
+                anime.Title = item.RequireData ("title");
+                anime.Episodes = item.OptionalInt ("episodes") ?? 0;
+                anime.Watched = item.OptionalInt ("watched") ?? 0;
+                anime.Type = item.RequireData ("type");
+                anime.Status = item.OptionalString ("status") ?? AnimeAiringStatus.Unknown;
+                anime.Pinned = item.OptionalBool ("pinned") ?? false;
+                anime.Year = item.RequireInt ("year");
+                anime.AiringStart = item.OptionalDate ("airingStart");
+                anime.AiringEnd = item.OptionalDate ("airingEnd");
+                anime.ImageUrl = item.OptionalString ("imageUrl") ?? string.Empty;
+                anime.ImagePath = item.OptionalString ("imagePath") ?? string.Empty;
             }
             catch (Exception e)
             {

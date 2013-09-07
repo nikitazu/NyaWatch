@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DateSerializationExtensionTests.cs" />
+    <Compile Include="Data\DictionaryDataExtensionTests.cs" />
     <Compile Include="Domain\AnimeAiringStatusTests.cs" />
     <Compile Include="Parsing\AnimeUrlResolverTests.cs" />
     <Compile Include="Parsing\SimpleParserTests.cs" />

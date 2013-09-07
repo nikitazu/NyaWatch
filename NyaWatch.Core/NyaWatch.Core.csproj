@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ComponentModel\NotifyPropertyChanged.cs" />
     <Compile Include="Data\DateSerializationExtension.cs" />
+    <Compile Include="Data\DictionaryDataExtension.cs" />
     <Compile Include="Domain\Anime.cs" />
     <Compile Include="Domain\AnimeAiringStatus.cs" />
     <Compile Include="Domain\Categories.cs" />

@@ -27,9 +27,9 @@ namespace NyaWatch.Core.Domain
         {
             get
             {
-                return SerializationData == null ? 
-                    "Serialization failed and serialization data was NULL (see inner exception)" :
-                    "Serialization failed (see inner exception)";
+                return SerializationData == null ?
+                    "Serialization failed and serialization data was NULL: " + InnerException.Message :
+                    "Serialization failed: " + InnerException.Message;
             }
         }
     }
@@ -49,8 +49,8 @@ namespace NyaWatch.Core.Domain
             get
             {
                 return SerializationData == null ?
-                    "Deserialization failed and serialization data was NULL (see inner exception)" :
-                    "Deserialization failed (see inner exception)";
+                    "Deserialization failed and serialization data was NULL: " + InnerException.Message :
+                    "Deserialization failed: " + InnerException.Message;
             }
         }
     }
