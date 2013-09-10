@@ -44,6 +44,8 @@ namespace NyaWatch
 			}
 		}
 
+		public cd.IRoot Root { get; set; }
+
 		#region Init
 
 		public override void AwakeFromNib ()
@@ -51,6 +53,7 @@ namespace NyaWatch
 			base.AwakeFromNib ();
 			LoadAwesomeFont ();
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
+			Root = new ViewModel.Root ();
 			LoadAnimes (cd.Categories.Watching);
 		}
 
@@ -90,7 +93,7 @@ namespace NyaWatch
 			}
 			var id = cd.Anime.ParseFromWeb(parser, searchData);
 			LoadAnimes(cd.Categories.PlanToWatch);
-			cd.Anime.LoadImage(_selectedCategory, Animes.First(a => a.ID == id));
+			cd.Anime.LoadImage(Animes.First(a => a.ID == id));
 
 			// clear text
 			sender.SetValueForKey((NSString)"", (NSString)"stringValue");
@@ -101,8 +104,6 @@ namespace NyaWatch
 		}
 
 		#region Category buttons click events
-
-		cd.Categories _selectedCategory;
 
 		partial void categoryPlanToWatchAction(NSObject sender)
 		{
@@ -131,9 +132,9 @@ namespace NyaWatch
 
 		void LoadAnimes(cd.Categories cat)
 		{
-			var animes = cd.Anime.Find<ViewModel.Anime> (cat);
+			var animes = cd.Anime.Find<ViewModel.Anime> (cat).Select (a => (ViewModel.Anime)a.WithRoot (Root));
 			animesArrayController.SetArrangedObjects (animes);
-			_selectedCategory = cat;
+			Root.SelectedCategory = cat;
 		}
 
 		#endregion
@@ -142,12 +143,12 @@ namespace NyaWatch
 
 		public void incrementWatchedAction(NSObject sender)
 		{
-			SelectedAnime.Increment ();
+			cd.Anime.Increment (SelectedAnime);
 		}
 
 		public void decrementWatchedAction(NSObject sender)
 		{
-			SelectedAnime.Decrement ();
+			cd.Anime.Decrement (SelectedAnime);
 		}
 
 		public void togglePinnedAction(NSObject sender)
@@ -157,7 +158,7 @@ namespace NyaWatch
 
 		public void loadImageAction(NSObject sender)
 		{
-			cd.Anime.LoadImage (_selectedCategory, SelectedAnime);
+			cd.Anime.LoadImage (SelectedAnime);
 		}
 
 		public void moveToPlanAction(NSObject sender)
@@ -187,8 +188,8 @@ namespace NyaWatch
 
 		void MoveAnimeTo(cd.Categories cat)
 		{
-			if (_selectedCategory != cat) {
-				cd.Anime.Move (_selectedCategory, cat, SelectedAnime);
+			if (Root.SelectedCategory != cat) {
+				cd.Anime.Move (cat, SelectedAnime);
 				animesArrayController.RemoveObject (SelectedAnime);
 			}
 		}

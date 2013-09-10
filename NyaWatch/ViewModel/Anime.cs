@@ -20,22 +20,24 @@ namespace NyaWatch.ViewModel
 		public int Episodes { get; set; }
 
 		[Export("watched")]
-		public int Watched { get; set; }
+		public int WatchedHelper { get; set; }
+
+		public int Watched 
+		{ 
+			get { return WatchedHelper; }
+			set { SetValueForKey (NSNumber.FromInt32 (value), (NSString)"watched"); }
+		}
 
 		[Export("incrementWatchedAction")]
 		public void Increment()
 		{
-			if (Watched < Episodes) {
-				SetValueForKey (NSNumber.FromInt32 (Watched + 1), (NSString)"watched");
-			}
+			cd.Anime.Increment (this);
 		}
 
 		[Export("decrementWatchedAction")]
 		public void Decrement()
 		{
-			if (Watched > 0) {
-				SetValueForKey (NSNumber.FromInt32 (Watched - 1), (NSString)"watched");
-			}
+			cd.Anime.Decrement (this);
 		}
 
 		[Export("incrementIcon")]
@@ -103,14 +105,8 @@ namespace NyaWatch.ViewModel
 			}
 		}
 
-		//string _imagePath = "NyaWatch.icns";
-
 		[Export("imagePath")]
 		public string ImagePath { get; set; }
-		/*{ 
-			get { return _imagePath; }
-			set { _imagePath = value; }
-		}*/
 
 		public string ImageUrl { get; set; }
 
@@ -137,45 +133,17 @@ namespace NyaWatch.ViewModel
 		public DateTime? AiringEnd { get; set; }
 		public int Year { get; set; }
 
-		/*public Anime (string title, string type, int episodes, int torrents, string airingStart, string airingEnd, int year)
+		public cd.IRoot Root { get; set; }
+		public cd.IAnime WithRoot(cd.IRoot root)
 		{
-			Title = title;
-			Type = type;
-			Episodes = episodes;
-			TorrentsCount = torrents;
-			Year = year;
-
-			try
-			{
-				AiringStart = DateTime.Parse(airingStart);
-			} catch (FormatException) {
-				AiringStart = null;
-			}
-
-			try
-			{
-				AiringEnd = DateTime.Parse(airingEnd);
-			} catch (FormatException) {
-				AiringEnd = null;
-			}
-
-			Status = cd.AnimeAiringStatus.Calculate (this, DateTime.Today);
-		}*/
-
-		public Anime ()
-		{
-			// empty
+			Root = root;
+			return this;
 		}
 
 		[Export("copyWithZone:")]
 		public virtual NSObject CopyWithZone(IntPtr zone)
 		{
 			throw new NotImplementedException ();
-			/*return new Anime(
-				Title, Type, Episodes, TorrentsCount, 
-				AiringStart == null ? string.Empty : AiringStart.ToString(), 
-				AiringEnd == null ? string.Empty : AiringEnd.ToString(), 
-				Year);*/
 		}
 
 		public override NSObject ValueForUndefinedKey (NSString key)

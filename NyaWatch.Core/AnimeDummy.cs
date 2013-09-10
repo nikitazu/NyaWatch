@@ -8,6 +8,7 @@ namespace NyaWatch.Core
     public class AnimeDummy : Domain.IAnime
     {
         public Guid ID { get; set; }
+		public Domain.IRoot Root { get; set; }
         public string Title { get; set; }
         public int Episodes { get; set; }
         public int Watched { get; set; }

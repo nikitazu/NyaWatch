@@ -78,6 +78,7 @@
     <Compile Include="Files.cs" />
     <Compile Include="UI\IMessageBox.cs" />
     <Compile Include="UI\Dialogs.cs" />
+    <Compile Include="Domain\IRoot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

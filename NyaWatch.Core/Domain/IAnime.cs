@@ -10,6 +10,12 @@ namespace NyaWatch.Core.Domain
     /// </summary>
     public interface IAnime : IEntity
     {
+		/// <summary>
+		/// Gets or sets the root.
+		/// </summary>
+		/// <value>The root.</value>
+		IRoot Root { get; set; }
+
         /// <summary>
         /// Anime series title.
         /// </summary>

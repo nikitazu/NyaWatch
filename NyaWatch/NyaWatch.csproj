@@ -99,6 +99,7 @@
     <Compile Include="Cocoa\ListToNSArray.cs" />
     <Compile Include="UI\MessageBoxCocoa.cs" />
     <Compile Include="RegisterContainers.cs" />
+    <Compile Include="ViewModel\Root.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
