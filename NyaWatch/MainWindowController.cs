@@ -83,7 +83,7 @@ namespace NyaWatch
 
 			var parser = _animeUrlResolver.CreateParserFor(searchData);
 			if (parser == null) {
-				Core.UI.Dialogs.Message.Error(
+				ui.Dialogs.Message.Error(
 					"Incorrect input",
 					"Only direct urls to anime are supported for now.\nPlease, provide url like:\n" +
 					"http://www.world-art.ru/animation/animation.php?id=395");
