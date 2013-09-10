@@ -71,6 +71,9 @@ namespace NyaWatch
 
 		#endregion
 
+		private readonly NyaWatch.Core.Parsing.AnimeUrlResolver _animeUrlResolver =
+			new NyaWatch.Core.Parsing.AnimeUrlResolver();
+
 		partial void searchAnimeAction(NSObject sender)
 		{
 			var searchData = sender.ValueForKey((NSString)"stringValue").ToString();
@@ -78,24 +81,23 @@ namespace NyaWatch
 				return;
 			}
 
-			if (searchData.StartsWith("http://www.world-art.ru")) {
-
-				var animeData = new Core.Parsing.WorldArtParser().ParseAnimeFromWeb(searchData);
-				var anime = new ViewModel.Anime(
-					animeData["title"],
-					animeData["type"],
-					int.Parse(animeData["episodes"]),
-					0,
-					animeData["airingStart"],
-					animeData["airingEnd"],
-					int.Parse(animeData["year"]));
-
-				cd.Anime.Put(cd.Categories.PlanToWatch, anime);
-				LoadAnimes(cd.Categories.PlanToWatch);
-				return;
+			var parser = _animeUrlResolver.CreateParserFor(searchData);
+			if (parser == null) {
+				Core.UI.Dialogs.Message.Error(
+					"Incorrect input",
+					"Only direct urls to anime are supported for now.\nPlease, provide url like:\n" +
+					"http://www.world-art.ru/animation/animation.php?id=395");
 			}
+			var id = cd.Anime.ParseFromWeb(parser, searchData);
+			LoadAnimes(cd.Categories.PlanToWatch);
+			cd.Anime.LoadImage(_selectedCategory, Animes.First(a => a.ID == id));
 
-			Console.WriteLine ("searching for keyword: {0}", searchData);
+			// clear text
+			sender.SetValueForKey((NSString)"", (NSString)"stringValue");
+		}
+
+		IEnumerable<cd.IAnime> Animes {
+			get { return animesArrayController.ArrangedObjects().Cast<cd.IAnime>(); }
 		}
 
 		#region Category buttons click events
@@ -150,8 +152,12 @@ namespace NyaWatch
 
 		public void togglePinnedAction(NSObject sender)
 		{
-			Console.WriteLine ("pin");
 			SelectedAnime.TogglePinned ();
+		}
+
+		public void loadImageAction(NSObject sender)
+		{
+			cd.Anime.LoadImage (_selectedCategory, SelectedAnime);
 		}
 
 		public void moveToPlanAction(NSObject sender)

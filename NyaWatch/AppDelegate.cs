@@ -39,6 +39,12 @@ namespace NyaWatch
 		{
 			mainWindowController.togglePinnedAction(sender);
 		}
+
+		partial void loadImageAction(NSObject sender)
+		{
+			mainWindowController.loadImageAction(sender);
+		}
+
 		
 		partial void moveToPlanAction(NSObject sender)
 		{

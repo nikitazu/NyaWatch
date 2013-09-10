@@ -19,6 +19,12 @@ namespace NyaWatch.Core.Domain
             return Put (Categories.PlanToWatch, anime);
         }
 
+		public static void LoadImage(Categories category, IAnime anime)
+		{
+			new ImageLoader ().LoadImageForAnime (anime);
+			Update (category, anime);
+		}
+
 		/// <summary>
 		/// Save all changes.
 		/// </summary>

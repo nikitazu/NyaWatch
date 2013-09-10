@@ -21,6 +21,9 @@ namespace NyaWatch
 		[Action ("incrementWatchedAction:")]
 		partial void incrementWatchedAction (MonoMac.Foundation.NSObject sender);
 
+		[Action ("loadImageAction:")]
+		partial void loadImageAction (MonoMac.Foundation.NSObject sender);
+
 		[Action ("moveToCompletedAction:")]
 		partial void moveToCompletedAction (MonoMac.Foundation.NSObject sender);
 

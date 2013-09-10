@@ -103,14 +103,16 @@ namespace NyaWatch.ViewModel
 			}
 		}
 
-		public string ImagePath { get; set; }
+		//string _imagePath = "NyaWatch.icns";
 
-		[Export("actualImagePath")]
-		public string ActualImagePath {
-			get {
-				return ImagePath ?? "NyaWatch.icns";
-			}
-		}
+		[Export("imagePath")]
+		public string ImagePath { get; set; }
+		/*{ 
+			get { return _imagePath; }
+			set { _imagePath = value; }
+		}*/
+
+		public string ImageUrl { get; set; }
 
 		[Export("pinned")]
 		public bool Pinned { get; set; }
@@ -135,7 +137,7 @@ namespace NyaWatch.ViewModel
 		public DateTime? AiringEnd { get; set; }
 		public int Year { get; set; }
 
-		public Anime (string title, string type, int episodes, int torrents, string airingStart, string airingEnd, int year)
+		/*public Anime (string title, string type, int episodes, int torrents, string airingStart, string airingEnd, int year)
 		{
 			Title = title;
 			Type = type;
@@ -158,7 +160,7 @@ namespace NyaWatch.ViewModel
 			}
 
 			Status = cd.AnimeAiringStatus.Calculate (this, DateTime.Today);
-		}
+		}*/
 
 		public Anime ()
 		{
@@ -168,11 +170,12 @@ namespace NyaWatch.ViewModel
 		[Export("copyWithZone:")]
 		public virtual NSObject CopyWithZone(IntPtr zone)
 		{
-			return new Anime(
+			throw new NotImplementedException ();
+			/*return new Anime(
 				Title, Type, Episodes, TorrentsCount, 
 				AiringStart == null ? string.Empty : AiringStart.ToString(), 
 				AiringEnd == null ? string.Empty : AiringEnd.ToString(), 
-				Year);
+				Year);*/
 		}
 
 		public override NSObject ValueForUndefinedKey (NSString key)

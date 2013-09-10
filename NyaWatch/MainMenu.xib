@@ -372,6 +372,14 @@
 												<reference key="NSOnImage" ref="35465992"/>
 												<reference key="NSMixedImage" ref="502551668"/>
 											</object>
+											<object class="NSMenuItem" id="1008452577">
+												<reference key="NSMenu" ref="386754210"/>
+												<string key="NSTitle">Load image</string>
+												<string key="NSKeyEquiv"/>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="35465992"/>
+												<reference key="NSMixedImage" ref="502551668"/>
+											</object>
 											<object class="NSMenuItem" id="268316280">
 												<reference key="NSMenu" ref="386754210"/>
 												<string key="NSTitle">Move to category</string>
@@ -2178,6 +2186,14 @@
 					</object>
 					<int key="connectionID">564</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">loadImageAction:</string>
+						<reference key="source" ref="947627720"/>
+						<reference key="destination" ref="1008452577"/>
+					</object>
+					<int key="connectionID">566</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3227,6 +3243,7 @@
 							<reference ref="335011834"/>
 							<reference ref="947122249"/>
 							<reference ref="268316280"/>
+							<reference ref="1008452577"/>
 						</object>
 						<reference key="parent" ref="559766525"/>
 					</object>
@@ -3296,6 +3313,11 @@
 						<int key="objectID">562</int>
 						<reference key="object" ref="594021970"/>
 						<reference key="parent" ref="720053764"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">565</int>
+						<reference key="object" ref="1008452577"/>
+						<reference key="parent" ref="386754210"/>
 					</object>
 				</object>
 			</object>
@@ -3452,6 +3474,7 @@
 					<string>553.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
 					<string>562.IBPluginDependency</string>
+					<string>565.IBPluginDependency</string>
 					<string>57.IBPluginDependency</string>
 					<string>58.IBPluginDependency</string>
 					<string>72.IBPluginDependency</string>
@@ -3632,6 +3655,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -3646,7 +3670,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">564</int>
+			<int key="maxID">566</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3661,6 +3685,7 @@
 							<string>decrementWatchedAction:</string>
 							<string>dropAction:</string>
 							<string>incrementWatchedAction:</string>
+							<string>loadImageAction:</string>
 							<string>moveToCompletedAction:</string>
 							<string>moveToDroppedAction:</string>
 							<string>moveToOnHoldAction:</string>
@@ -3683,6 +3708,7 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
@@ -3692,6 +3718,7 @@
 							<string>decrementWatchedAction:</string>
 							<string>dropAction:</string>
 							<string>incrementWatchedAction:</string>
+							<string>loadImageAction:</string>
 							<string>moveToCompletedAction:</string>
 							<string>moveToDroppedAction:</string>
 							<string>moveToOnHoldAction:</string>
@@ -3713,6 +3740,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">incrementWatchedAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">loadImageAction:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
