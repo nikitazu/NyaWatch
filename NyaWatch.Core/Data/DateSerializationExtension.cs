@@ -17,14 +17,7 @@ namespace NyaWatch.Core.Data
         public static DateTime? DeserializeDate(this string value)
         {
             if (string.IsNullOrWhiteSpace(value)) { return null; }
-            try
-            {
-                return DateTime.ParseExact(value, Format, null);
-            }
-            catch
-            {
-                return null;
-            }
+            return DateTime.ParseExact(value, Format, null);
         }
     }
 }

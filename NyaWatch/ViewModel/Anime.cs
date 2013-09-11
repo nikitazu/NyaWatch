@@ -96,13 +96,20 @@ namespace NyaWatch.ViewModel
 		}
 
 		[Export("status")]
-		public string Status { get; set; }
+		public string StatusHelper { get; set; }
 
 		[Export("statusColor")]
+		public NSColor StatusColorHelper { get; set; }
+
+
+		public string Status {
+			get { return StatusHelper; }
+			set { SetValueForKey ((NSString)value, (NSString)"status"); }
+		}
+
 		public NSColor StatusColor {
-			get {
-				return Status == "Airing" ? NSColor.Blue : NSColor.LightGray;
-			}
+			get { return StatusColorHelper; }
+			set { SetValueForKey (value, (NSString)"statusColor"); }
 		}
 
 		[Export("imagePath")]
@@ -129,9 +136,42 @@ namespace NyaWatch.ViewModel
 			get { return FontAwesome.Font; }
 		}
 
-		public DateTime? AiringStart { get; set; }
-		public DateTime? AiringEnd { get; set; }
-		public int Year { get; set; }
+		DateTime? _airingStart;
+		DateTime? _airingEnd;
+		int _year;
+
+		public DateTime? AiringStart 
+		{ 
+			get { return _airingStart; }
+			set {
+				_airingStart = value;
+				UpdateStatus ();
+			}
+		}
+
+		public DateTime? AiringEnd 
+		{ 
+			get { return _airingEnd; }
+			set {
+				_airingEnd = value;
+				UpdateStatus ();
+			}
+		}
+
+		public int Year
+		{ 
+			get { return _year; }
+			set {
+				_year = value;
+				UpdateStatus ();
+			}
+		}
+
+		void UpdateStatus()
+		{
+			Status = cd.AnimeAiringStatus.Calculate (this, DateTime.Today);
+			StatusColor = Status == "Airing" ? NSColor.Blue : NSColor.LightGray;
+		}
 
 		public cd.IRoot Root { get; set; }
 		public cd.IAnime WithRoot(cd.IRoot root)

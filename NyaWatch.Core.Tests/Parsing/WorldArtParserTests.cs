@@ -65,8 +65,8 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("1998", anime ["year"], "year wrong data");
 			Assert.AreEqual ("OVA", anime ["type"], "type wrong data");
 			Assert.AreEqual ("3", anime ["episodes"], "episodes wrong data");
-			Assert.AreEqual ("25.10.1998", anime ["airingStart"], "airingStart wrong data");
-			Assert.AreEqual ("25.03.1999", anime ["airingEnd"], "airingEnd wrong data");
+			Assert.AreEqual ("1998-10-25", anime ["airingStart"], "airingStart wrong data");
+			Assert.AreEqual ("1999-03-25", anime ["airingEnd"], "airingEnd wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/img/1000/203/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=203", anime ["posterUrl"], "posterUrl wrong data");
 		}
@@ -136,8 +136,8 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("2013", anime ["year"], "year wrong data");
 			Assert.AreEqual ("TV", anime ["type"], "type wrong data");
 			Assert.AreEqual ("24", anime ["episodes"], "episodes wrong data");
-			Assert.AreEqual ("12.04.2013", anime ["airingStart"], "airingStart wrong data");
-			Assert.AreEqual ("27.09.2013", anime ["airingEnd"], "airingEnd wrong data");
+			Assert.AreEqual ("2013-04-12", anime ["airingStart"], "airingStart wrong data");
+			Assert.AreEqual ("2013-09-27", anime ["airingEnd"], "airingEnd wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/img/2000/1895/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=1895", anime ["posterUrl"], "posterUrl wrong data");
 		}
@@ -172,8 +172,8 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("2009", anime ["year"], "year wrong data");
 			Assert.AreEqual ("TV", anime ["type"], "type wrong data");
 			Assert.AreEqual ("24", anime ["episodes"], "episodes wrong data");
-			Assert.AreEqual ("03.10.2009", anime ["airingStart"], "airingStart wrong data");
-			Assert.AreEqual ("20.03.2010", anime ["airingEnd"], "airingEnd wrong data");
+			Assert.AreEqual ("2009-10-03", anime ["airingStart"], "airingStart wrong data");
+			Assert.AreEqual ("2010-03-20", anime ["airingEnd"], "airingEnd wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/img/8000/7354/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=7354", anime ["posterUrl"], "posterUrl wrong data");
 		}

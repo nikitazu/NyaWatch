@@ -145,8 +145,8 @@ namespace NyaWatch.Core.Parsing
 			}
 
 			if (airingM.Success) {
-				result ["airingStart"] = airingM.Groups [1].Value;
-				result ["airingEnd"] = airingM.Groups.Count == 3 ? airingM.Groups [2].Value : string.Empty;
+				result ["airingStart"] = RussianDateConverter.Convert (airingM.Groups [1].Value);
+				result ["airingEnd"] = RussianDateConverter.Convert (airingM.Groups.Count == 3 ? airingM.Groups [2].Value : string.Empty);
 			} else {
 				result ["airingStart"] = string.Empty;
 				result ["airingEnd"] = string.Empty;
