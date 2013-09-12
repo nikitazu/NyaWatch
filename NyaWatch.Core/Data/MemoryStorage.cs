@@ -19,10 +19,12 @@ namespace NyaWatch.Core.Data
 
 
 		protected DatabaseAlias _db;
+		protected Dictionary<Guid, CategoryAlias> _categoryIndex;
 
 		public MemoryStorage ()
 		{
 			_db = new DatabaseAlias ();
+			_categoryIndex = new Dictionary<Guid, CategoryAlias> ();
 		}
 
 		#region IStorage implementation
@@ -51,8 +53,9 @@ namespace NyaWatch.Core.Data
 			}
 
 			var id = Guid.NewGuid ();
-
-			_db [category][id] = item;
+			var cat = _db [category];
+			cat[id] = item;
+			UpdateIndex (id, cat);
 
 			return id;
 		}
@@ -63,7 +66,9 @@ namespace NyaWatch.Core.Data
 				throw new CategoryNotFoundException (category);
 			}
 
-			_db [category][id] = item;
+			var cat = _db [category];
+			cat[id] = item;
+			UpdateIndex (id, cat);
 		}
 
 		public void RemoveItem(string category, Guid id)
@@ -75,8 +80,12 @@ namespace NyaWatch.Core.Data
 			var cat = _db [category];
 
 			if (id == Guid.Empty) {
+				foreach (var k in cat.Keys) {
+					RemoveIndex (k);
+				}
 				cat.Clear ();
 			} else {
+				RemoveIndex (id);
 				cat.Remove (id);
 			}
 		}
@@ -116,17 +125,24 @@ namespace NyaWatch.Core.Data
 
 		public Dic GetItem(Guid id)
 		{
-			foreach (var cat in _db.Keys) {
-				try {
-					return _db[cat][id];
-				} catch (KeyNotFoundException) {
-					continue;
-				}
+			try {
+				return _categoryIndex [id] [id];
+			} catch (KeyNotFoundException) {
+				return null;
 			}
-			return null;
 		}
 
 		#endregion
+
+		void UpdateIndex(Guid id, CategoryAlias cat)
+		{
+			_categoryIndex [id] = cat;
+		}
+
+		void RemoveIndex(Guid id)
+		{
+			_categoryIndex.Remove (id);
+		}
 	}
 }
 
