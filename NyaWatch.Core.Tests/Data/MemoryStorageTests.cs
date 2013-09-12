@@ -208,7 +208,20 @@ namespace NyaWatch.Core.Data.Tests
 			var a = _storage.GetItem ("foo", aid);
 			Assert.IsNotNull (a, "A should be found");
 			Assert.AreEqual (_a, a, "A should be A");
+		}
 
+		[Test]
+		public void TestGetItemById()
+		{
+			_storage.AddCategory ("foo");
+			var aid = _storage.AddItem ("foo", _a);
+
+			Assert.IsNull (_storage.GetItem (Guid.Empty));
+			Assert.IsNull (_storage.GetItem (Guid.NewGuid ()));
+
+			var a = _storage.GetItem (aid);
+			Assert.IsNotNull (a, "A should be found");
+			Assert.AreEqual (_a, a, "A should be A");
 		}
 	}
 }

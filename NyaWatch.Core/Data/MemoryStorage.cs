@@ -114,6 +114,18 @@ namespace NyaWatch.Core.Data
 			}
 		}
 
+		public Dic GetItem(Guid id)
+		{
+			foreach (var cat in _db.Keys) {
+				try {
+					return _db[cat][id];
+				} catch (KeyNotFoundException) {
+					continue;
+				}
+			}
+			return null;
+		}
+
 		#endregion
 	}
 }

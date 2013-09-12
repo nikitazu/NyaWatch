@@ -67,6 +67,13 @@ namespace NyaWatch.Core.Data
 		/// <param name="category">Category.</param>
 		/// <param name="id">Identifier.</param>
 		Dic GetItem(string category, Guid id);
+
+		/// <summary>
+		/// Gets the item by identifier.
+		/// </summary>
+		/// <returns>The item.</returns>
+		/// <param name="id">Identifier.</param>
+		Dic GetItem(Guid id);
 	}
 }
 
