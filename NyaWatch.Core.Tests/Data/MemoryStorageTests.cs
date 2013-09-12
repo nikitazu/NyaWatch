@@ -164,21 +164,21 @@ namespace NyaWatch.Core.Data.Tests
 			_storage.AddCategory ("foo");
 
 			Assert.DoesNotThrow (
-				() => _storage.UpdateItem ("foo", Guid.Empty, null),
+				() => _storage.UpdateItem (Guid.Empty, null),
 				"Should do nothing and not fail");
 
 			var aid = _storage.AddItem ("foo", _a);
 			_storage.AddItem ("foo", _b);
 
 			Assert.DoesNotThrow (
-				() => _storage.UpdateItem ("foo", aid, null),
+				() => _storage.UpdateItem (aid, null),
 				"Should do nothing and not fail");
 
 			var newAValue = new Dictionary<string, string> ();
 			newAValue ["data"] = "aax";
 
 			Assert.DoesNotThrow (
-				() => _storage.UpdateItem ("foo", aid, newAValue),
+				() => _storage.UpdateItem (aid, newAValue),
 				"Item a should be updated");
 
 			var updatedA = _storage.GetItem (aid);

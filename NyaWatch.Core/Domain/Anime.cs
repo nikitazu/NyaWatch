@@ -22,14 +22,14 @@ namespace NyaWatch.Core.Domain
 		public static void LoadImage(IAnime anime)
 		{
 			new ImageLoader ().LoadImageForAnime (anime);
-			Update (anime.Root.SelectedCategory, anime);
+			Update (anime);
 		}
 
 		public static void Increment(IAnime anime)
 		{
 			if (anime.Watched < anime.Episodes) {
 				anime.Watched += 1;
-				Update (anime.Root.SelectedCategory, anime);
+				Update (anime);
 			}
 		}
 
@@ -37,7 +37,7 @@ namespace NyaWatch.Core.Domain
 		{
 			if (anime.Watched > 0) {
 				anime.Watched -= 1;
-				Update (anime.Root.SelectedCategory, anime);
+				Update (anime);
 			}
 		}
 
@@ -113,10 +113,10 @@ namespace NyaWatch.Core.Domain
             return id;
         }
 
-        public static void Update(Categories category, IAnime anime)
+        public static void Update(IAnime anime)
         {
             var item = SerializeAnime(anime);
-            Init.Storage.UpdateItem(category.ToString(), anime.ID, item);
+            Init.Storage.UpdateItem(anime.ID, item);
         }
 
         /// <summary>

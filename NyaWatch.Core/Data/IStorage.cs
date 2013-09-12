@@ -48,10 +48,9 @@ namespace NyaWatch.Core.Data
 		/// <summary>
 		/// Updates item with id with provided values.
 		/// </summary>
-		/// <param name="category">Category.</param>
 		/// <param name="id">Id.</param>
 		/// <param name="values">Values.</param>
-		void UpdateItem(string category, Guid id, Dic values);
+		void UpdateItem(Guid id, Dic values);
 
 		/// <summary>
 		/// Selects all items in category.

@@ -90,7 +90,7 @@ namespace NyaWatch.Core.Data
 			}
 		}
 
-		public void UpdateItem(string category, Guid id, Dic values)
+		public void UpdateItem(Guid id, Dic values)
 		{
 			var item = GetItem (id);
 			if (item == null || values == null) {
