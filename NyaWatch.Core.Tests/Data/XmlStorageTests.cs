@@ -90,6 +90,10 @@ namespace NyaWatch.Core.Data.Tests
 			Assert.AreEqual (id1, item1.Key, "Item 1 ID should be the same");
 			Assert.AreEqual (id2, item2.Key, "Item 2 ID should be the same");
 			Assert.AreEqual (id3, item3.Key, "Item 3 ID should be the same");
+
+			var item2byIndex = _storage.GetItem (id2);
+			Assert.IsNotNull (item2byIndex);
+			Assert.AreEqual (_item2, item2byIndex, "Item 2 should be found by index");
 		}
 	}
 }
