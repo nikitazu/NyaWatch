@@ -134,21 +134,17 @@ namespace NyaWatch.Core.Data.Tests
 		[Test]
 		public void TestRemoveItem()
 		{
-			Assert.Throws<CategoryNotFoundException> (
-				() => _storage.RemoveItem ("foo", Guid.Empty),
-				"Category not found exception should be thrown");
-
 			_storage.AddCategory("foo");
 
 			Assert.DoesNotThrow (
-				() => _storage.RemoveItem ("foo", Guid.Empty),
+				() => _storage.RemoveItem (Guid.Empty),
 				"Nothing should be done but no exception should be thrown");
 
 			var aid = _storage.AddItem ("foo", _a);
 			var bid = _storage.AddItem ("foo", _b);
 
 			Assert.DoesNotThrow (
-				() => _storage.RemoveItem ("foo", bid),
+				() => _storage.RemoveItem (bid),
 				"Item b should be removed");
 
 			var items = _storage.SelectItems ("foo");
@@ -199,6 +195,27 @@ namespace NyaWatch.Core.Data.Tests
 			var a = _storage.GetItem (aid);
 			Assert.IsNotNull (a, "A should be found");
 			Assert.AreEqual (_a, a, "A should be A");
+		}
+
+		[Test]
+		public void TestMoveItem()
+		{
+			Assert.Throws<CategoryNotFoundException> (
+				() => _storage.MoveItem (Guid.NewGuid (), "foo"));
+
+			_storage.AddCategory ("foo");
+			_storage.AddCategory ("bar");
+			var aid = _storage.AddItem ("foo", _a);
+
+			Assert.DoesNotThrow (() => _storage.MoveItem (aid, "bar"));
+
+			var foos = _storage.SelectItems ("foo").ToList ();
+			var bars = _storage.SelectItems ("bar").ToList ();
+
+			Assert.AreEqual (0, foos.Count, "A should be moved from foo");
+			Assert.AreEqual (1, bars.Count, "A should be added to bar");
+			Assert.AreEqual (_a, bars [0].Value, "A should equal A in bar");
+			Assert.AreEqual (aid, bars [0].Key, "A id should be the same after move");
 		}
 	}
 }

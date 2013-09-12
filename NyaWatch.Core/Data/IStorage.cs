@@ -41,9 +41,8 @@ namespace NyaWatch.Core.Data
 		/// <summary>
 		/// Removes the item by id.
 		/// </summary>
-		/// <param name="category">Category.</param>
 		/// <param name="id">Id.</param>
-		void RemoveItem(string category, Guid id);
+		void RemoveItem(Guid id);
 
 		/// <summary>
 		/// Updates item with id with provided values.
@@ -51,6 +50,15 @@ namespace NyaWatch.Core.Data
 		/// <param name="id">Id.</param>
 		/// <param name="values">Values.</param>
 		void UpdateItem(Guid id, Dic values);
+
+		/// <summary>
+		/// Moves the item to category.
+		/// </summary>
+		/// <param name="id">Identifier.</param>
+		/// <param name="category">
+		/// The category, where item will be moved.
+		/// </param>
+		void MoveItem (Guid id, string category);
 
 		/// <summary>
 		/// Selects all items in category.

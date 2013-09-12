@@ -105,12 +105,8 @@ namespace NyaWatch.Core.Domain
 
         public static Guid Move(Categories target, IAnime anime)
         {
-			var source = anime.Root.SelectedCategory;
-            var item = SerializeAnime(anime);
-            var id = Init.Storage.AddItem(target.ToString(), item);
-            Init.Storage.RemoveItem(source.ToString(), anime.ID);
-            anime.ID = id;
-            return id;
+			Init.Storage.MoveItem (anime.ID, target.ToString ());
+			return anime.ID;
         }
 
         public static void Update(IAnime anime)

@@ -71,23 +71,15 @@ namespace NyaWatch.Core.Data
 			UpdateIndex (id, cat);
 		}
 
-		public void RemoveItem(string category, Guid id)
+		public void RemoveItem(Guid id)
 		{
-			if (!CheckCategoryExistence (category)) {
-				throw new CategoryNotFoundException (category);
-			}
-
-			var cat = _db [category];
-
 			if (id == Guid.Empty) {
-				foreach (var k in cat.Keys) {
-					RemoveIndex (k);
-				}
-				cat.Clear ();
-			} else {
-				RemoveIndex (id);
-				cat.Remove (id);
+				return;
 			}
+
+			var cat = _categoryIndex [id];
+			RemoveIndex (id);
+			cat.Remove (id);
 		}
 
 		public void UpdateItem(Guid id, Dic values)
@@ -99,6 +91,25 @@ namespace NyaWatch.Core.Data
 			foreach (var kv in values) {
 				item [kv.Key] = kv.Value;
 			}
+		}
+
+		public void MoveItem (Guid id, string category)
+		{
+			if (!CheckCategoryExistence (category)) {
+				throw new CategoryNotFoundException (category);
+			}
+
+			CategoryAlias moveFromCategory = null;
+
+			try {
+				moveFromCategory = _categoryIndex[id];
+			} catch (KeyNotFoundException) {
+				return;
+			}
+
+			var item = GetItem (id);
+			RemoveItem (id);
+			AddItem (category, item, id);
 		}
 
 		public IEnumerable<KeyValuePair<Guid, Dic>> SelectItems (string category)
