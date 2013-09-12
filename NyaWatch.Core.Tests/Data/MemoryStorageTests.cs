@@ -102,7 +102,7 @@ namespace NyaWatch.Core.Data.Tests
 
 			Assert.AreNotEqual (id, Guid.Empty, "Item ID should be generated");
 
-			var item = _storage.GetItem ("foo", id);
+			var item = _storage.GetItem (id);
 			Assert.NotNull (item, "Item should be found");
 			Assert.AreEqual (_a, item, "Item should be A");
 		}
@@ -161,10 +161,6 @@ namespace NyaWatch.Core.Data.Tests
 		[Test]
 		public void TestUpdateItem()
 		{
-			Assert.Throws<CategoryNotFoundException> (
-				() => _storage.UpdateItem ("foo", Guid.Empty, null),
-				"Category not found exception should be thrown");
-
 			_storage.AddCategory ("foo");
 
 			Assert.DoesNotThrow (
@@ -185,7 +181,7 @@ namespace NyaWatch.Core.Data.Tests
 				() => _storage.UpdateItem ("foo", aid, newAValue),
 				"Item a should be updated");
 
-			var updatedA = _storage.GetItem ("foo", aid);
+			var updatedA = _storage.GetItem (aid);
 			Assert.AreEqual ("aax", 
 			                 updatedA ["data"],
 			                "Item a data should be aax");
@@ -193,25 +189,6 @@ namespace NyaWatch.Core.Data.Tests
 
 		[Test]
 		public void TestGetItem()
-		{
-			Assert.Throws<CategoryNotFoundException> (
-				() => _storage.GetItem ("foo", Guid.Empty),
-				"Category not found exception should be thrown");
-
-			_storage.AddCategory ("foo");
-
-			var aid = _storage.AddItem ("foo", _a);
-
-			Assert.IsNull (_storage.GetItem ("foo", Guid.Empty));
-			Assert.IsNull (_storage.GetItem ("foo", Guid.NewGuid()));
-
-			var a = _storage.GetItem ("foo", aid);
-			Assert.IsNotNull (a, "A should be found");
-			Assert.AreEqual (_a, a, "A should be A");
-		}
-
-		[Test]
-		public void TestGetItemById()
 		{
 			_storage.AddCategory ("foo");
 			var aid = _storage.AddItem ("foo", _a);

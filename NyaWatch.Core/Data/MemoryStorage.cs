@@ -92,7 +92,7 @@ namespace NyaWatch.Core.Data
 
 		public void UpdateItem(string category, Guid id, Dic values)
 		{
-			var item = GetItem (category, id);
+			var item = GetItem (id);
 			if (item == null || values == null) {
 				return;
 			}
@@ -107,20 +107,6 @@ namespace NyaWatch.Core.Data
 				throw new CategoryNotFoundException (category);
 			}
 			return _db [category];
-		}
-
-		public Dic GetItem(string category, Guid id)
-		{
-			if (!CheckCategoryExistence (category)) {
-				throw new CategoryNotFoundException (category);
-			}
-
-			try
-			{
-				return _db [category] [id];
-			} catch (KeyNotFoundException) {
-				return null;
-			}
 		}
 
 		public Dic GetItem(Guid id)
