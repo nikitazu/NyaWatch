@@ -80,6 +80,7 @@
     <Compile Include="UI\Dialogs.cs" />
     <Compile Include="Domain\IRoot.cs" />
     <Compile Include="Parsing\RussianDateConverter.cs" />
+    <Compile Include="Domain\IEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
