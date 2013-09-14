@@ -80,11 +80,16 @@
     <Compile Include="UI\Dialogs.cs" />
     <Compile Include="Domain\IRoot.cs" />
     <Compile Include="Parsing\RussianDateConverter.cs" />
-    <Compile Include="Domain\IEvent.cs" />
+    <Compile Include="Domain\Events\IEvent.cs" />
+    <Compile Include="Domain\Events\BaseEvent.cs" />
+    <Compile Include="Domain\Events\NewEpisodesEvent.cs" />
+    <Compile Include="Domain\Events\PremiereEvent.cs" />
+    <Compile Include="Domain\Events\NewTorrentsEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Html\" />
+    <Folder Include="Domain\Events\" />
   </ItemGroup>
   <ItemGroup />
 </Project>
