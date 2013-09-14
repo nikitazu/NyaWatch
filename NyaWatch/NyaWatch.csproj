@@ -82,6 +82,7 @@
     <Folder Include="ViewModel\" />
     <Folder Include="Cocoa\" />
     <Folder Include="UI\" />
+    <Folder Include="Resources\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -131,5 +132,9 @@
     <BundleResource Include="Resources\NyaWatch.iconset\icon_512x512.png" />
     <BundleResource Include="Resources\NyaWatch.iconset\icon_512x512%402x.png" />
     <BundleResource Include="Resources\NyaWatch.icns" />
+    <BundleResource Include="Resources\Events\episode.png" />
+    <BundleResource Include="Resources\Events\info.png" />
+    <BundleResource Include="Resources\Events\premiere.png" />
+    <BundleResource Include="Resources\Events\torrent.png" />
   </ItemGroup>
 </Project>
