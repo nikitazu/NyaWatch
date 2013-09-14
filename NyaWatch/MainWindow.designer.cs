@@ -34,6 +34,12 @@ namespace NyaWatch
 		MonoMac.AppKit.NSButton categoryWatchingButton { get; set; }
 
 		[Outlet]
+		MonoMac.AppKit.NSArrayController eventsArrayController { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSTableView eventsTable { get; set; }
+
+		[Outlet]
 		MonoMac.AppKit.NSSearchField searchAnimeField { get; set; }
 
 		[Action ("categoryCompletedAction:")]
@@ -61,9 +67,19 @@ namespace NyaWatch
 				animesArrayController = null;
 			}
 
+			if (eventsArrayController != null) {
+				eventsArrayController.Dispose ();
+				eventsArrayController = null;
+			}
+
 			if (animesTable != null) {
 				animesTable.Dispose ();
 				animesTable = null;
+			}
+
+			if (eventsTable != null) {
+				eventsTable.Dispose ();
+				eventsTable = null;
 			}
 
 			if (categoryCompletedButton != null) {

@@ -100,7 +100,11 @@ namespace NyaWatch
 		}
 
 		IEnumerable<cd.IAnime> Animes {
-			get { return animesArrayController.ArrangedObjects().Cast<cd.IAnime>(); }
+			get { return animesArrayController.Items<cd.IAnime> (); }
+		}
+
+		IEnumerable<cd.Events.IEvent> Events {
+			get { return eventsArrayController.Items<cd.Events.IEvent> (); }
 		}
 
 		#region Category buttons click events
@@ -133,8 +137,26 @@ namespace NyaWatch
 		void LoadAnimes(cd.Categories cat)
 		{
 			var animes = cd.Anime.Find<ViewModel.Anime> (cat).Select (a => (ViewModel.Anime)a.WithRoot (Root));
-			animesArrayController.SetArrangedObjects (animes);
+			animesArrayController.SetItems (animes);
 			Root.SelectedCategory = cat;
+
+			eventsArrayController.SetItems (new List<NSObject> () {
+				new ViewModel.Event(
+					new cd.Events.NewEpisodesEvent
+					{
+						Title = "New episode"
+					}),
+				new ViewModel.Event(
+					new cd.Events.NewTorrentsEvent
+					{
+						Title = "New torrent"
+					}),
+				new ViewModel.Event(
+					new cd.Events.PremiereEvent
+					{
+						Title = "Premiere"
+					})
+			});
 		}
 
 		#endregion
