@@ -7,17 +7,15 @@ namespace NyaWatch.Core.Data
 {
     public static class DateSerializationExtension
     {
-        const string Format = "yyyy-MM-dd";
-
         public static string SerializeDate(this DateTime? date)
         {
-            return date.HasValue ? date.Value.ToString(Format) : string.Empty;
+            return date.HasValue ? date.Value.ToString(DictionaryDataExtension.DateFormat) : string.Empty;
         }
 
         public static DateTime? DeserializeDate(this string value)
         {
             if (string.IsNullOrWhiteSpace(value)) { return null; }
-            return DateTime.ParseExact(value, Format, null);
+			return DateTime.ParseExact(value, DictionaryDataExtension.DateFormat, null);
         }
     }
 }

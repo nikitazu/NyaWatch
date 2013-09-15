@@ -31,6 +31,12 @@ namespace NyaWatch.Core.Domain.Events
 		/// </summary>
 		/// <value>The anime I.</value>
 		Guid AnimeID { get; set; }
+
+		/// <summary>
+		/// Event creation date.
+		/// </summary>
+		/// <value>Event creation date.</value>
+		DateTime Created { get; set; }
 	}
 }
 

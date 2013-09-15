@@ -22,14 +22,20 @@ namespace NyaWatch.Core.Domain
         {
 			Storage = new Data.XmlStorage (Files.DatabasePath);
 
-            foreach (var cat in Enum.GetNames(typeof(Categories)))
-            {
-                Storage.AddCategory(cat);
-            }
-
 			if (Storage.Exists ()) {
 				Storage.Load ();
 			}
-        }
+
+			EnsureAllNessesaryCategoriesAreExisting ();
+			//Events.Manager.PutTestEvents ();
+		}
+
+		static void EnsureAllNessesaryCategoriesAreExisting ()
+		{
+			foreach (var cat in Enum.GetNames (typeof(Categories))) {
+				Storage.AddCategory (cat);
+			}
+			Storage.AddCategory (Events.Manager.EventsCategory);
+		}
     }
 }

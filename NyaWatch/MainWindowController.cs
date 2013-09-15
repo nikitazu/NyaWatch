@@ -144,18 +144,7 @@ namespace NyaWatch
 
 		void LoadEvents()
 		{
-			var events = new List<ViewModel.Event> () {
-				new ViewModel.Event(new cd.Events.NewEpisodesEvent {
-					Title = "New episode"
-				}),
-				new ViewModel.Event(new cd.Events.NewTorrentsEvent {
-					Title = "New torrent"
-				}),
-				new ViewModel.Event(new cd.Events.PremiereEvent {
-					Title = "Premiere"
-				})
-			};
-
+			var events = cd.Events.Manager.LoadAll ().Select (evt => new ViewModel.Event (evt));
 			eventsArrayController.SetItems (events);
 		}
 
