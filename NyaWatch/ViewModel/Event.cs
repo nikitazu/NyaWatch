@@ -19,14 +19,9 @@ namespace NyaWatch.ViewModel
 
 		[Export("title")]
 		public string Title {
-			get {
-				return _event.Title;
-			}
-			set {
-				_event.Title = value;
-			}
+			get { return _event.Title; }
 		}
-
+		
 		[Export("imagePath")]
 		public string ImagePath { get; set; }
 	}

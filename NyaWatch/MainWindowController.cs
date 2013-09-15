@@ -55,6 +55,7 @@ namespace NyaWatch
 			NSUserDefaults.StandardUserDefaults ["NSInitialToolTipDelay"] = NSNumber.FromInt32 (500);
 			Root = new ViewModel.Root ();
 			LoadAnimes (cd.Categories.Watching);
+			LoadEvents ();
 		}
 
 		void LoadAwesomeFont()
@@ -139,24 +140,23 @@ namespace NyaWatch
 			var animes = cd.Anime.Find<ViewModel.Anime> (cat).Select (a => (ViewModel.Anime)a.WithRoot (Root));
 			animesArrayController.SetItems (animes);
 			Root.SelectedCategory = cat;
+		}
 
-			eventsArrayController.SetItems (new List<NSObject> () {
-				new ViewModel.Event(
-					new cd.Events.NewEpisodesEvent
-					{
-						Title = "New episode"
-					}),
-				new ViewModel.Event(
-					new cd.Events.NewTorrentsEvent
-					{
-						Title = "New torrent"
-					}),
-				new ViewModel.Event(
-					new cd.Events.PremiereEvent
-					{
-						Title = "Premiere"
-					})
-			});
+		void LoadEvents()
+		{
+			var events = new List<ViewModel.Event> () {
+				new ViewModel.Event(new cd.Events.NewEpisodesEvent {
+					Title = "New episode"
+				}),
+				new ViewModel.Event(new cd.Events.NewTorrentsEvent {
+					Title = "New torrent"
+				}),
+				new ViewModel.Event(new cd.Events.PremiereEvent {
+					Title = "Premiere"
+				})
+			};
+
+			eventsArrayController.SetItems (events);
 		}
 
 		#endregion
