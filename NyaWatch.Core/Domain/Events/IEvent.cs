@@ -37,6 +37,12 @@ namespace NyaWatch.Core.Domain.Events
 		/// </summary>
 		/// <value>Event creation date.</value>
 		DateTime Created { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="NyaWatch.Core.Domain.Events.IEvent"/> is watched.
+		/// </summary>
+		/// <value><c>true</c> if watched; otherwise, <c>false</c>.</value>
+		bool Watched { get; set; }
 	}
 }
 

@@ -136,5 +136,9 @@
     <BundleResource Include="Resources\Events\info.png" />
     <BundleResource Include="Resources\Events\premiere.png" />
     <BundleResource Include="Resources\Events\torrent.png" />
+    <BundleResource Include="Resources\Events\episode-gray.png" />
+    <BundleResource Include="Resources\Events\info-gray.png" />
+    <BundleResource Include="Resources\Events\premiere-gray.png" />
+    <BundleResource Include="Resources\Events\torrent-gray.png" />
   </ItemGroup>
 </Project>

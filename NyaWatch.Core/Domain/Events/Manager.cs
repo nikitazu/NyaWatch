@@ -19,7 +19,7 @@ namespace NyaWatch.Core.Domain.Events
 				return evt;
 			});
 
-			var sorted = from evt in query orderby evt.Created select evt;
+			var sorted = from evt in query orderby evt.Watched, evt.Created select evt;
 			return sorted.ToList();
 		}
 
@@ -29,19 +29,29 @@ namespace NyaWatch.Core.Domain.Events
 				Title = "Railgun 23"
 			});
 			Put (new NewEpisodesEvent () {
-				Title = "NGE 56"
+				Title = "NGE 56",
+				Watched = true
 			});
 			Put (new NewTorrentsEvent () {
 				Title = "Railgun 23"
 			});
+			Put (new NewTorrentsEvent () {
+				Title = "Railgun 22",
+				Watched = true
+			});
 			Put (new PremiereEvent () {
 				Title = "Railgun: The Movie"
+			});
+			Put (new PremiereEvent () {
+				Title = "Railgun: The OVA",
+				Watched = true
 			});
 			Put (new InfoEvent () {
 				Title = "You can do it"
 			});
 			Put (new InfoEvent () {
-				Title = "New pajamas"
+				Title = "New pajamas",
+				Watched = true
 			});
 		}
 
@@ -57,9 +67,10 @@ namespace NyaWatch.Core.Domain.Events
 		{
 			try
 			{
-				evt.Title = item.OptionalString("title");
-				evt.Message = item.OptionalString("message");
-				evt.Category = item.OptionalString("category");
+				evt.Title = item.OptionalString("title") ?? string.Empty;
+				evt.Message = item.OptionalString("message") ?? string.Empty;
+				evt.Category = item.OptionalString("category") ?? string.Empty;
+				evt.Watched = item.OptionalBool("watched") ?? false;
 
 				var animeID = item.OptionalString("anime-id");
 				if (!string.IsNullOrWhiteSpace(animeID)) {
@@ -85,6 +96,7 @@ namespace NyaWatch.Core.Domain.Events
 				item["anime-id"] = evt.AnimeID.ToString();
 				item["type"] = evt.GetType().FullName;
 				item["created"] = evt.Created.ToString("yyyy-MM-dd-hh:mm:ss");
+				item["watched"] = evt.Watched.ToString();
 				return item;
 			}
 			catch

@@ -13,6 +13,7 @@ namespace NyaWatch.Core.Domain.Events
 		public string Category { get; set; }
 		public Guid AnimeID { get; set; }
 		public DateTime Created { get; set; }
+		public bool Watched { get; set; }
 
 		public BaseEvent ()
 		{

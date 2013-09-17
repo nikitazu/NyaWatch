@@ -47,6 +47,11 @@ namespace NyaWatch.ViewModel
 			} catch (KeyNotFoundException) {
 				// nothing
 			}
+
+			if (evt.Watched) {
+				path += "-gray";
+			}
+
 			return NSBundle.MainBundle.PathForResource (path, "png");
 		}
 	}
