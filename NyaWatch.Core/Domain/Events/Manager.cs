@@ -8,29 +8,18 @@ namespace NyaWatch.Core.Domain.Events
 	public static class Manager
 	{
 		public const string EventsCategory = "events";
+		public static string AssemblyName = System.Reflection.Assembly.GetExecutingAssembly().FullName;
 
 		public static List<IEvent> LoadAll()
 		{
-			var query = Init.Storage.SelectItems (EventsCategory)
-				.Select(kv =>
-				        {
-					var eventTypeName = kv.Value["type"];
-					IEvent evt = null;
-					switch (eventTypeName) {
-					case "PremiereEvent": evt = Activator.CreateInstance<PremiereEvent>(); break;
-					case "NewTorrentsEvent": evt = Activator.CreateInstance<NewTorrentsEvent>(); break;
-					case "NewEpisodesEvent": evt = Activator.CreateInstance<NewEpisodesEvent>(); break;
-					case "InfoEvent": evt = Activator.CreateInstance<InfoEvent>(); break;
-					default:
-						throw new NotSupportedException("Unknown event type: " + eventTypeName);
-					}
-					evt.ID = kv.Key;
-					DeserializeEvent(kv.Value, evt);
-					return evt;
-				});
+			var query = Init.Storage.SelectItems (EventsCategory) .Select(kv => {
+				var evt = Activator.CreateInstance(AssemblyName, kv.Value["type"]).Unwrap() as IEvent;
+				evt.ID = kv.Key;
+				DeserializeEvent(kv.Value, evt);
+				return evt;
+			});
 
 			var sorted = from evt in query orderby evt.Created select evt;
-
 			return sorted.ToList();
 		}
 
@@ -94,7 +83,7 @@ namespace NyaWatch.Core.Domain.Events
 				item["message"] = evt.Message ?? string.Empty;
 				item["category"] = evt.Category ?? string.Empty;
 				item["anime-id"] = evt.AnimeID.ToString();
-				item["type"] = evt.GetType().Name.ToString();
+				item["type"] = evt.GetType().FullName;
 				item["created"] = evt.Created.ToString("yyyy-MM-dd-hh:mm:ss");
 				return item;
 			}
