@@ -27,7 +27,9 @@ namespace NyaWatch.Core.Domain
 			}
 
 			EnsureAllNessesaryCategoriesAreExisting ();
-			Events.Manager.PutTestEvents ();
+			//Events.Manager.PutTestEvents ();
+			Tasks.TasksRegistry.Init ();
+
 		}
 
 		static void EnsureAllNessesaryCategoriesAreExisting ()

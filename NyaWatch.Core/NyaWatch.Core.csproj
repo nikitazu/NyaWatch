@@ -43,6 +43,9 @@
     <Reference Include="StructureMap">
       <HintPath>..\lib\StructureMap-2.6.1\StructureMap.dll</HintPath>
     </Reference>
+    <Reference Include="FluentScheduler">
+      <HintPath>..\packages\FluentScheduler.2.0.39\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentModel\NotifyPropertyChanged.cs" />
@@ -87,6 +90,8 @@
     <Compile Include="Domain\Events\NewTorrentsEvent.cs" />
     <Compile Include="Domain\Events\Manager.cs" />
     <Compile Include="Domain\Events\InfoEvent.cs" />
+    <Compile Include="Domain\Tasks\FindTorrentsTask.cs" />
+    <Compile Include="Domain\Tasks\TasksRegistry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -94,4 +99,7 @@
     <Folder Include="Domain\Events\" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>
