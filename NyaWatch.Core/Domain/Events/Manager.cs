@@ -20,6 +20,7 @@ namespace NyaWatch.Core.Domain.Events
 					case "PremiereEvent": evt = Activator.CreateInstance<PremiereEvent>(); break;
 					case "NewTorrentsEvent": evt = Activator.CreateInstance<NewTorrentsEvent>(); break;
 					case "NewEpisodesEvent": evt = Activator.CreateInstance<NewEpisodesEvent>(); break;
+					case "InfoEvent": evt = Activator.CreateInstance<InfoEvent>(); break;
 					default:
 						throw new NotSupportedException("Unknown event type: " + eventTypeName);
 					}
@@ -46,6 +47,12 @@ namespace NyaWatch.Core.Domain.Events
 			});
 			Put (new PremiereEvent () {
 				Title = "Railgun: The Movie"
+			});
+			Put (new InfoEvent () {
+				Title = "You can do it"
+			});
+			Put (new InfoEvent () {
+				Title = "New pajamas"
 			});
 		}
 

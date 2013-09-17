@@ -86,6 +86,7 @@
     <Compile Include="Domain\Events\PremiereEvent.cs" />
     <Compile Include="Domain\Events\NewTorrentsEvent.cs" />
     <Compile Include="Domain\Events\Manager.cs" />
+    <Compile Include="Domain\Events\InfoEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
