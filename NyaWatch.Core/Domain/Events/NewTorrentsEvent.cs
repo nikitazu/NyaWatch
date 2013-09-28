@@ -21,10 +21,12 @@ namespace NyaWatch.Core.Domain.Events
 
 		public override string ToString ()
 		{
+			var torrents = _torrents.Select (t => Parsing.NameCleaner.Clean (t ["title"]));
+
 			return string.Format ("[New torrents {0} - <{1}>]\n\t{2}", 
 			                      _anime.Title, 
 			                      Title, 
-			                      string.Join("\n\t", _torrents.Select(t => t["title"])));
+			                      string.Join ("\n\t", torrents));
 		}
 	}
 }
