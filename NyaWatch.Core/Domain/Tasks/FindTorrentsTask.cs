@@ -24,7 +24,8 @@ namespace NyaWatch.Core.Domain.Tasks
 
 			var watchingAnimes = Domain.Anime.Find<Core.AnimeDummy> (Categories.Watching);
 			foreach (IAnime anime in watchingAnimes) {
-				var queryTerm = anime.Title.Replace (' ', '+') + "+" + (anime.Watched + 1).ToString ();
+				var searchTitle = anime.OtherTitles.Any () ? anime.OtherTitles.First () : anime.Title;
+				var queryTerm = searchTitle.Replace (' ', '+') + "+" + (anime.Watched + 1).ToString ();
 				Console.WriteLine ("QUERY TERM = {0}", queryTerm);
 
 				var torrents = new Parsing.NyaaTorrentParser ().ParseTorrentsFromWeb (TorrentsLink + queryTerm);
