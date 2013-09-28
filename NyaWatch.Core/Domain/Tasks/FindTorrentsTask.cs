@@ -43,7 +43,7 @@ namespace NyaWatch.Core.Domain.Tasks
 				Console.WriteLine ("found torrent: {0} s:{1} l:{2}", torrent ["title"], torrent ["seeders"], torrent ["leechers"]);
 			}*/
 
-			if (torrents.Any ()) {
+			if (torrents.Any (t => Parsing.NameCleaner.Clean( t["title"]).Contains(series.ToString()))) {
 				var evt = new Core.Domain.Events.NewTorrentsEvent(torrents, anime) {
 					Title = queryTerm
 				};
