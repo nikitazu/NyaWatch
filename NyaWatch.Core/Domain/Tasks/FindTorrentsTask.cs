@@ -24,24 +24,32 @@ namespace NyaWatch.Core.Domain.Tasks
 
 			var watchingAnimes = Domain.Anime.Find<Core.AnimeDummy> (Categories.Watching);
 			foreach (IAnime anime in watchingAnimes) {
-				var searchTitle = anime.OtherTitles.Any () ? anime.OtherTitles.First () : anime.Title;
-				var queryTerm = searchTitle.Replace (' ', '+') + "+" + (anime.Watched + 1).ToString ();
-				Console.WriteLine ("QUERY TERM = {0}", queryTerm);
-
-				var torrents = new Parsing.NyaaTorrentParser ().ParseTorrentsFromWeb (TorrentsLink + queryTerm);
-				
-				foreach (var torrent in torrents) {
-					Console.WriteLine ("found torrent: {0} s:{1} l:{2}", torrent ["title"], torrent ["seeders"], torrent ["leechers"]);
+				var series = anime.Watched + 1;
+				FindTorrents (anime.Title, series);
+				foreach (var title in anime.OtherTitles) {
+					FindTorrents (title, series);
 				}
+			}
 
-				/*if (torrents.Any ()) {
+			Console.WriteLine ("task find torrents: execute end");
+		}
+
+		void FindTorrents(string searchTitle, int series)
+		{
+			var queryTerm = searchTitle.Replace (' ', '+') + "+" + series.ToString ();
+			Console.WriteLine ("\n\nQUERY TERM = {0}\n=======================================", queryTerm);
+
+			var torrents = new Parsing.NyaaTorrentParser ().ParseTorrentsFromWeb (TorrentsLink + queryTerm);
+
+			foreach (var torrent in torrents) {
+				Console.WriteLine ("found torrent: {0} s:{1} l:{2}", torrent ["title"], torrent ["seeders"], torrent ["leechers"]);
+			}
+
+			/*if (torrents.Any ()) {
 					var evt = new Core.Domain.Events.NewTorrentsEvent {
 						Title = "Railgun S",
 					};
 				}*/
-			}
-
-			Console.WriteLine ("task find torrents: execute end");
 		}
 
 		#endregion
