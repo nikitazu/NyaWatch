@@ -23,7 +23,7 @@ namespace NyaWatch.Core.Parsing
 				var torrent = new Dictionary<string, string> ();
 
 				torrent ["title"] = item.Element ("title").Value;
-				torrent ["category"] = item.Element ("category").Value;
+				torrent ["category"] = ParseCategory( item.Element ("category").Value ).ToString();
 
 				// <![CDATA[17 seeder(s), 4 leecher(s), 305 download(s) - 454.5 MiB]]>
 				var description = item.Element ("description").Value;
@@ -39,6 +39,19 @@ namespace NyaWatch.Core.Parsing
 			}
 
 			return torrents;
+		}
+
+		Domain.TorrentCategory ParseCategory(string categoryName)
+		{
+			switch (categoryName) {
+			case "Raw Anime": return Domain.TorrentCategory.Raw;
+			case "English-translated Anime": return Domain.TorrentCategory.English;
+			case "Non-English-translated Anime": return Domain.TorrentCategory.NonEnglish;
+			case "Lossless Audio": return Domain.TorrentCategory.Ost;
+			case "Lossy Audio": return Domain.TorrentCategory.Ost;
+			default:
+				return Domain.TorrentCategory.Else;
+			}
 		}
 	}
 }

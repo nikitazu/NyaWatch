@@ -33,9 +33,9 @@ namespace NyaWatch.Core.Parsing.Tests
 			AssertKey (torrents, 1, "title", "[A-GX] Shingeki no Kyojin - 21v2 [3B024B18].mkv");
 			AssertKey (torrents, 2, "title", "[BKT] Shingeki no Kyojin 20 (720p_x264+AAC_SUB ITA)");
 
-			AssertKey (torrents, 0, "category", "English-translated Anime");
-			AssertKey (torrents, 1, "category", "Non-English-translated Anime");
-			AssertKey (torrents, 2, "category", "Non-English-translated Anime");
+			AssertKey (torrents, 0, "category", Domain.TorrentCategory.English.ToString());
+			AssertKey (torrents, 1, "category", Domain.TorrentCategory.NonEnglish.ToString());
+			AssertKey (torrents, 2, "category", Domain.TorrentCategory.NonEnglish.ToString());
 			
 			AssertKey (torrents, 0, "seeders", "3");
 			AssertKey (torrents, 1, "seeders", "0");

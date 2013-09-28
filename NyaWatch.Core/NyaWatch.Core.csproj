@@ -92,6 +92,9 @@
     <Compile Include="Domain\Events\InfoEvent.cs" />
     <Compile Include="Domain\Tasks\FindTorrentsTask.cs" />
     <Compile Include="Domain\Tasks\TasksRegistry.cs" />
+    <Compile Include="Domain\ITorrent.cs" />
+    <Compile Include="Domain\Torrent.cs" />
+    <Compile Include="Domain\TorrentCategory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

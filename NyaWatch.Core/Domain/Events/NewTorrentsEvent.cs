@@ -24,10 +24,16 @@ namespace NyaWatch.Core.Domain.Events
 			var query =
 				from torrent in _torrents
 				select new {
-					Title = Parsing.NameCleaner.Clean (torrent ["title"]),
-					Seeders = int.Parse (torrent ["seeders"])
+					Title = torrent ["title"],
+					Seeders = int.Parse (torrent ["seeders"]),
+					Category = torrent["category"]
 			};
-			var torrents = query.OrderByDescending (t => t.Seeders).Select (t => string.Format ("s:{0}: {1}", t.Seeders, t.Title));
+			var torrents = query.OrderByDescending (t => t.Seeders).Select (
+				t => string.Format (
+					"{0} s:{1}: {2}", 
+					t.Category, 
+					t.Seeders, 
+					t.Title));
 
 			return string.Format ("[New torrents {0} - <{1}>]\n\t{2}", 
 			                      _anime.Title, 
