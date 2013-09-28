@@ -35,15 +35,15 @@ namespace NyaWatch.Core.Domain.Tasks
 
 		void FindTorrents(string searchTitle, IAnime anime)
 		{
-			var series = anime.Watched + 1;
-			var queryTerm = searchTitle.Replace (' ', '+') + "+" + series.ToString ();
+			var nextEpisode = anime.Watched + 1;
+			var queryTerm = searchTitle.Replace (' ', '+') + "+" + nextEpisode.ToString ();
 			var torrents = new Parsing.NyaaTorrentParser ().ParseTorrentsFromWeb (TorrentsLink + queryTerm);
 			/*
 			foreach (var torrent in torrents) {
 				Console.WriteLine ("found torrent: {0} s:{1} l:{2}", torrent ["title"], torrent ["seeders"], torrent ["leechers"]);
 			}*/
 
-			if (torrents.Any (t => Parsing.NameCleaner.Clean( t["title"]).Contains(series.ToString()))) {
+			if (torrents.Any (t => Parsing.NameCleaner.Clean( t["title"]).Contains(nextEpisode.ToString()))) {
 				var evt = new Core.Domain.Events.NewTorrentsEvent(torrents, anime) {
 					Title = queryTerm
 				};
