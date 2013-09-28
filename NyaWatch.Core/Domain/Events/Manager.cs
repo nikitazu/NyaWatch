@@ -32,13 +32,6 @@ namespace NyaWatch.Core.Domain.Events
 				Title = "NGE 56",
 				Watched = true
 			});
-			Put (new NewTorrentsEvent () {
-				Title = "Railgun 23"
-			});
-			Put (new NewTorrentsEvent () {
-				Title = "Railgun 22",
-				Watched = true
-			});
 			Put (new PremiereEvent () {
 				Title = "Railgun: The Movie"
 			});

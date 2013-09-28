@@ -24,32 +24,33 @@ namespace NyaWatch.Core.Domain.Tasks
 
 			var watchingAnimes = Domain.Anime.Find<Core.AnimeDummy> (Categories.Watching);
 			foreach (IAnime anime in watchingAnimes) {
-				var series = anime.Watched + 1;
-				FindTorrents (anime.Title, series);
+				FindTorrents (anime.Title, anime);
 				foreach (var title in anime.OtherTitles) {
-					FindTorrents (title, series);
+					FindTorrents (title, anime);
 				}
 			}
 
 			Console.WriteLine ("task find torrents: execute end");
 		}
 
-		void FindTorrents(string searchTitle, int series)
+		void FindTorrents(string searchTitle, IAnime anime)
 		{
+			var series = anime.Watched + 1;
 			var queryTerm = searchTitle.Replace (' ', '+') + "+" + series.ToString ();
-			Console.WriteLine ("\n\nQUERY TERM = {0}\n=======================================", queryTerm);
-
 			var torrents = new Parsing.NyaaTorrentParser ().ParseTorrentsFromWeb (TorrentsLink + queryTerm);
-
+			/*
 			foreach (var torrent in torrents) {
 				Console.WriteLine ("found torrent: {0} s:{1} l:{2}", torrent ["title"], torrent ["seeders"], torrent ["leechers"]);
-			}
+			}*/
 
-			/*if (torrents.Any ()) {
-					var evt = new Core.Domain.Events.NewTorrentsEvent {
-						Title = "Railgun S",
-					};
-				}*/
+			if (torrents.Any ()) {
+				var evt = new Core.Domain.Events.NewTorrentsEvent(torrents, anime) {
+					Title = queryTerm
+				};
+				Console.WriteLine (evt);
+				Console.WriteLine ();
+				Console.WriteLine ();
+			}
 		}
 
 		#endregion
