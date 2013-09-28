@@ -23,6 +23,9 @@ namespace NyaWatch.Core.Parsing.Tests
 		const string _parseAnimeRailgunWithSpecialsFile= @"Parsing/WorldArtParser_TestParseAnime_RailgunWithSpecials.html";
 		const string _parseAnimeRailgunWithSpecialsUrl = @"http://www.world-art.ru/animation/animation.php?id=7354";
 
+		const string _parseAnimeShingekiFile = @"Parsing/WorldArtParser_TestParseAnime_ShingekiNoKyoujin.html";
+		const string _parseAnimeShingekiUrl = @"http://www.world-art.ru/animation/animation.php?id=1245";
+
 
 		[SetUp]
 		public void Setup()
@@ -176,6 +179,43 @@ namespace NyaWatch.Core.Parsing.Tests
 			Assert.AreEqual ("2010-03-20", anime ["airingEnd"], "airingEnd wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/img/8000/7354/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
 			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=7354", anime ["posterUrl"], "posterUrl wrong data");
+		}
+
+		[Test]
+		public void TestParseAnimeShingeki()
+		{
+			// has collazh in episode definition
+			Dictionary<string, string> anime = null;
+
+			anime = _parser.ParseAnimeFromFile (_parseAnimeShingekiFile);
+			//anime = _parser.ParseAnimeFromWeb (_parseAnimeShingekiUrl);
+
+			Assert.IsNotNull (anime, "Result should not be null");
+
+			Assert.True (anime.ContainsKey ("otherTitles"), "otherTitles not found");
+			Assert.True (anime.ContainsKey ("country"), "country not found");
+			Assert.True (anime.ContainsKey ("title"), "title not found");
+			Assert.True (anime.ContainsKey ("year"), "year not found");
+			Assert.True (anime.ContainsKey ("type"), "type not found");
+			Assert.True (anime.ContainsKey ("episodes"), "episodes not found");
+			Assert.True (anime.ContainsKey ("airingStart"), "airingStart not found");
+			Assert.True (anime.ContainsKey ("airingEnd"), "airingEnd not found");
+			Assert.True (anime.ContainsKey ("imageUrl"), "imageUrl not found");
+			Assert.True (anime.ContainsKey ("posterUrl"), "posterUrl not found");
+
+			
+			Assert.AreEqual ("Attack on Titan,Shingeki no Kyojin,Вторжение титанов,Атака титанов",
+			                 anime ["otherTitles"], "otherTitles wrong data");
+
+			Assert.AreEqual ("Япония", anime ["country"], "country wrong data");
+			Assert.AreEqual ("Вторжение гигантов", anime ["title"], "title wrong data");
+			Assert.AreEqual ("2013", anime ["year"], "year wrong data");
+			Assert.AreEqual ("TV", anime ["type"], "type wrong data");
+			Assert.AreEqual ("25", anime ["episodes"], "episodes wrong data");
+			Assert.AreEqual ("2013-04-07", anime ["airingStart"], "airingStart wrong data");
+			Assert.AreEqual ("2013-09-28", anime ["airingEnd"], "airingEnd wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/img/2000/1245/1.jpg", anime ["imageUrl"], "imageUrl wrong data");
+			Assert.AreEqual ("http://www.world-art.ru/animation/animation_poster.php?id=1245", anime ["posterUrl"], "posterUrl wrong data");
 		}
 	}
 }

@@ -106,7 +106,7 @@ namespace NyaWatch.Core.Parsing
 					type = "Movie";
 					episodes = "1";
 				} else {
-					var tsRe = new Regex (@"(\w+) \((\d+) эп.( \+ \d+ спэшла?)?\)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+					var tsRe = new Regex (@"(\w+) \((\d+) эп.( \+ \d+ спэшла?)?( \+ эп.-коллаж)?\)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 					var tsM = tsRe.Match (type);
 					if (tsM.Success) {
 						type = tsM.Groups [1].Value;
