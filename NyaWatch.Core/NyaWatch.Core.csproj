@@ -95,11 +95,13 @@
     <Compile Include="Domain\ITorrent.cs" />
     <Compile Include="Domain\Torrent.cs" />
     <Compile Include="Domain\TorrentCategory.cs" />
+    <Compile Include="Threading\IAutoreleasePool.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Html\" />
     <Folder Include="Domain\Events\" />
+    <Folder Include="Threading\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentScheduler;
+using StructureMap;
 
 namespace NyaWatch.Core.Domain.Tasks
 {
@@ -22,11 +23,13 @@ namespace NyaWatch.Core.Domain.Tasks
 		{
 			Console.WriteLine ("task find torrents: execute begin");
 
-			var watchingAnimes = Domain.Anime.Find<Core.AnimeDummy> (Categories.Watching);
-			foreach (IAnime anime in watchingAnimes) {
-				FindTorrents (anime.Title, anime);
-				foreach (var title in anime.OtherTitles) {
-					FindTorrents (title, anime);
+			using (var pool = ObjectFactory.GetInstance<Threading.IAutoreleasePool>()) {
+				var watchingAnimes = Domain.Anime.Find<Core.AnimeDummy> (Categories.Watching);
+				foreach (IAnime anime in watchingAnimes) {
+					FindTorrents (anime.Title, anime);
+					foreach (var title in anime.OtherTitles) {
+						FindTorrents (title, anime);
+					}
 				}
 			}
 

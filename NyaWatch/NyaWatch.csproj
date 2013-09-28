@@ -83,6 +83,7 @@
     <Folder Include="Cocoa\" />
     <Folder Include="UI\" />
     <Folder Include="Resources\Events\" />
+    <Folder Include="Threading\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ViewModel\Event.cs" />
     <Compile Include="Cocoa\NSArrayToEnumerable.cs" />
     <Compile Include="ViewModel\Torrent.cs" />
+    <Compile Include="Threading\AutoreleasePool.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
