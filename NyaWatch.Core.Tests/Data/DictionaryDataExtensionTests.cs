@@ -39,10 +39,10 @@ namespace NyaWatch.Core.Data.Tests
         [Test]
         public void TestRequireData ()
         {
-            Assert.AreEqual ("Alex", _item.RequireData ("name"));
-            Assert.Throws<KeyNotFoundException> (() => _item.RequireData ("noname"));
-            Assert.Throws<ArgumentNullException> (() => _nullItem.RequireData ("name"));
-            Assert.Throws<ArgumentNullException> (() => _item.RequireData (null));
+            Assert.AreEqual ("Alex", _item.RequireString ("name"));
+            Assert.Throws<KeyNotFoundException> (() => _item.RequireString ("noname"));
+            Assert.Throws<ArgumentNullException> (() => _nullItem.RequireString ("name"));
+            Assert.Throws<ArgumentNullException> (() => _item.RequireString (null));
         }
 
         [Test]

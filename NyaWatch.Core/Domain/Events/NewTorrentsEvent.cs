@@ -9,10 +9,10 @@ namespace NyaWatch.Core.Domain.Events
 	/// </summary>
 	public class NewTorrentsEvent : BaseEvent, IEvent
 	{
-		List<Dictionary<string, string>> _torrents;
+		List<ITorrent> _torrents;
 		IAnime _anime;
 
-		public NewTorrentsEvent (List<Dictionary<string, string>> torrents, IAnime anime)
+		public NewTorrentsEvent (List<ITorrent> torrents, IAnime anime)
 		{
 			_torrents = torrents;
 			_anime = anime;
@@ -21,19 +21,8 @@ namespace NyaWatch.Core.Domain.Events
 
 		public override string ToString ()
 		{
-			var query =
-				from torrent in _torrents
-				select new {
-					Title = torrent ["title"],
-					Seeders = int.Parse (torrent ["seeders"]),
-					Category = torrent["category"]
-			};
-			var torrents = query.OrderByDescending (t => t.Seeders).Select (
-				t => string.Format (
-					"{0} s:{1}: {2}", 
-					t.Category, 
-					t.Seeders, 
-					t.Title));
+			var torrents = _torrents.OrderByDescending (t => t.Seeders).Select (
+				t => string.Format ("s:{0}: {1}", t.Seeders, t.RawTitle));
 
 			return string.Format ("[New torrents {0} - <{1}>]\n\t{2}", 
 			                      _anime.Title, 

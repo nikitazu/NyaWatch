@@ -8,7 +8,7 @@ namespace NyaWatch.Core.Data
 {
     public static class DictionaryDataExtension
     {
-        public static string RequireData (this IDic item, string key)
+        public static string RequireString (this IDic item, string key)
         {
             if (item == null) { throw new ArgumentNullException ("item"); }
             return item[key];
@@ -16,18 +16,18 @@ namespace NyaWatch.Core.Data
 
         public static int RequireInt (this IDic item, string key)
         {
-            return int.Parse (item.RequireData (key));
+            return int.Parse (item.RequireString (key));
         }
 
         public static bool RequireBool (this IDic item, string key)
         {
-            return bool.Parse (item.RequireData (key));
+            return bool.Parse (item.RequireString (key));
         }
 
         public const string DateFormat = "yyyy-MM-dd";
         public static DateTime RequireDate (this IDic item, string key)
         {
-            return DateTime.ParseExact (item.RequireData (key), DateFormat, null);
+            return DateTime.ParseExact (item.RequireString (key), DateFormat, null);
         }
 
 

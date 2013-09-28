@@ -123,10 +123,10 @@ namespace NyaWatch.Core.Domain
         {
             try
             {
-                anime.Title = item.RequireData ("title");
+                anime.Title = item.RequireString ("title");
                 anime.Episodes = item.OptionalInt ("episodes") ?? 0;
                 anime.Watched = item.OptionalInt ("watched") ?? 0;
-                anime.Type = item.RequireData ("type");
+                anime.Type = item.RequireString ("type");
                 anime.Status = item.OptionalString ("status") ?? AnimeAiringStatus.Unknown;
                 anime.Pinned = item.OptionalBool ("pinned") ?? false;
                 anime.Year = item.RequireInt ("year");

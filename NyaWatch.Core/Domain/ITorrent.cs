@@ -37,5 +37,11 @@ namespace NyaWatch.Core.Domain
 		/// </summary>
 		/// <value>The release group.</value>
 		string ReleaseGroup { get; set; }
+
+		/// <summary>
+		/// Gets or sets the category.
+		/// </summary>
+		/// <value>The category.</value>
+		TorrentCategory Category { get; set; }
 	}
 }

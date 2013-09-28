@@ -104,6 +104,7 @@
     <Compile Include="Cocoa\NSArrayControllerExtension.cs" />
     <Compile Include="ViewModel\Event.cs" />
     <Compile Include="Cocoa\NSArrayToEnumerable.cs" />
+    <Compile Include="ViewModel\Torrent.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

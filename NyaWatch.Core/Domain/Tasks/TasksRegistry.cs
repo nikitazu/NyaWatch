@@ -7,7 +7,7 @@ namespace NyaWatch.Core.Domain.Tasks
 	{
 		public TasksRegistry ()
 		{
-			Schedule<FindTorrentsTask> ().ToRunNow ().AndEvery (10).Seconds ();
+			Schedule<FindTorrentsTask> ().ToRunNow ().AndEvery (60).Seconds ();
 		}
 
 		public static void Init()
