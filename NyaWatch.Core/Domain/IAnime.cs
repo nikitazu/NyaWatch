@@ -21,6 +21,12 @@ namespace NyaWatch.Core.Domain
         /// </summary>
         string Title { get; set; }
 
+		/// <summary>
+		/// Other anime titles.
+		/// </summary>
+		/// <value>The other titles.</value>
+		List<string> OtherTitles { get; set; }
+
         /// <summary>
         /// Total number of episodes of anime series.
         /// </summary>

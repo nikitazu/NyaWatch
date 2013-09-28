@@ -103,6 +103,7 @@
     <Compile Include="ViewModel\Root.cs" />
     <Compile Include="Cocoa\NSArrayControllerExtension.cs" />
     <Compile Include="ViewModel\Event.cs" />
+    <Compile Include="Cocoa\NSArrayToEnumerable.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

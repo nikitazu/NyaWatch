@@ -10,6 +10,7 @@ namespace NyaWatch.Core
         public Guid ID { get; set; }
 		public Domain.IRoot Root { get; set; }
         public string Title { get; set; }
+		public List<string> OtherTitles { get; set; }
         public int Episodes { get; set; }
         public int Watched { get; set; }
         public string Type { get; set; }

@@ -12,6 +12,11 @@ namespace NyaWatch.Cocoa
 		{
 			return NSArray.FromObjects (items.ToArray ());
 		}
+
+		public static NSArray ToNSStringArray(this IEnumerable<string> items)
+		{
+			return NSArray.FromObjects (items.ToArray ());
+		}
 	}
 }
 

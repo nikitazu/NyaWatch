@@ -134,6 +134,9 @@ namespace NyaWatch.Core.Domain
                 anime.AiringEnd = item.OptionalDate ("airingEnd");
                 anime.ImageUrl = item.OptionalString ("imageUrl") ?? string.Empty;
                 anime.ImagePath = item.OptionalString ("imagePath") ?? string.Empty;
+
+				var otherTitles = item.OptionalString ("otherTitles");
+				anime.OtherTitles = otherTitles == null ? new List<string>() : otherTitles.Split(',').ToList();
             }
             catch (Exception e)
             {
@@ -161,6 +164,7 @@ namespace NyaWatch.Core.Domain
                 item["airingEnd"] = anime.AiringEnd.SerializeDate ();
                 item["imageUrl"] = anime.ImageUrl ?? string.Empty;
                 item["imagePath"] = anime.ImagePath ?? string.Empty;
+				item["otherTitles"] = string.Join(",", anime.OtherTitles);
                 return item;
             }
             catch (Exception e)

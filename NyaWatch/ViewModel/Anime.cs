@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
-
+using NyaWatch.Cocoa;
 using cd = NyaWatch.Core.Domain;
 
 namespace NyaWatch.ViewModel
@@ -15,6 +15,18 @@ namespace NyaWatch.ViewModel
 
 		[Export("title")]
 		public string Title { get; set; }
+
+		[Export("otherTitles")]
+		public string[] OtherTitlesHelper { get; set; }
+
+		public List<string> OtherTitles {
+			get {
+				return OtherTitlesHelper.ToList ();
+			}
+			set {
+				SetValueForKey (value.ToNSStringArray(), (NSString)"otherTitles");
+			}
+		}
 
 		[Export("episodes")]
 		public int Episodes { get; set; }
