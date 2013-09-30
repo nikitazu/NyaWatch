@@ -41,7 +41,9 @@ namespace NyaWatch.Core.Domain.Tasks
 			var nextEpisode = anime.Watched + 1;
 			var queryTerm = searchTitle.Replace (' ', '+') + "+" + nextEpisode.ToString ();
 			var torrents = Torrent.ParseTorrentsFromWeb (TorrentsLink + queryTerm)
-				.Where (t => t.CleanTitle.Contains (nextEpisode.ToString ())).ToList ();
+				.Where (t => 
+				        t.Category == TorrentCategory.English &&
+				        t.CleanTitle.Contains (nextEpisode.ToString ())).ToList ();
 
 			if (torrents.Any ()) {
 				var evt = new Core.Domain.Events.NewTorrentsEvent(torrents, anime) {
